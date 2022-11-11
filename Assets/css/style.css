@@ -16,6 +16,7 @@
 body {
     margin: 0px;
     padding: 0px;
+    font-family: 'Arimo', sans-serif;
 }
 
 .dark-blue-bg {
@@ -34,8 +35,8 @@ body {
 
 .navbar-brand {
     display: flex;
-
     align-items: center;
+    margin-left: 0.5em;
 }
 
 .navbar-brand h1 {
@@ -64,7 +65,7 @@ body {
 }
 
 .nav-item {
-    margin: 0px 20px;
+    margin: 0px 0.5em;
 }
 
 .nav-item:hover {

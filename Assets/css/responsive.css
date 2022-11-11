@@ -11,10 +11,28 @@
         margin-left: 15px !important;
     }
 }
-@media(max-width:430px) {
+@media(max-width:447px) {
     .navbar-brand h1{
         font-size: 1em;
         margin-top:5px;
     }
 
 }
+@media(max-width:447px) {
+    .navbar-brand{
+        margin-left: 5px !important;
+    }
+    .navbar-toggler{
+        margin-left: 0px;
+        margin-right: 5px;
+    }
+    .navbar-brand h1{
+        margin-right:5px;
+    }
+    .navbar-brand img {
+        margin-left: 5px !important;
+    }
+}
+/* @media(max-width:373px) {
+
+} */
