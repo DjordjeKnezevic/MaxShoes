@@ -41,6 +41,22 @@
     }
 }
 
-/* @media(max-width:373px) {
+@media(max-width:373px) {
+    .container-fluid {
+        padding-left: 6px;
+        padding-right: 6px;
+    }
 
-} */
+    .navbar-brand {
+        margin-left: 2px !important;
+    }
+
+    .icons {
+        margin-left: 2px !important;
+        margin-right: 0px !important;
+    }
+
+    .navbar-brand {
+        margin-right: 5px !important;
+    }
+}
