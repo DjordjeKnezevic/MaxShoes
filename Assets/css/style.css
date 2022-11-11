@@ -1,0 +1,119 @@
+/* body {
+    font-family: 'Noto Sans', sans-serif;
+} */
+/* .p1 {
+    font-family: 'Noto Sans', sans-serif;
+}
+.p2 {
+    font-family: 'Inter', sans-serif;
+}
+.p3 {
+    font-family: 'Mulish', sans-serif;
+}
+.p4 {
+    font-family: 'Arimo', sans-serif;
+} */
+body {
+    margin: 0px;
+    padding: 0px;
+}
+
+.dark-blue-bg {
+    background-color: #222E50;
+}
+
+.navbar {
+    height: 100px;
+}
+
+.navbar-nav {
+    display: flex;
+    justify-content: center;
+    font-size: 1.7em;
+}
+
+.navbar-brand {
+    display: flex;
+
+    align-items: center;
+}
+
+.navbar-brand h1 {
+    display: inline-block;
+    margin-right: 0.35em;
+}
+
+.lgreen {
+    color: #BCD8C1;
+    font-size: 1.5em;
+}
+
+.navbar-brand img {
+    width: 50px;
+    border-radius: 40% 10%;
+}
+
+.navbar-brand img:hover {
+    box-shadow: 0px 0px 30px #BCD8C1;
+    transition: 0.2s;
+}
+
+.navbar-brand h1:hover {
+    text-shadow: 0px 0px 40px #BCD8C1;
+    transition: 0.2s;
+}
+
+.nav-item {
+    margin: 0px 20px;
+}
+
+.nav-item:hover {
+    text-shadow: 0px 0px 25px #BCD8C1;
+    transition: 0.2s;
+}
+
+.icons {
+    display: flex;
+    flex-direction: row-reverse;
+}
+
+.icons a svg {
+    margin-right: 25px;
+}
+
+.icons a svg:hover {
+    filter: drop-shadow(0px 0px 15px #BCD8C1);
+    transition: 0.2s;
+}
+
+.navbar-toggler {
+    color: white;
+    background-color: #BCD8C1;
+    margin-right: 2em;
+
+}
+
+.navbar-toggler:hover {
+    box-shadow: 0px 0px 25px #BCD8C1;
+    transition: 0.2s;
+}
+
+.navbar-collapse {
+    display: inline-block;
+}
+
+
+
+
+
+
+
+
+footer {
+    height: 200px;
+}
+
+.filler-space {
+    height: 1000px;
+    background-color: #BCD8C1;
+}

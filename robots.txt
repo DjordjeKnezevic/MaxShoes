@@ -1,4 +1,4 @@
 User-agent: *
 Disallow: 
 
-Sitemap: https://DjordjeKnezevic.github.io/IMEPROJEKTA/sitemap.xml
+Sitemap: https://DjordjeKnezevic.github.io/MaxShoes/sitemap.xml
