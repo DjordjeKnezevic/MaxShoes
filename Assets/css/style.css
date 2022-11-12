@@ -103,6 +103,11 @@ body {
     display: inline-block;
 }
 
+.offcanvas {
+    background-color: #222E50;
+    width: 50% !important;
+    height: 300px;
+}
 
 
 

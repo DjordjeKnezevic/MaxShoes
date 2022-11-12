@@ -1,3 +1,57 @@
+@media(max-width:1037px) {
+    .nav-item {
+        margin-left: 8px;
+        margin-right: 10px;
+    }
+
+    .icons {
+        margin-left: 5px;
+    }
+
+    .icons a svg {
+        margin-right: 20px;
+    }
+}
+
+@media(max-width:991px) {
+
+    .navbar-brand h1,
+    .navbar-toggler,
+    .navbar-brand img,
+    .icons {
+        margin-bottom: 20px;
+    }
+
+    .offcanvas ul {
+        margin-top: 20px;
+    }
+
+    .offcanvas ul li {
+        display: flex;
+        flex-direction: column;
+        justify-content: space-around;
+        border-bottom: 1px solid #BCD8C1;
+    }
+
+    .offcanvas ul li:first-child {
+        border-top: 1px solid #BCD8C1;
+    }
+}
+
+@media(max-width:775px) {
+
+    .navbar-brand h1,
+    .navbar-toggler,
+    .navbar-brand img,
+    .icons {
+        margin-bottom: 0px;
+    }
+
+    .navbar-toggler {
+        margin-right: 20px;
+    }
+}
+
 @media(max-width:533px) {
     .icons a svg {
         width: 30px;
@@ -7,6 +61,10 @@
 
     .navbar-toggler {
         margin-right: 15px;
+    }
+
+    .navbar-brand {
+        margin-right: 0px;
     }
 
     .navbar-brand img {
@@ -20,9 +78,6 @@
         margin-top: 5px;
     }
 
-}
-
-@media(max-width:447px) {
     .navbar-brand {
         margin-left: 5px !important;
     }
@@ -56,7 +111,19 @@
         margin-right: 0px !important;
     }
 
+    .icons a svg {
+        margin-right: 5px !important;
+    }
+
     .navbar-brand {
         margin-right: 5px !important;
+    }
+
+    .navbar-toggler-icon {
+        font-size: 0.5em;
+    }
+
+    .navbar-brand img {
+        width: 40px;
     }
 }
