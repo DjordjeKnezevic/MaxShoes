@@ -1,3 +1,31 @@
+@media(max-width:1258px) {
+    #welcome-title h1 {
+        font-size: 4em;
+    }
+
+    #welcome-title h3 {
+        font-size: 1.5em;
+    }
+
+    #welcome-title {
+        top: 200px;
+    }
+}
+
+@media(max-width:1072px) {
+    #welcome-title h1 {
+        font-size: 3em;
+    }
+
+    #welcome-title h3 {
+        font-size: 1.2em;
+    }
+
+    #welcome-title {
+        top: 160px;
+    }
+}
+
 @media(max-width:1037px) {
     .nav-item {
         margin-left: 8px;
@@ -22,8 +50,12 @@
         margin-bottom: 20px;
     }
 
+    .offcanvas {
+        margin-top: 100px;
+    }
+
     .offcanvas ul {
-        margin-top: 20px;
+        margin-top: 30px;
     }
 
     .offcanvas ul li {
@@ -52,6 +84,48 @@
     }
 }
 
+@media(max-width:684px) {
+    #welcome-title h1 {
+        font-size: 2.5em;
+    }
+
+    #welcome-title h3 {
+        font-size: 1.1em;
+    }
+
+    #welcome-title {
+        top: 90px;
+    }
+}
+
+@media(max-width:626px) {
+    #welcome-title h1 {
+        font-size: 2em;
+    }
+
+    #welcome-title h3 {
+        font-size: 1em;
+    }
+
+    #welcome-title {
+        top: 80px;
+    }
+}
+
+@media(max-width:566px) {
+    #welcome-title h1 {
+        font-size: 1.5em;
+    }
+
+    #welcome-title h3 {
+        font-size: 0.8em;
+    }
+
+    #welcome-title {
+        top: 70px;
+    }
+}
+
 @media(max-width:533px) {
     .icons a svg {
         width: 30px;
@@ -72,7 +146,7 @@
     }
 }
 
-@media(max-width:447px) {
+@media(max-width:456px) {
     .navbar-brand h1 {
         font-size: 1em;
         margin-top: 5px;
@@ -93,6 +167,18 @@
 
     .navbar-brand img {
         margin-left: 5px !important;
+    }
+
+    #welcome-title h1 {
+        font-size: 1em;
+    }
+
+    #welcome-title h3 {
+        font-size: 0.6em;
+    }
+
+    #welcome-title {
+        top: 50px;
     }
 }
 
@@ -125,5 +211,19 @@
 
     .navbar-brand img {
         width: 40px;
+    }
+}
+
+@media(max-width:340px) {
+    #welcome-title h1 {
+        font-size: 0.8em;
+    }
+
+    #welcome-title h3 {
+        font-size: 0.5em;
+    }
+
+    #welcome-title {
+        top: 45px;
     }
 }
