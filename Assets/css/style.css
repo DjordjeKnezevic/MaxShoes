@@ -157,16 +157,19 @@ main {
 
 #Akcije {
     background-color: black;
-    height: 90vh;
-    width: 70%;
+    height: 1000px;
+    width: 100%;
+    margin: 0px auto;
 }
 
 .carousel,
 .carousel-inner,
-.carousel-item {
+.carousel-item,
+.carousel-item img {
+    width: 100% !important;
     height: 100% !important;
+    
 }
-
 
 
 footer {
