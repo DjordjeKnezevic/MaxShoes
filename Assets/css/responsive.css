@@ -1,3 +1,23 @@
+@media(orientation: landscape) and (max-height:800px) {
+    #welcome-title {
+        top: 40vh !important;
+    }
+
+    #welcome-screen {
+        height: 350px !important;
+    }
+
+    #Akcije {
+        height: 450px !important;
+    }
+}
+
+/* @media(max-width:1100px) and (max-height:900px) {
+    #welcome-title {
+        top: 40vh;
+    } */
+
+
 @media(max-width:1258px) {
     #welcome-title h1 {
         font-size: 4em;
@@ -8,7 +28,7 @@
     }
 
     #welcome-title {
-        top: 200px;
+        top: 10vh;
     }
 }
 
@@ -19,10 +39,6 @@
 
     #welcome-title h3 {
         font-size: 1.2em;
-    }
-
-    #welcome-title {
-        top: 160px;
     }
 }
 
@@ -68,6 +84,15 @@
     .offcanvas ul li:first-child {
         border-top: 1px solid #BCD8C1;
     }
+
+    #welcome-screen {
+        height: 50vh;
+    }
+
+    #Akcije {
+        height: 40vh;
+    }
+
 }
 
 @media(max-width:775px) {
@@ -91,10 +116,6 @@
 
     #welcome-title h3 {
         font-size: 1.1em;
-    }
-
-    #welcome-title {
-        top: 90px;
     }
 }
 
@@ -121,8 +142,12 @@
         font-size: 0.8em;
     }
 
-    #welcome-title {
-        top: 70px;
+    #welcome-screen {
+        height: 30vh !important;
+    }
+
+    #Akcije {
+        height: 30vh;
     }
 }
 
@@ -144,6 +169,11 @@
     .navbar-brand img {
         margin-left: 15px !important;
     }
+
+    .carousel-caption h5,
+    .carousel-caption p {
+        font-size: 0.5em;
+    }
 }
 
 @media(max-width:456px) {
@@ -153,7 +183,7 @@
     }
 
     .navbar-brand {
-        margin-left: 5px !important;
+        margin-left: 5px;
     }
 
     .navbar-toggler {
@@ -178,7 +208,17 @@
     }
 
     #welcome-title {
-        top: 50px;
+        top: 5vh;
+    }
+}
+
+@media(max-width:400px) and (max-height:700px) {
+    #welcome-screen {
+        height: 38vh !important;
+    }
+
+    #Akcije {
+        height: 40vh;
     }
 }
 
@@ -223,7 +263,16 @@
         font-size: 0.5em;
     }
 
+}
+
+@media(max-height:770px) {
     #welcome-title {
-        top: 45px;
+        top: 10vh;
+    }
+}
+
+@media(max-height:800px) {
+    #welcome-title {
+        top: 8vh;
     }
 }
