@@ -86,7 +86,7 @@ body {
 
 .offcanvas {
     background-color: #222E50;
-    width: 50% !important;
+    width: 40% !important;
     height: 300px;
 }
 
@@ -169,7 +169,9 @@ main {
     height: 100% !important;
     
 }
-
+.carousel-item:nth-child(2) .carousel-caption, .carousel-item:nth-child(3) .carousel-caption{
+    color:black;
+}
 #Akcije .img-fluid {
     width:100%;
 }
