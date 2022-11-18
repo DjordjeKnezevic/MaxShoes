@@ -91,7 +91,7 @@ body {
 }
 
 main {
-    height: 2000px;
+    height: 3000px;
     width: 100%;
 }
 
@@ -156,7 +156,6 @@ main {
 }
 
 #Akcije {
-    background-color: black;
     height: 1000px;
     width: 100%;
     margin: 0px auto;
@@ -169,6 +168,10 @@ main {
     width: 100% !important;
     height: 100% !important;
     
+}
+
+#Akcije .img-fluid {
+    width:100%;
 }
 
 
