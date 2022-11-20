@@ -343,6 +343,22 @@
         margin-bottom: 0px;
         padding-bottom:0px;
     }
+    #kategorije {
+        margin-top: 250px;
+    }
+    #kategorije-naslov h2 {
+        font-size: 2.5em;
+        margin-bottom: 10px;
+    }
+    #kategorije-naslov h5 {
+        font-size: 1.3em;
+    }
+}
+
+@media(max-width:700px) and (max-height:400px) {
+    #kategorije {
+        margin-top: 200px;
+    }
 }
 
 @media(max-width:500px) and (max-height:1000px) {
@@ -654,4 +670,16 @@
         font-size: 0.5em;
     }
 
+}
+@media(max-width:600px) and (max-height:400px) {
+    #welcome-screen {
+        height: 90vh !important;
+    }
+
+    #welcome-title {
+        top: 45vh !important;
+    }
+    #kategorije {
+        margin-top: 180px;
+    }
 }

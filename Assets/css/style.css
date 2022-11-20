@@ -22,6 +22,7 @@ body {
     display: flex;
     align-items: center;
     margin-left: 0.5em;
+    font-style: italic;
 }
 
 .navbar-brand h1 {
@@ -91,7 +92,6 @@ body {
 }
 
 main {
-    height: 3000px;
     width: 100%;
 }
 
@@ -156,7 +156,7 @@ main {
 }
 
 #Akcije {
-    height: 1000px;
+    height: 900px;
     width: 100%;
     margin: 0px auto;
     box-shadow: 0px 0px 30px #222E50, 0px 0px 30px #222E50;
@@ -181,7 +181,12 @@ main {
 }
 
 #kategorije {
-    margin-top: 400px;
+    margin-top: 500px;
+    height:600px;
+    background-image: url("../img/ShoesFooter.jpg");
+    background-repeat: no-repeat;
+    background-position: center bottom 0px;
+    background-repeat: repeat-x;
 }
 
 #kategorije hgroup {
@@ -192,6 +197,10 @@ main {
     text-align: center;
 }
 
+#kategorije-naslov {
+    background-color: #BCD8C1;
+}
+
 #kategorije-naslov h2 {
     font-size: 3em;
     margin-bottom: 20px;
@@ -199,6 +208,44 @@ main {
 #kategorije-naslov h5 {
     font-size: 1.5em;
 }
+
+#kategorije-kartice {
+    margin-top:50px;
+}
+
+#kategorije-kartice .row {
+    display:flex;
+    justify-content: space-around;
+}
+
+#kategorije-kartice .row .col-md-3 {
+    display:flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    text-align: center;
+    box-shadow: 0px 0px 20px #222E50;
+    transition: transform 0.3s, box-shadow 0.3s;
+}
+
+#kategorije-kartice .row .col-md-3:hover {
+    transform: scale(1.1); 
+    transition: 0.3s;
+    box-shadow: 0px 0px 30px #222E50, 0px 0px 30px #222E50;
+}
+
+#kategorije-kartice .row .col-md-3 .hcontainer {
+    margin-bottom:20px;
+    background-color: #BCD8C1;
+    width:100%;
+    padding-top: 5px;
+}
+
+#kategorije-kartice .row .col-md-3 img {
+    width:70%;
+    height:70%;
+}
+
 
 footer {
     height: 200px;
