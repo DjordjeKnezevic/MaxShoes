@@ -182,7 +182,7 @@ main {
 
 #kategorije {
     margin-top: 500px;
-    height:600px;
+    height:620px;
     background-image: url("../img/ShoesFooter.jpg");
     background-repeat: no-repeat;
     background-position: center bottom 0px;
@@ -195,10 +195,6 @@ main {
     align-items: center;
     flex-direction: column;
     text-align: center;
-}
-
-#kategorije-naslov {
-    background-color: #BCD8C1;
 }
 
 #kategorije-naslov h2 {

@@ -285,6 +285,33 @@
     }
 }
 
+@media(max-width:800px) and (max-height:1300px) {
+    #welcome-screen {
+        height: 40vh !important;
+    }
+    #kategorije {
+        margin-top:300px;
+        height:550px;
+    }
+}
+
+@media(max-width:900px) and (max-height:1100px) {
+    #kategorije {
+        margin-top:300px;
+        height:500px;
+    }
+}
+
+@media(max-width:1300px) and (max-height:800px) {
+    #kategorije {
+        margin-top:350px;
+        height:600px;
+    }
+    #Akcije {
+        height: 70vh;
+    }
+}
+
 @media(max-width:1100px) and (max-height:900px) {
     #welcome-screen {
         height: 90vh !important;
@@ -296,6 +323,10 @@
 
     #welcome-title {
         top: 25vh !important;
+    }
+    #kategorije {
+        margin-top:400px;
+        height:600px;
     }
 }
 
@@ -345,6 +376,7 @@
     }
     #kategorije {
         margin-top: 250px;
+        height: 500px;
     }
     #kategorije-naslov h2 {
         font-size: 2.5em;
@@ -352,6 +384,19 @@
     }
     #kategorije-naslov h5 {
         font-size: 1.3em;
+    }
+}
+
+@media(max-width:800px) and (max-height:400px) {
+    #kategorije {
+        margin-top: 220px;
+        height:500px;
+    }
+}
+
+@media(max-width:766px) and (max-height:400px) {
+    #kategorije {
+        height:1400px;
     }
 }
 
@@ -365,11 +410,9 @@
     #welcome-screen {
         height: 30vh !important;
     }
-
     #Akcije {
         height: 20vh;
     }
-
     #welcome-title {
         top: 5vh !important;
     }
@@ -382,6 +425,7 @@
     }
     #kategorije {
         margin-top: 180px;
+        height:1270px;
     }
     #kategorije-naslov h2 {
         font-size: 2em;
@@ -413,6 +457,7 @@
     }
     #kategorije {
         margin-top: 170px;
+        height:1200px;
     }
     #kategorije-naslov h2 {
         font-size: 1.8em;
@@ -515,6 +560,7 @@
     }
     #kategorije {
         margin-top: 160px;
+        height:1100px;
     }
     #kategorije-naslov h2 {
         font-size: 1.5em;
