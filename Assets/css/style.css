@@ -159,6 +159,8 @@ main {
     height: 1000px;
     width: 100%;
     margin: 0px auto;
+    box-shadow: 0px 0px 30px #222E50, 0px 0px 30px #222E50;
+    padding: 0px;
 }
 
 .carousel,
@@ -167,15 +169,36 @@ main {
 .carousel-item img {
     width: 100% !important;
     height: 100% !important;
-    
 }
+
 .carousel-item:nth-child(2) .carousel-caption, .carousel-item:nth-child(3) .carousel-caption{
     color:black;
 }
+
 #Akcije .img-fluid {
     width:100%;
+    box-shadow: 0px 0px 30px #222E50, 0px 0px 30px #222E50;
 }
 
+#kategorije {
+    margin-top: 400px;
+}
+
+#kategorije hgroup {
+    display:flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    text-align: center;
+}
+
+#kategorije-naslov h2 {
+    font-size: 3em;
+    margin-bottom: 20px;
+}
+#kategorije-naslov h5 {
+    font-size: 1.5em;
+}
 
 footer {
     height: 200px;
