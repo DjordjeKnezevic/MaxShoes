@@ -160,6 +160,17 @@
 
 }
 
+@media(max-width:794px) {
+    footer svg {
+        height: 30px;
+        width: 30px;
+    }
+
+    footer p {
+        font-size: 0.9em;
+    }
+}
+
 @media(max-width:775px) {
 
     .navbar-brand h1,
@@ -175,6 +186,21 @@
 
     .row .col-md-3 {
         margin-bottom: 20px;
+    }
+}
+
+@media(max-width:710px) {
+    footer svg {
+        height: 25px;
+        width: 25px;
+    }
+
+    footer p {
+        font-size: 0.7em;
+    }
+
+    footer h5 {
+        font-size: 1em;
     }
 }
 
@@ -210,6 +236,19 @@
     #welcome-title h3 {
         font-size: 0.8em;
     }
+
+    footer svg {
+        height: 20px;
+        width: 20px;
+    }
+
+    footer p {
+        font-size: 0.6em;
+    }
+
+    footer h5 {
+        font-size: 0.9em;
+    }
 }
 
 @media(max-width:533px) {
@@ -236,6 +275,26 @@
         font-size: 0.5em;
     }
 }
+
+@media(max-width:500px) {
+    footer {
+        height: 150px;
+    }
+
+    footer svg {
+        height: 15px;
+        width: 15px;
+    }
+
+    footer p {
+        font-size: 0.5em;
+    }
+
+    footer h5 {
+        font-size: 0.7em;
+    }
+}
+
 
 @media(max-width:456px) {
     .navbar-brand h1 {
@@ -273,6 +332,21 @@
     }
 }
 
+@media(max-width:420px) {
+    footer svg {
+        height: 12px;
+        width: 12px;
+    }
+
+    footer p {
+        font-size: 0.35em;
+    }
+
+    footer h5 {
+        font-size: 0.6em;
+    }
+}
+
 @media(max-width:373px) {
     .container-fluid {
         padding-left: 6px;
@@ -302,6 +376,16 @@
 
     .navbar-brand img {
         width: 40px;
+    }
+}
+
+@media(max-width:340px) {
+    #welcome-title h1 {
+        font-size: 1em;
+    }
+
+    #welcome-title h3 {
+        font-size: 0.5em;
     }
 }
 
@@ -424,6 +508,25 @@
     }
 }
 
+@media(max-width:800px) and (max-height:500px) {
+    #kategorije {
+        margin-top: 220px;
+        height: 500px;
+    }
+
+    #welcome-screen {
+        height: 90vh !important;
+    }
+
+    #welcome-title {
+        top: 35vh !important;
+    }
+
+    #Akcije {
+        height: 100vh !important;
+    }
+}
+
 @media(max-width:800px) and (max-height:400px) {
     #kategorije {
         margin-top: 220px;
@@ -439,11 +542,96 @@
     }
 }
 
+@media(max-width:750px) and (max-height:400px) {
+    #kategorije {
+        margin-top: 250px;
+        height: 1450px;
+    }
+}
 
 @media(max-width:700px) and (max-height:400px) {
     #kategorije {
         margin-top: 200px;
         height: 1450px;
+    }
+}
+
+@media(max-width:600px) and (max-height:800px) {
+    #welcome-screen {
+        height: 45vh !important;
+    }
+
+    #Akcije {
+        height: 45vh;
+    }
+
+    #welcome-title {
+        top: 10vh !important;
+    }
+
+    .carousel-caption {
+        margin-bottom: 0px;
+        padding-bottom: 0px;
+    }
+
+    #kategorije {
+        margin-top: 220px;
+    }
+
+    #kategorije-naslov h2 {
+        font-size: 2em;
+        margin-bottom: 10px;
+    }
+
+    #kategorije-naslov h5 {
+        font-size: 1em;
+    }
+}
+
+@media(max-width:600px) and (max-height:500px) {
+    #welcome-screen {
+        height: 90vh !important;
+    }
+
+    #welcome-title {
+        top: 35vh !important;
+    }
+
+    #Akcije {
+        height: 85vh !important;
+    }
+
+    #kategorije {
+        margin-top: 180px;
+        height: 1450px;
+    }
+}
+
+@media(max-width:600px) and (max-height:400px) {
+    #welcome-screen {
+        height: 90vh !important;
+    }
+
+    #welcome-title {
+        top: 45vh !important;
+    }
+
+    #kategorije {
+        margin-top: 180px;
+    }
+}
+
+@media(max-width:550px) and (max-height:500px) {
+    #welcome-screen {
+        height: 80vh !important;
+    }
+
+    #welcome-title {
+        top: 30vh !important;
+    }
+
+    #Akcije {
+        height: 80vh !important;
     }
 }
 
@@ -472,75 +660,6 @@
     #kategorije {
         margin-top: 180px;
         height: 1270px;
-    }
-
-    #kategorije-naslov h2 {
-        font-size: 2em;
-        margin-bottom: 10px;
-    }
-
-    #kategorije-naslov h5 {
-        font-size: 1em;
-    }
-}
-
-@media(max-width:450px) and (max-height:1000px) {
-    #welcome-screen {
-        height: 30vh !important;
-    }
-
-    #Akcije {
-        height: 30vh;
-    }
-
-    #welcome-title {
-        top: 5vh !important;
-    }
-
-    .carousel-caption {
-        margin-bottom: 0px;
-        padding-bottom: 0px;
-    }
-
-    .offcanvas {
-        width: 50% !important;
-    }
-
-    #kategorije {
-        margin-top: 170px;
-        height: 1200px;
-    }
-
-    #kategorije-naslov h2 {
-        font-size: 1.8em;
-        margin-bottom: 10px;
-    }
-
-    #kategorije-naslov h5 {
-        font-size: 0.9em;
-    }
-}
-
-@media(max-width:600px) and (max-height:800px) {
-    #welcome-screen {
-        height: 45vh !important;
-    }
-
-    #Akcije {
-        height: 45vh;
-    }
-
-    #welcome-title {
-        top: 10vh !important;
-    }
-
-    .carousel-caption {
-        margin-bottom: 0px;
-        padding-bottom: 0px;
-    }
-
-    #kategorije {
-        margin-top: 220px;
     }
 
     #kategorije-naslov h2 {
@@ -585,6 +704,117 @@
     }
 }
 
+
+@media(max-width:500px) and (max-height:700px) {
+    #welcome-screen {
+        height: 45vh !important;
+    }
+
+    #Akcije {
+        height: 50vh;
+    }
+
+    #welcome-title {
+        top: 10vh !important;
+    }
+
+    .carousel-caption {
+        margin-bottom: 0px;
+        padding-bottom: 0px;
+    }
+
+    .navbar {
+        height: 80px;
+    }
+
+    .offcanvas {
+        margin-top: 80px;
+    }
+}
+
+@media(max-width:500px) and (max-height:650px) {
+    #welcome-screen {
+        height: 50vh !important;
+    }
+
+    #Akcije {
+        height: 50vh;
+    }
+
+    #welcome-title {
+        top: 15vh !important;
+    }
+}
+
+@media(max-width:500px) and (max-height:500px) {
+    #welcome-screen {
+        height: 70vh !important;
+    }
+
+    #welcome-title {
+        top: 20vh !important;
+    }
+
+    #Akcije {
+        height: 70vh !important;
+    }
+
+    #kategorije {
+        height: 1300px !important;
+    }
+}
+
+@media(max-width:450px) and (max-height:700px) {
+    #welcome-screen {
+        height: 40vh !important;
+    }
+
+    #Akcije {
+        height: 50vh;
+    }
+
+    #welcome-title {
+        top: 10vh !important;
+    }
+}
+
+@media(max-width:450px) and (max-height:1000px) {
+    #welcome-screen {
+        height: 30vh !important;
+    }
+
+    #Akcije {
+        height: 30vh;
+    }
+
+    #welcome-title {
+        top: 5vh !important;
+    }
+
+    .carousel-caption {
+        margin-bottom: 0px;
+        padding-bottom: 0px;
+    }
+
+    .offcanvas {
+        width: 50% !important;
+    }
+
+    #kategorije {
+        margin-top: 170px;
+        height: 1200px;
+    }
+
+    #kategorije-naslov h2 {
+        font-size: 1.8em;
+        margin-bottom: 10px;
+    }
+
+    #kategorije-naslov h5 {
+        font-size: 0.9em;
+    }
+}
+
 @media(max-width:450px) and (max-height:900px) {
     #welcome-screen {
         height: 30vh !important;
@@ -617,6 +847,24 @@
 @media(max-width:400px) and (max-height:900px) {
     #Akcije {
         height: 30vh;
+    }
+
+    #kategorije {
+        margin-top: 150px;
+    }
+}
+
+@media(max-width:400px) and (max-height:850px) {
+    #welcome-screen {
+        height: 30vh !important;
+    }
+
+    #Akcije {
+        height: 35vh;
+    }
+
+    #welcome-title {
+        top: 8vh !important;
     }
 
     #kategorije {
@@ -657,65 +905,6 @@
     }
 }
 
-@media(max-width:500px) and (max-height:700px) {
-    #welcome-screen {
-        height: 45vh !important;
-    }
-
-    #Akcije {
-        height: 50vh;
-    }
-
-    #welcome-title {
-        top: 10vh !important;
-    }
-
-    .carousel-caption {
-        margin-bottom: 0px;
-        padding-bottom: 0px;
-    }
-
-    .navbar {
-        height: 80px;
-    }
-
-    .offcanvas {
-        margin-top: 80px;
-    }
-}
-
-@media(max-width:450px) and (max-height:700px) {
-    #welcome-screen {
-        height: 40vh !important;
-    }
-
-    #Akcije {
-        height: 50vh;
-    }
-
-    #welcome-title {
-        top: 10vh !important;
-    }
-}
-
-@media(max-width:400px) and (max-height:850px) {
-    #welcome-screen {
-        height: 30vh !important;
-    }
-
-    #Akcije {
-        height: 35vh;
-    }
-
-    #welcome-title {
-        top: 8vh !important;
-    }
-
-    #kategorije {
-        margin-top: 150px;
-    }
-}
-
 @media(max-width:400px) and (max-height:700px) {
     #welcome-screen {
         height: 40vh !important;
@@ -727,34 +916,6 @@
 
     #welcome-title {
         top: 10vh !important;
-    }
-}
-
-@media(max-width:350px) and (max-height:700px) {
-    #welcome-screen {
-        height: 30vh !important;
-    }
-
-    #Akcije {
-        height: 35vh;
-    }
-
-    #welcome-title {
-        top: 10vh !important;
-    }
-}
-
-@media(max-width:500px) and (max-height:650px) {
-    #welcome-screen {
-        height: 50vh !important;
-    }
-
-    #Akcije {
-        height: 50vh;
-    }
-
-    #welcome-title {
-        top: 15vh !important;
     }
 }
 
@@ -772,20 +933,6 @@
     }
 }
 
-@media(max-width:350px) and (max-height:650px) {
-    #welcome-screen {
-        height: 35vh !important;
-    }
-
-    #Akcije {
-        height: 40vh;
-    }
-
-    #welcome-title {
-        top: 10vh !important;
-    }
-}
-
 @media(max-width:400px) and (max-height:600px) {
     #welcome-screen {
         height: 45vh !important;
@@ -797,6 +944,34 @@
 
     #welcome-title {
         top: 12vh !important;
+    }
+}
+
+@media(max-width:350px) and (max-height:700px) {
+    #welcome-screen {
+        height: 30vh !important;
+    }
+
+    #Akcije {
+        height: 35vh;
+    }
+
+    #welcome-title {
+        top: 10vh !important;
+    }
+}
+
+@media(max-width:350px) and (max-height:650px) {
+    #welcome-screen {
+        height: 35vh !important;
+    }
+
+    #Akcije {
+        height: 40vh;
+    }
+
+    #welcome-title {
+        top: 10vh !important;
     }
 }
 
@@ -814,44 +989,25 @@
     }
 }
 
-@media(max-width:340px) {
-    #welcome-title h1 {
-        font-size: 1em;
-    }
-
-    #welcome-title h3 {
-        font-size: 0.5em;
-    }
-
-}
-
-@media(max-width:600px) and (max-height:400px) {
-    #welcome-screen {
-        height: 90vh !important;
-    }
-
-    #welcome-title {
-        top: 45vh !important;
-    }
-
+@media(orientation: landscape) and (max-width:766px) {
     #kategorije {
-        margin-top: 180px;
+        height: 1450px;
     }
 }
 
-@media(max-width:766px) and (orientation: portrait) {
+@media(orientation: portrait) and (max-width:766px) {
     #kategorije {
         height: 1150px;
     }
 }
 
-@media(max-width:400px) and (orientation: portrait) {
+@media(orientation: portrait) and (max-width:400px) {
     #kategorije {
         height: 1100px;
     }
 }
 
-@media(max-width:350px) and (orientation: portrait) {
+@media(orientation: portrait)and (max-width:350px) {
     #kategorije {
         height: 1000px;
     }

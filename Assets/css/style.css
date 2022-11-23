@@ -88,7 +88,7 @@ body {
 
 .offcanvas {
     background-color: #222E50;
-    width: 40% !important;
+    width: 30% !important;
     height: 300px;
 }
 
@@ -260,13 +260,16 @@ footer section {
     align-items: center;
 }
 
-/* footer section:nth-child(3) {
-    align-items: center;
-} */
+footer section:nth-child(2) {
+    border-left: 1px solid #BCD8C1;
+    border-right: 1px solid #BCD8C1;
+}
+
 footer section article {
     display: flex;
     justify-content: center;
     align-items: center;
+    flex-wrap: wrap;
 }
 
 footer section article p {
