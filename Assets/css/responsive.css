@@ -166,8 +166,8 @@
         width: 30px;
     }
 
-    footer p {
-        font-size: 0.9em;
+    footer h5 {
+        font-size: 1.1em;
     }
 }
 
@@ -196,7 +196,7 @@
     }
 
     footer p {
-        font-size: 0.7em;
+        font-size: 0.9em;
     }
 
     footer h5 {
@@ -237,13 +237,8 @@
         font-size: 0.8em;
     }
 
-    footer svg {
-        height: 20px;
-        width: 20px;
-    }
-
     footer p {
-        font-size: 0.6em;
+        font-size: 0.8em;
     }
 
     footer h5 {
@@ -282,16 +277,12 @@
     }
 
     footer svg {
-        height: 15px;
-        width: 15px;
-    }
-
-    footer p {
-        font-size: 0.5em;
+        height: 20px;
+        width: 20px;
     }
 
     footer h5 {
-        font-size: 0.7em;
+        font-size: 0.8em;
     }
 }
 
@@ -333,17 +324,12 @@
 }
 
 @media(max-width:420px) {
-    footer svg {
-        height: 12px;
-        width: 12px;
-    }
-
     footer p {
-        font-size: 0.35em;
+        font-size: 0.7em;
     }
 
     footer h5 {
-        font-size: 0.6em;
+        font-size: 0.7em;
     }
 }
 
@@ -376,6 +362,14 @@
 
     .navbar-brand img {
         width: 40px;
+    }
+
+    footer p {
+        font-size: 0.55em;
+    }
+
+    footer h5 {
+        font-size: 0.6em;
     }
 }
 
