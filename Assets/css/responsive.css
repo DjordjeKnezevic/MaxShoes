@@ -1,4 +1,4 @@
-@media(orientation: landscape) and (max-height:800px) {
+@media(orientation: landscape) and (max-height:1000px) {
     #welcome-title {
         top: 25vh !important;
     }
@@ -14,6 +14,9 @@
 
     .offcanvas {
         width: 40% !important;
+    }
+    #kategorije {
+        margin-top: 500px;
     }
 }
 
@@ -789,11 +792,14 @@
     }
 
     #Akcije {
-        height: 50vh;
+        height: 45vh;
     }
 
     #welcome-title {
         top: 15vh !important;
+    }
+    #kategorije {
+        margin-top:150px;
     }
 }
 
@@ -1170,13 +1176,19 @@
 
 @media(orientation: portrait) and (max-width:500px) {
     #kategorije {
-        height: 1050px;
+        height: 1300px;
+    }
+}
+
+@media(orientation: portrait) and (max-width:450px) {
+    #kategorije {
+        height: 1200px;
     }
 }
 
 @media(orientation: portrait) and (max-width:400px) {
     #kategorije {
-        height: 950px;
+        height: 1100px;
     }
 }
 
