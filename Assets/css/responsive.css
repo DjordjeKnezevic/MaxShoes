@@ -15,6 +15,7 @@
     .offcanvas {
         width: 40% !important;
     }
+
     #kategorije {
         margin-top: 500px;
     }
@@ -450,7 +451,7 @@
     }
 
     #Akcije {
-        height: 95vh;
+        width: 60%;
     }
 
     #welcome-title {
@@ -691,11 +692,11 @@
 
 @media(max-width:500px) and (max-height:1000px) {
     #welcome-screen {
-        height: 30vh !important;
+        height: 35vh !important;
     }
 
     #Akcije {
-        height: 20vh;
+        height: 40vh;
     }
 
     #welcome-title {
@@ -726,7 +727,7 @@
     }
 }
 
-@media(max-width:500px) and (max-height:800px) {
+@media(max-width:500px) and (max-height:900px) {
     #welcome-screen {
         height: 45vh !important;
     }
@@ -798,8 +799,9 @@
     #welcome-title {
         top: 15vh !important;
     }
+
     #kategorije {
-        margin-top:150px;
+        margin-top: 150px;
     }
 }
 
@@ -1172,6 +1174,16 @@
     #kategorije {
         height: 1150px;
     }
+
+    #Akcije {
+        width: 75%;
+    }
+}
+
+@media(orientation: portrait) and (max-width:600px) {
+    #kategorije {
+        height: 1400px;
+    }
 }
 
 @media(orientation: portrait) and (max-width:500px) {
@@ -1194,6 +1206,6 @@
 
 @media(orientation: portrait)and (max-width:350px) {
     #kategorije {
-        height: 1000px;
+        height: 860px;
     }
 }
