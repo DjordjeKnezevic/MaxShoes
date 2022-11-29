@@ -121,7 +121,11 @@
         margin-left: 5px;
     }
 
-    .icons a svg {
+    .icons button {
+        width: 50px;
+    }
+
+    .icons button svg {
         margin-right: 20px;
     }
 }
@@ -251,7 +255,11 @@
 }
 
 @media(max-width:533px) {
-    .icons a svg {
+    .icons button {
+        width: 40px;
+    }
+
+    .icons button svg {
         width: 30px;
         height: 30px;
         margin-right: 10px;
@@ -352,7 +360,7 @@
         margin-right: 0px !important;
     }
 
-    .icons a svg {
+    .icons button svg {
         margin-right: 5px !important;
     }
 
@@ -482,6 +490,18 @@
     #kategorije {
         margin-top: 250px;
         height: 550px;
+    }
+
+    #welcome-screen {
+        height: 50vh !important;
+    }
+
+    #Akcije {
+        height: 50vh !important;
+    }
+
+    #welcome-title {
+        top: 10vh !important;
     }
 }
 
@@ -1188,24 +1208,48 @@
 
 @media(orientation: portrait) and (max-width:500px) {
     #kategorije {
-        height: 1300px;
+        height: 1150px;
     }
 }
 
 @media(orientation: portrait) and (max-width:450px) {
     #kategorije {
-        height: 1200px;
+        height: 1050px;
     }
 }
 
 @media(orientation: portrait) and (max-width:400px) {
     #kategorije {
+        height: 950px;
+    }
+}
+
+@media(orientation: portrait) and (max-width:350px) {
+    #kategorije {
+        height: 860px;
+    }
+}
+
+@media(orientation: portrait) and (max-width:500px) and (min-height:601px) {
+    #kategorije {
+        height: 1300px;
+    }
+}
+
+@media(orientation: portrait) and (max-width:450px) and (min-height:601px) {
+    #kategorije {
+        height: 1200px;
+    }
+}
+
+@media(orientation: portrait) and (max-width:400px) and (min-height:601px) {
+    #kategorije {
         height: 1100px;
     }
 }
 
-@media(orientation: portrait)and (max-width:350px) {
+@media(orientation: portrait) and (max-width:350px) and (min-height:601px) {
     #kategorije {
-        height: 860px;
+        height: 1000px;
     }
 }

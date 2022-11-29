@@ -139,3 +139,36 @@ for (let i = 0; i < 3; i++) {
     </a>`;
     }
 }
+
+// ANIMACIJA NAVBARA PRI SCROLL-U (POJAVLJIVANJE I NESTAJANJE)
+const throttle = (func, time = 100) => {
+    let lastTime = 0;
+    return () => {
+        const now = new Date();
+        if (now - lastTime >= time) {
+            func();
+            time = now;
+        }
+    };
+};
+const navbar = document.querySelector('.navbar');
+let lastScroll = 0;
+const validateHeader = () => {
+    const windowY = window.scrollY;
+    const windowH = window.innerHeight;
+
+    if (windowY > windowH - 1100) {
+        navbar.classList.add('is-fixed');
+    } else {
+        navbar.classList.remove('is-fixed');
+    }
+
+    if (windowY < lastScroll) {
+        navbar.classList.add('scroll-up');
+    } else {
+        navbar.classList.remove('scroll-up');
+    }
+    lastScroll = windowY;
+};
+
+window.addEventListener('scroll', throttle(validateHeader, 100));
