@@ -22,6 +22,16 @@ main {
     z-index: 40;
 }
 
+.is-fixed {
+    position: fixed;
+    transform: translate3d(0, -100%, 0);
+    transition: transform 0.3s ease, visibility 0s 0.3s linear;
+}
+
+.scroll-up {
+    transform: translate3d(0, 0, 0);
+}
+
 .navbar-nav {
     display: flex;
     justify-content: center;
@@ -288,13 +298,22 @@ footer h5:hover {
     color: #BCD8C1 !important;
 }
 
-
-.is-fixed {
-    position: fixed;
-    transform: translate3d(0, -100%, 0);
-    transition: transform 0.3s ease, visibility 0s 0.3s linear;
+.modal-header,
+.modal-footer {
+    background-color: #222E50;
 }
 
-.scroll-up {
-    transform: translate3d(0, 0, 0);
+.modal-footer,
+.modal-body {
+    display: flex;
+    justify-content: space-around;
+}
+
+.btn-close {
+    background-color: white;
+    opacity: 1 !important;
+}
+
+.btn-close:hover {
+    background-color: #BCD8C1;
 }
