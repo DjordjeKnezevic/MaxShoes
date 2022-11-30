@@ -232,6 +232,12 @@
     }
 }
 
+@media(max-width:575px) {
+    #signup-forma .row .col-sm-9 {
+        margin-bottom: 30px;
+    }
+}
+
 @media(max-width:566px) {
     #welcome-title h1 {
         font-size: 1.5em;
