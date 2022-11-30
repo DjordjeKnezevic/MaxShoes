@@ -1100,6 +1100,20 @@
     }
 }
 
+@media(max-width:450px) and (max-height:500px) {
+    #welcome-screen {
+        height: 60vh !important;
+    }
+
+    #Akcije {
+        height: 65vh !important;
+    }
+
+    #welcome-title {
+        top: 20vh !important;
+    }
+}
+
 @media(max-width:450px) and (max-height:400px) {
     #welcome-screen {
         height: 80vh !important;
@@ -1243,14 +1257,32 @@
     }
 }
 
-
-@media(max-width:400px) and (max-height:500px) {
+@media(max-width:400px) and (max-height:550px) {
     #welcome-screen {
-        height: 50vh !important;
+        height: 55vh !important;
     }
 
     #Akcije {
+        height: 60vh !important;
+    }
+
+    #welcome-title {
+        top: 20vh !important;
+    }
+
+    #kategorije {
+        margin-top: 120px;
+        height: 950px;
+    }
+}
+
+@media(max-width:400px) and (max-height:500px) {
+    #welcome-screen {
         height: 55vh !important;
+    }
+
+    #Akcije {
+        height: 60vh !important;
     }
 
     #welcome-title {
