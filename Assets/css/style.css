@@ -173,7 +173,7 @@ main {
 }
 
 #Akcije {
-    height: 900px;
+    height: 1000px;
     width: 65%;
     margin: 0px auto;
     box-shadow: 0px 0px 30px #222E50, 0px 0px 30px #222E50;
@@ -199,7 +199,7 @@ main {
 }
 
 #kategorije {
-    margin-top: 400px;
+    margin-top: 420px;
     height: 650px;
     background-image: url("../img/ShoesFooter.jpg");
     background-repeat: no-repeat;
