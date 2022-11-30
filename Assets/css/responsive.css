@@ -561,6 +561,24 @@
     }
 }
 
+@media(max-width:800px) and (max-height:600px) {
+    #kategorije {
+        margin-top: 250px;
+        height: 500px;
+    }
+
+    #welcome-screen {
+        height: 90vh !important;
+    }
+
+    #welcome-title {
+        top: 30vh !important;
+    }
+
+    #Akcije {
+        height: 100vh !important;
+    }
+}
 
 @media(max-width:800px) and (max-height:500px) {
     #kategorije {
@@ -997,20 +1015,6 @@
     }
 }
 
-@media(max-width:450px) and (max-height:700px) {
-    #welcome-screen {
-        height: 40vh !important;
-    }
-
-    #Akcije {
-        height: 50vh;
-    }
-
-    #welcome-title {
-        top: 10vh !important;
-    }
-}
-
 @media(max-width:450px) and (max-height:900px) {
     #welcome-screen {
         height: 30vh !important;
@@ -1021,7 +1025,7 @@
     }
 }
 
-@media(max-width:450px) and (max-height:800px) {
+@media(max-width:450px) and (max-height:850px) {
     #welcome-screen {
         height: 35vh !important;
     }
@@ -1044,13 +1048,41 @@
     }
 }
 
-@media(max-width:450px) and (max-height:600px) {
+@media(max-width:450px) and (max-height:766px) {
     #welcome-screen {
-        height: 55vh !important;
+        height: 40vh !important;
     }
 
     #Akcije {
-        height: 65vh !important;
+        height: 50vh !important;
+    }
+
+    #welcome-title {
+        top: 10vh !important;
+    }
+}
+
+@media(max-width:450px) and (max-height:700px) {
+    #welcome-screen {
+        height: 40vh !important;
+    }
+
+    #Akcije {
+        height: 50vh;
+    }
+
+    #welcome-title {
+        top: 10vh !important;
+    }
+}
+
+@media(max-width:450px) and (max-height:600px) {
+    #welcome-screen {
+        height: 50vh !important;
+    }
+
+    #Akcije {
+        height: 55vh !important;
     }
 
     #welcome-title {
@@ -1095,7 +1127,7 @@
     }
 
     #Akcije {
-        height: 40vh !important;
+        height: 35vh !important;
     }
 
     #welcome-title {
@@ -1137,6 +1169,20 @@
 
     #kategorije-naslov h5 {
         font-size: 0.8em;
+    }
+}
+
+@media(max-width:400px) and (max-height:766px) {
+    #welcome-screen {
+        height: 35vh !important;
+    }
+
+    #Akcije {
+        height: 40vh !important;
+    }
+
+    #welcome-title {
+        top: 10vh !important;
     }
 }
 
@@ -1201,13 +1247,42 @@
     }
 }
 
+@media(max-width:350px) and (max-height:900px) {
+    #welcome-screen {
+        height: 30vh !important;
+    }
+
+    #Akcije {
+        height: 30vh !important;
+    }
+
+    #welcome-title {
+        top: 8vh !important;
+    }
+
+}
+
+@media(max-width:350px) and (max-height:766px) {
+    #welcome-screen {
+        height: 30vh !important;
+    }
+
+    #Akcije {
+        height: 35vh !important;
+    }
+
+    #welcome-title {
+        top: 10vh !important;
+    }
+}
+
 @media(max-width:350px) and (max-height:700px) {
     #welcome-screen {
         height: 35vh !important;
     }
 
     #Akcije {
-        height: 35vh;
+        height: 40vh !important;
     }
 
     #welcome-title {
@@ -1221,7 +1296,7 @@
     }
 
     #Akcije {
-        height: 40vh;
+        height: 45vh !important;
     }
 
     #welcome-title {
@@ -1235,7 +1310,7 @@
     }
 
     #Akcije {
-        height: 40vh;
+        height: 45vh !important;
     }
 
     #welcome-title {
@@ -1326,28 +1401,34 @@
     }
 }
 
-@media(orientation: portrait) and (max-width:500px) {
+@media(orientation: portrait) and (max-width:576px) {
     #kategorije {
         height: 1300px !important;
+    }
+}
+
+@media(orientation: portrait) and (max-width:500px) {
+    #kategorije {
+        height: 1150px !important;
         margin-top: 150px;
     }
 }
 
 @media(orientation: portrait) and (max-width:450px) {
     #kategorije {
-        height: 1200px !important;
+        height: 1050px !important;
     }
 }
 
 @media(orientation: portrait) and (max-width:400px) {
     #kategorije {
-        height: 1100px !important;
+        height: 950px !important;
     }
 }
 
 @media(orientation: portrait) and (max-width:350px) {
     #kategorije {
-        height: 1000px !important;
+        height: 900px !important;
     }
 }
 
