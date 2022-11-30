@@ -18,6 +18,7 @@ for (let i = 1; i < 6; i++) {
     let bgImg = document.createElement("img");
     bgImg.src = `Assets/img/bg-${i}.jpg`
     bgImg.alt = `bg-${i}`
+    // bgImg.classList.add('img-fluid');
     welcomeScreen.appendChild(bgImg);
 }
 

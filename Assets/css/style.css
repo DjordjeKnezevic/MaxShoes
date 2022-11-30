@@ -75,18 +75,11 @@ main {
     flex-direction: row-reverse;
 }
 
-.icons button {
-    background: none;
-    border: none;
-    width: 60px;
-    height: 35px;
-}
-
-.icons button svg {
+.icons a svg {
     margin-right: 25px;
 }
 
-.icons button svg:hover {
+.icons a svg:hover {
     /* filter: drop-shadow(0px 0px 15px #BCD8C1); */
     color: #BCD8C1 !important;
     transition: 0.2s;
