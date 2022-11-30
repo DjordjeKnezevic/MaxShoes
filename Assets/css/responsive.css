@@ -1290,6 +1290,20 @@
     }
 }
 
+@media(max-width:360px) and (max-height:700px) {
+    #welcome-screen {
+        height: 37vh !important;
+    }
+
+    #Akcije {
+        height: 42vh !important;
+    }
+
+    #welcome-title {
+        top: 10vh !important;
+    }
+}
+
 @media(max-width:360px) and (max-height:640px) {
     #welcome-screen {
         height: 40vh !important;
