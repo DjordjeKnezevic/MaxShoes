@@ -44,7 +44,7 @@
                         <path
                             d="M0 1.5A.5.5 0 0 1 .5 1H2a.5.5 0 0 1 .485.379L2.89 3H14.5a.5.5 0 0 1 .49.598l-1 5a.5.5 0 0 1-.465.401l-9.397.472L4.415 11H13a.5.5 0 0 1 0 1H4a.5.5 0 0 1-.491-.408L2.01 3.607 1.61 2H.5a.5.5 0 0 1-.5-.5zM3.102 4l.84 4.479 9.144-.459L13.89 4H3.102zM5 12a2 2 0 1 0 0 4 2 2 0 0 0 0-4zm7 0a2 2 0 1 0 0 4 2 2 0 0 0 0-4zm-7 1a1 1 0 1 1 0 2 1 1 0 0 1 0-2zm7 0a1 1 0 1 1 0 2 1 1 0 0 1 0-2z" />
                     </svg></a>
-                <a class="text-light" data-bs-toggle="modal" href="#exampleModalToggle" role="button"><svg
+                <a class="text-light" data-bs-toggle="modal" href="#account-modal" role="button"><svg
                         xmlns="http://www.w3.org/2000/svg" width="35" height="35" fill="currentColor"
                         class="bi bi-person-circle" viewBox="0 0 16 16">
                         <path d="M11 6a3 3 0 1 1-6 0 3 3 0 0 1 6 0z" />
@@ -57,7 +57,7 @@
     </nav>
 
     <main>
-        <div class="modal fade" id="exampleModalToggle" aria-hidden="true" aria-labelledby="exampleModalToggleLabel"
+        <div class="modal fade" id="account-modal" aria-hidden="true" aria-labelledby="exampleModalToggleLabel"
             tabindex="-1">
             <div class="modal-dialog modal-dialog-centered">
                 <div class="modal-content">
@@ -69,16 +69,13 @@
                         LOGIN OR SIGN UP
                     </div>
                     <div class="modal-footer">
-                        <button class="btn btn-primary" data-bs-target="#exampleModalToggle2"
-                            data-bs-toggle="modal">LOGIN</button>
-                        <button class="btn btn-primary" data-bs-target="#exampleModalToggle3"
-                            data-bs-toggle="modal">SIGN UP</button>
+                        <button class="btn" data-bs-target="#login-modal" data-bs-toggle="modal">LOGIN</button>
+                        <button class="btn" data-bs-target="#sigunp-modal" data-bs-toggle="modal">SIGN UP</button>
                     </div>
                 </div>
             </div>
         </div>
-        <div class="modal" id="exampleModalToggle2" aria-hidden="true" aria-labelledby="exampleModalToggleLabel2"
-            tabindex="-1">
+        <div class="modal" id="login-modal" aria-hidden="true" aria-labelledby="exampleModalToggleLabel2" tabindex="-1">
             <div class="modal-dialog modal-dialog-centered">
                 <div class="modal-content">
                     <div class="modal-header">
@@ -86,29 +83,84 @@
                         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                     </div>
                     <div class="modal-body">
-                        LOGIN HERE
+                        <form id="logovanje-forma">
+                            <div class="mb-3">
+                                <label for="log-email" class="form-label">Email</label>
+                                <input type="email" class="form-control" id="log-email" aria-describedby="emailHelp">
+                            </div>
+                            <div class="mb-3">
+                                <label for="log-pass" class="form-label">Password</label>
+                                <input type="password" class="form-control" id="log-pass">
+                            </div>
+                            <button type="submit" class="btn btn-primary">Login</button>
+                            <span class="form-text alert alert-danger hide">This user does not exist
+                            </span>
+                        </form>
                     </div>
                     <div class="modal-footer">
-                        <button class="btn btn-primary" data-bs-target="#exampleModalToggle3"
-                            data-bs-toggle="modal">SIGN UP</button>
+                        <p class="text-light">Don't have an account?</p>
+                        <button class="btn" data-bs-target="#sigunp-modal" data-bs-toggle="modal">SIGN UP</button>
                     </div>
                 </div>
             </div>
         </div>
-        <div class="modal" id="exampleModalToggle3" aria-hidden="true" aria-labelledby="exampleModalToggleLabel3"
+        <div class="modal" id="sigunp-modal" aria-hidden="true" aria-labelledby="exampleModalToggleLabel3"
             tabindex="-1">
-            <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-dialog modal-lg modal-dialog-centered">
                 <div class="modal-content">
                     <div class="modal-header">
                         <h1 class="modal-title fs-5 text-light" id="exampleModalToggleLabel3">SIGN UP</h1>
                         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                     </div>
                     <div class="modal-body">
-                        SIGN UP HERE
+                        <form id="signup-forma">
+                            <div class="container-sm">
+                                <div class="row">
+                                    <div class="col-md">
+                                        <input type="text" name="signup-username" id="signup-username">
+                                        <label for="signup-username">Username</label>
+                                    </div>
+                                    <div class="col-md">
+                                        <input type="password" name="signup-password" id="signup-password">
+                                        <label for="signup-password">Password</label>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-md">
+                                        <input type="text" name="signup-firstname" id="signup-firstname">
+                                        <label for="signup-firstname">First name</label>
+                                    </div>
+                                    <div class="col-md">
+                                        <input type="text" name="signup-lastname" id="signup-lastname">
+                                        <label for="signup-lastname">Last name</label>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-md">
+                                        <input type="email" name="signup-email" id="signup-email" size="24">
+                                        <label for="signup-email">Email</label>
+                                    </div>
+                                    <div class="col-md">
+                                        <input type="text" name="signup-address" id="signup-address" size="25">
+                                        <label for="signup-address">Address</label>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-sm-9">
+                                        <input type="checkbox" class="form-check-input" id="exampleCheck1">
+                                        <label class="form-check-label" for="exampleCheck1">I accept the terms and
+                                            conditions</label>
+                                    </div>
+                                    <div class="col-sm-3">
+                                        <button type="submit" class="btn btn-primary">Submit</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </form>
                     </div>
                     <div class="modal-footer">
-                        <button class="btn btn-primary" data-bs-target="#exampleModalToggle2"
-                            data-bs-toggle="modal">LOGIN</button>
+                        <p class="text-light">Already have an account?</p>
+                        <button class="btn" data-bs-target="#login-modal" data-bs-toggle="modal">LOGIN</button>
                     </div>
                 </div>
             </div>

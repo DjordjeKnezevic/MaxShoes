@@ -303,7 +303,6 @@ footer h5:hover {
     background-color: #222E50;
 }
 
-.modal-footer,
 .modal-body {
     display: flex;
     justify-content: space-around;
@@ -316,4 +315,50 @@ footer h5:hover {
 
 .btn-close:hover {
     background-color: #BCD8C1;
+}
+
+.hide {
+    display: none;
+}
+
+.modal-footer .btn {
+    background-color: white;
+}
+
+.modal-footer .btn:hover {
+    background-color: #BCD8C1;
+}
+
+#signup-forma {
+    width: 100%;
+}
+
+#signup-forma .row {
+    justify-content: space-around !important;
+}
+
+#signup-forma .row .col-md {
+    margin-bottom: 50px;
+}
+
+#signup-forma .row .col-md,
+.row .col-sm-9,
+.row .col-sm-3 {
+    display: flex;
+    flex-direction: row-reverse;
+    justify-content: center;
+    align-items: center;
+}
+
+#signup-forma .row .col-md label,
+.row .col-sm-9 label {
+    margin-right: 20px;
+}
+
+#signup-forma .row .col-sm-3 {
+    justify-content: flex-start;
+}
+
+#signup-forma .row .col-sm-9 {
+    justify-content: flex-end;
 }

@@ -142,6 +142,7 @@ for (let i = 0; i < 3; i++) {
 }
 
 // ANIMACIJA NAVBARA PRI SCROLL-U (POJAVLJIVANJE I NESTAJANJE)
+
 const throttle = (func, time = 100) => {
     let lastTime = 0;
     return () => {
@@ -173,3 +174,13 @@ const validateHeader = () => {
 };
 
 window.addEventListener('scroll', throttle(validateHeader, 100));
+
+//
+
+let logovanjeForma = document.querySelector('#logovanje-forma');
+let invalidUserText = document.querySelector('#logovanje-forma .form-text');
+
+logovanjeForma.addEventListener('submit', () => {
+    event.preventDefault();
+    invalidUserText.classList.remove('hide')
+})
