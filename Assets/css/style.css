@@ -118,7 +118,7 @@ main {
 
 #welcome-screen img {
     position: absolute;
-    width: 100vw;
+    width: 100%;
     height: auto;
     min-height: 30%;
     max-height: 90.5vh;
