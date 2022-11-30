@@ -1233,6 +1233,7 @@
     }
 }
 
+
 @media(max-width:400px) and (max-height:500px) {
     #welcome-screen {
         height: 50vh !important;
@@ -1259,16 +1260,15 @@
     #welcome-title {
         top: 8vh !important;
     }
-
 }
 
 @media(max-width:350px) and (max-height:766px) {
     #welcome-screen {
-        height: 30vh !important;
+        height: 35vh !important;
     }
 
     #Akcije {
-        height: 35vh !important;
+        height: 40vh !important;
     }
 
     #welcome-title {
