@@ -308,6 +308,10 @@ footer h5:hover {
     justify-content: space-around;
 }
 
+#account-modal .modal-footer {
+    display: flex;
+    justify-content: space-between;
+}
 .btn-close {
     background-color: white;
     opacity: 1 !important;
@@ -320,7 +324,13 @@ footer h5:hover {
 .hide {
     display: none;
 }
-
+#signup-modal .alert-danger {
+    padding:4px;
+    line-height: 2em;
+}
+#login-modal .alert-danger {
+    padding:10px;
+}
 .modal-footer .btn {
     background-color: white;
 }
@@ -333,23 +343,33 @@ footer h5:hover {
     width: 100%;
 }
 
-#signup-forma .row {
-    justify-content: space-around !important;
-}
-
 #signup-forma .row .col-md {
-    margin-bottom: 50px;
+    margin-bottom: 25px;
 }
 
-#signup-forma .row .col-md,
+#signup-forma
 .row .col-sm-9,
 .row .col-sm-3 {
     display: flex;
     flex-direction: row-reverse;
     justify-content: center;
+}
+
+#signup-forma .row .col-md{
+    display: flex;
+    flex-direction: column-reverse;
+    justify-content: flex-end;
+}
+
+#signup-forma .row .col-md .formup {
+    display: flex;
+    flex-direction: row-reverse;
     align-items: center;
 }
 
+#signup-forma .row .col-md .formdown {
+    margin-top: 15px;
+}
 #signup-forma .row .col-md label,
 .row .col-sm-9 label {
     margin-right: 20px;

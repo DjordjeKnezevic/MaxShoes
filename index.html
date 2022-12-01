@@ -70,7 +70,7 @@
                     </div>
                     <div class="modal-footer">
                         <button class="btn" data-bs-target="#login-modal" data-bs-toggle="modal">LOGIN</button>
-                        <button class="btn" data-bs-target="#sigunp-modal" data-bs-toggle="modal">SIGN UP</button>
+                        <button class="btn" data-bs-target="#signup-modal" data-bs-toggle="modal">SIGN UP</button>
                     </div>
                 </div>
             </div>
@@ -85,8 +85,8 @@
                     <div class="modal-body">
                         <form id="logovanje-forma">
                             <div class="mb-3">
-                                <label for="log-email" class="form-label">Email</label>
-                                <input type="email" class="form-control" id="log-email" aria-describedby="emailHelp">
+                                <label for="login-user-email" class="form-label">Email/Username</label>
+                                <input type="text" class="form-control" id="login-user-email">
                             </div>
                             <div class="mb-3">
                                 <label for="log-pass" class="form-label">Password</label>
@@ -99,12 +99,12 @@
                     </div>
                     <div class="modal-footer">
                         <p class="text-light">Don't have an account?</p>
-                        <button class="btn" data-bs-target="#sigunp-modal" data-bs-toggle="modal">SIGN UP</button>
+                        <button class="btn" data-bs-target="#signup-modal" data-bs-toggle="modal">SIGN UP</button>
                     </div>
                 </div>
             </div>
         </div>
-        <div class="modal" id="sigunp-modal" aria-hidden="true" aria-labelledby="exampleModalToggleLabel3"
+        <div class="modal" id="signup-modal" aria-hidden="true" aria-labelledby="exampleModalToggleLabel3"
             tabindex="-1">
             <div class="modal-dialog modal-lg modal-dialog-centered">
                 <div class="modal-content">
@@ -117,38 +117,69 @@
                             <div class="container-sm">
                                 <div class="row">
                                     <div class="col-md">
-                                        <input type="text" name="signup-username" id="signup-username"
-                                            class="form-control">
-                                        <label for="signup-username">Username</label>
+                                        <div class="formdown">
+                                            <span class="hide alert alert-danger" id="username-error"></span>
+                                        </div>
+                                        <div class="formup">
+                                            <input type="text" name="signup-username" id="signup-username"
+                                                class="form-control">
+                                            <label for="signup-username">Username</label>
+                                        </div>
                                     </div>
                                     <div class="col-md">
-                                        <input type="password" name="signup-password" id="signup-password"
-                                            class="form-control">
-                                        <label for="signup-password">Password</label>
+                                        <div class="formdown">
+                                            <span class="hide alert alert-danger" id="password-error"></span>
+                                        </div>
+                                        <div class="formup">
+                                            <input type="password" name="signup-password" id="signup-password"
+                                                class="form-control">
+                                            <label for="signup-password">Password</label>
+                                        </div>
+                                    </div>
+                                </div>
+                                <p class="hide">some text</p>
+                                <div class="row">
+                                    <div class="col-md">
+                                        <div class="formdown">
+                                            <span class="hide alert alert-danger" id="firstname-error"></span>
+                                        </div>
+                                        <div class="formup">
+                                            <input type="text" name="signup-firstname" id="signup-firstname"
+                                                class="form-control">
+                                            <label for="signup-firstname">First name</label>
+                                        </div>
+                                    </div>
+                                    <div class="col-md">
+                                        <div class="formdown">
+                                            <span class="hide alert alert-danger" id="lastname-error"></span>
+                                        </div>
+                                        <div class="formup">
+                                            <input type="text" name="signup-lastname" id="signup-lastname"
+                                                class="form-control">
+                                            <label for="signup-lastname">Last name</label>
+                                        </div>
                                     </div>
                                 </div>
                                 <div class="row">
                                     <div class="col-md">
-                                        <input type="text" name="signup-firstname" id="signup-firstname"
-                                            class="form-control">
-                                        <label for="signup-firstname">First name</label>
+                                        <div class="formdown">
+                                            <span class="hide alert alert-danger" id="email-error"></span>
+                                        </div>
+                                        <div class="formup">
+                                            <input type="email" name="signup-email" id="signup-email" size="24"
+                                                class="form-control">
+                                            <label for="signup-email">Email</label>
+                                        </div>
                                     </div>
                                     <div class="col-md">
-                                        <input type="text" name="signup-lastname" id="signup-lastname"
-                                            class="form-control">
-                                        <label for="signup-lastname">Last name</label>
-                                    </div>
-                                </div>
-                                <div class="row">
-                                    <div class="col-md">
-                                        <input type="email" name="signup-email" id="signup-email" size="24"
-                                            class="form-control">
-                                        <label for="signup-email">Email</label>
-                                    </div>
-                                    <div class="col-md">
-                                        <input type="text" name="signup-address" id="signup-address" size="25"
-                                            class="form-control">
-                                        <label for="signup-address">Address</label>
+                                        <div class="formdown">
+                                            <span class="hide alert alert-danger" id="address-error"></span>
+                                        </div>
+                                        <div class="formup">
+                                            <input type="text" name="signup-address" id="signup-address" size="25"
+                                                class="form-control">
+                                            <label for="signup-address">Address</label>
+                                        </div>
                                     </div>
                                 </div>
                                 <div class="row">
@@ -159,7 +190,7 @@
                                             conditions</label>
                                     </div>
                                     <div class="col-sm-3">
-                                        <button type="submit" class="btn btn-primary form-control">Submit</button>
+                                        <button type="submit" class="btn btn-primary form-control">Sign Up</button>
                                     </div>
                                 </div>
                             </div>
