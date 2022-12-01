@@ -1,10 +1,10 @@
 window.onload = function () {
     // let url = document.location.href;
-    // let url = document.location.pathname;
-    // console.log(url);
-    if (url == "https://djordjeknezevic.github.io/MaxShoes/"
-        || url == "https://djordjeknezevic.github.io/MaxShoes/index.html"
-        || url == "https://djordjeknezevic.github.io/MaxShoes/#") {
+    let url = document.location.pathname;
+    console.log(url);
+    if (url == "/MaxShoes/"
+        || url == "/MaxShoes/index.html"
+        || url == "/MaxShoes/#") {
 
         //STAMPANJE NAV MENIJA
         const navMeni = ['MEN', 'WOMEN', 'KIDS', 'CONTACT'];
