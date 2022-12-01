@@ -5,7 +5,7 @@ window.onload = function () {
     if (url == "/MaxShoes/"
         || url == "/MaxShoes/index.html"
         || url == "/MaxShoes/#") {
-
+        // if(true) {
         //STAMPANJE NAV MENIJA
         const navMeni = ['MEN', 'WOMEN', 'KIDS', 'CONTACT'];
         let navbarNav = document.getElementsByClassName("navbar-nav")[0];
@@ -197,11 +197,15 @@ window.onload = function () {
         // PROVERA ISPRAVNOSTI USERNAME-A
         let reUsername1 = /^[\w\d!@#$%^&*._]{5,20}$/;
         let reUsername2 = /^[A-Z][\w\d!@#$%^&*._]{4,19}$/;
+
         let rePassword1 = /^[\w\d!@#$%^&*._]{8,20}$/;
-        let rePassword2 = /^([\w\d]{7,19}[!@#$%^&*._]+)|([!@#$%^&*._]+[\w\d]{7,19})$/;
-        let rePassword3 = /^[A-Z][\w\d!@#$%^&*._]{7,19}$/;
+        let rePassword2 = /^([\w!@#$%^&*._]{7,19}[\d]+)|([\d]+[\w!@#$%^&*._]{7,19})$/;
+        let rePassword3 = /^([\w\d]{7,19}[!@#$%^&*._]+)|([!@#$%^&*._]+[\w\d]{7,19})$/;
+        let rePassword4 = /^[A-Z][\w\d!@#$%^&*._]{7,19}$/;
+
         let reFirstLastName1 = /^[\w\dŽĐŠĆČćđčžš]{3,20}$/;
         let reFirstLastName2 = /^[A-Z][\w\dŽĐŠĆČćđčžšшђжћчЂШЖЋЧ]{2,19}$/;
+
         const reUsername = [reUsername1, reUsername2];
         const rePassword = [rePassword1, rePassword2, rePassword3];
         const reFirstLastName = [reFirstLastName1, reFirstLastName2];
@@ -211,7 +215,8 @@ window.onload = function () {
         ];
         const porukaPassword = [
             'Password must be between 8 and 20 characters long and must not contain spaces',
-            'Password must contain at least 1 of the characters: "!@#$%^&*."',
+            'Password must contain at least 1 number',
+            'Password must contain at least 1 of the characters: "!@#$%^&*._"',
             'Password must start with a capital letter and must not contain spaces'
         ];
         const porukaFirstLastName = [
