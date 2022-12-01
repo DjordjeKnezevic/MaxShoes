@@ -197,100 +197,156 @@ window.onload = function () {
         // PROVERA ISPRAVNOSTI USERNAME-A
         let reUsername1 = /^[\w\d!@#$%^&*._]{5,20}$/;
         let reUsername2 = /^[A-Z][\w\d!@#$%^&*._]{4,19}$/;
-
-        let rePassword1 = /^[\w\d!@#$%^&*._]{8,20}$/;
-        let rePassword2 = /^([\w!@#$%^&*._]{7,19}[\d]+)|([\d]+[\w!@#$%^&*._]{7,19})$/;
-        let rePassword3 = /^([\w\d]{7,19}[!@#$%^&*._]+)|([!@#$%^&*._]+[\w\d]{7,19})$/;
-        let rePassword4 = /^[A-Z][\w\d!@#$%^&*._]{7,19}$/;
-
-        let reFirstLastName1 = /^[\w\dŽĐŠĆČćđčžš]{3,20}$/;
-        let reFirstLastName2 = /^[A-Z][\w\dŽĐŠĆČćđčžšшђжћчЂШЖЋЧ]{2,19}$/;
-
         const reUsername = [reUsername1, reUsername2];
-        const rePassword = [rePassword1, rePassword2, rePassword3];
-        const reFirstLastName = [reFirstLastName1, reFirstLastName2];
         const porukaUsername = [
             'Username must be between 5 and 20 characters long and must not contain spaces',
             'Username must start with a capital letter'
         ];
-        const porukaPassword = [
-            'Password must be between 8 and 20 characters long and must not contain spaces',
-            'Password must contain at least 1 number',
-            'Password must contain at least 1 of the characters: "!@#$%^&*._"',
-            'Password must start with a capital letter and must not contain spaces'
-        ];
-        const porukaFirstLastName = [
-            'Name (First and Last) must be between 3 and 20 characters long and must not contain spaces',
-            'Name (First and Last) must start with a capital letter'
-        ];
-
         let usernameError = document.getElementById('username-error');
         let signupUsername = document.getElementById('signup-username');
         signupUsername.addEventListener('blur', () => {
             for (let i = 0; i < porukaUsername.length; i++) {
-                if (!reUsername[i].test(signupUsername.value)) {
+                if(!signupUsername.value) {
+                    usernameError.classList.add('hide');
+                    signupUsername.classList.add('error-border');
+                    break;
+                }
+                else if (!reUsername[i].test(signupUsername.value)) {
+                    signupPassword.classList.add('error-border');
                     usernameError.textContent = porukaUsername[i];
                     usernameError.classList.remove('hide');
                     break;
                 }
                 else {
+                    signupPassword.classList.remove('error-border');
                     usernameError.classList.add('hide');
                 }
             }
         })
 
+        // PROVERA ISPRAVNOSTI PASSWORD-A
+        let rePassword1 = /^[\w\d!@#$%^&*._]{8,20}$/;
+        let rePassword2 = /^([\w!@#$%^&*._]{7,19}[\d]+)|([\d]+[\w!@#$%^&*._]{7,19})$/;
+        let rePassword3 = /^([\w\d]{7,19}[!@#$%^&*._]+)|([!@#$%^&*._]+[\w\d]{7,19})$/;
+        let rePassword4 = /^[A-Z][\w\d!@#$%^&*._]{7,19}$/;
+        const rePassword = [rePassword1, rePassword2, rePassword3, rePassword4];
+        const porukaPassword = [
+            'Password must be between 8 and 20 characters long and must not contain spaces',
+            'Password must contain at least 1 number',
+            'Password must contain at least 1 of the characters: "!@#$%^&*._"',
+            'Password must start with a capital letter'
+        ];
         let passwordError = document.getElementById('password-error');
         let signupPassword = document.getElementById('signup-password');
         signupPassword.addEventListener('blur', () => {
             for (let i = 0; i < porukaPassword.length; i++) {
-                if (!rePassword[i].test(signupPassword.value)) {
+                if(!signupPassword.value) {
+                    passwordError.classList.add('hide');
+                    signupPassword.classList.add('error-border');
+                    break;
+                }
+                else if (!rePassword[i].test(signupPassword.value)) {
+                    signupPassword.classList.add('error-border');
                     passwordError.textContent = porukaPassword[i];
                     passwordError.classList.remove('hide');
                     break;
                 }
                 else {
+                    signupPassword.classList.remove('error-border');
                     passwordError.classList.add('hide');
                 }
             }
         })
 
+        let reFirstLastName1 = /^[\w\dŽĐŠĆČćđčžš]{3,20}$/;
+        let reFirstLastName2 = /^[A-Z][\w\dŽĐŠĆČćđčžšшђжћчЂШЖЋЧ]{2,19}$/;
+        const reFirstLastName = [reFirstLastName1, reFirstLastName2];
+        const porukaFirstLastName = [
+            'Name (First and Last) must be between 3 and 20 characters long and must not contain spaces',
+            'Name (First and Last) must start with a capital letter'
+        ];
         let firstNameError = document.getElementById('firstname-error');
         let signupFirstName = document.getElementById('signup-firstname');
         signupFirstName.addEventListener('blur', () => {
             for (let i = 0; i < porukaFirstLastName.length; i++) {
-                if (/^[A-Z]([\w\dŽĐŠĆČćđčžšшђжћчЂШЖЋЧ]{2,19}[!@#$%^&*._]+)|([!@#$%^&*._]+[\w\dŽĐŠĆČćđčžšшђжћчЂШЖЋЧ]{2,19})$/.test(signupFirstName.value)) {
+                if(!signupFirstName.value) {
+                    firstNameError.classList.add('hide');
+                    signupFirstName.classList.add('error-border');
+                    break;
+                }
+                else if (/^[A-Z]([\w\dŽĐŠĆČćđčžšшђжћчЂШЖЋЧ]{2,19}[!@#$%^&*._]+)|([!@#$%^&*._]+[\w\dŽĐŠĆČćđčžšшђжћчЂШЖЋЧ]{2,19})$/.test(signupFirstName.value)) {
+                    signupFirstName.classList.add('error-border');
                     firstNameError.textContent = 'Name (First and Last) must not contain any of the characters: "!@#$%^&*._"';
                     firstNameError.classList.remove('hide');
                     break;
                 }
                 else if (!reFirstLastName[i].test(signupFirstName.value)) {
+                    signupFirstName.classList.add('error-border');
                     firstNameError.textContent = porukaFirstLastName[i];
                     firstNameError.classList.remove('hide');
                     break;
                 }
                 else {
+                    signupFirstName.classList.remove('error-border');
                     firstNameError.classList.add('hide');
                 }
             }
         })
+
         let lastNameError = document.getElementById('lastname-error');
         let signupLastName = document.getElementById('signup-lastname');
         signupLastName.addEventListener('blur', () => {
             for (let i = 0; i < porukaFirstLastName.length; i++) {
-                if (/^[A-Z]([\w\dŽĐŠĆČćđčžšшђжћчЂШЖЋЧ]{2,19}[!@#$%^&*._]+)|([!@#$%^&*._]+[\w\dŽĐŠĆČćđčžšшђжћчЂШЖЋЧ]{2,19})$/.test(signupLastName.value)) {
+                if(!signupLastName.value) {
+                    lastNameError.classList.add('hide');
+                    signupLastName.classList.add('error-border');
+                    break;
+                }
+                else if (/^[A-Z]([\w\dŽĐŠĆČćđčžšшђжћчЂШЖЋЧ]{2,19}[!@#$%^&*._]+)|([!@#$%^&*._]+[\w\dŽĐŠĆČćđčžšшђжћчЂШЖЋЧ]{2,19})$/.test(signupLastName.value)) {
+                    signupLastName.classList.add('error-border');
                     lastNameError.textContent = 'Name (First and Last) must not contain any of the characters: "!@#$%^&*._"';
                     lastNameError.classList.remove('hide');
                     break;
                 }
                 else if (!reFirstLastName[i].test(signupLastName.value)) {
+                    signupLastName.classList.add('error-border');
                     lastNameError.textContent = porukaFirstLastName[i];
                     lastNameError.classList.remove('hide');
                     break;
                 }
                 else {
+                    signupLastName.classList.remove('error-border');
                     lastNameError.classList.add('hide');
                 }
             }
         })
+
+        let reEmail1 = /^[\w\d]+@[\w]+.com$/
+        const reEmail = [reEmail1]
+        const porukaEmail = [
+            'Incorrect email format (Email must contain "@" and end with ".com")'
+        ];
+        let emailError = document.getElementById('email-error');
+        let signupEmail = document.getElementById('signup-email');
+        signupEmail.addEventListener('blur', () => {
+            for (let i = 0; i < porukaEmail.length; i++) {
+                if(!signupEmail.value) {
+                    emailError.classList.add('hide');
+                    signupEmail.classList.add('error-border');
+                    break;
+                }
+                else if (!reEmail[i].test(signupEmail.value)) {
+                    signupEmail.classList.add('error-border');
+                    emailError.textContent = porukaEmail[i];
+                    emailError.classList.remove('hide');
+                    break;
+                }
+                else {
+                    signupEmail.classList.remove('error-border');
+                    emailError.classList.add('hide');
+                }
+            }
+        })
+
     }
 }
