@@ -1,8 +1,10 @@
 window.onload = function () {
     // let url = document.location.href;
-    let url = document.location.pathname;
-    console.log(url);
-    if (url == "/" || url == "/index.html" || url == "/#") {
+    // let url = document.location.pathname;
+    // console.log(url);
+    if (url == "https://djordjeknezevic.github.io/MaxShoes/"
+        || url == "https://djordjeknezevic.github.io/MaxShoes/index.html"
+        || url == "https://djordjeknezevic.github.io/MaxShoes/#") {
 
         //STAMPANJE NAV MENIJA
         const navMeni = ['MEN', 'WOMEN', 'KIDS', 'CONTACT'];
@@ -29,13 +31,11 @@ window.onload = function () {
         }
 
         // FADEOUT ANIMACIJA WELCOME EKRANA
-        window.addEventListener("load", function (e) {
-            let slike = welcomeScreen.getElementsByTagName("img");
-            let fadeComplete = function (e) { welcomeScreen.appendChild(slike[0]); };
-            for (let i = 0; i < slike.length; i++) {
-                slike[i].addEventListener("animationend", fadeComplete, false);
-            }
-        }, false);
+        let slike = welcomeScreen.getElementsByTagName("img");
+        let fadeComplete = function (e) { welcomeScreen.appendChild(slike[0]); };
+        for (let i = 0; i < slike.length; i++) {
+            slike[i].addEventListener("animationend", fadeComplete, false);
+        }
 
         // STAMPANJE CAROUSEL BUTTON-A
         let carouselButtons = document.querySelector(".carousel-indicators");
