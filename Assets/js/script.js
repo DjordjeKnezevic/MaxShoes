@@ -2,10 +2,10 @@ window.onload = function () {
     // let url = document.location.href;
     let url = document.location.pathname;
     console.log(url);
-    if (url == "/MaxShoes/"
-        || url == "/MaxShoes/index.html"
-        || url == "/MaxShoes/#") {
-        // if(true) {
+    // if (url == "/MaxShoes/"
+    //     || url == "/MaxShoes/index.html"
+    //     || url == "/MaxShoes/#") {
+        if(true) {
         //STAMPANJE NAV MENIJA
         const navMeni = ['MEN', 'WOMEN', 'KIDS', 'CONTACT'];
         let navbarNav = document.getElementsByClassName("navbar-nav")[0];
@@ -165,7 +165,7 @@ window.onload = function () {
             const windowY = window.scrollY;
             const windowH = window.innerHeight;
 
-            if (windowY > windowH - 1100) {
+            if (windowY > windowH - 950) {
                 navbar.classList.add('is-fixed');
             } else {
                 navbar.classList.remove('is-fixed');
@@ -321,10 +321,10 @@ window.onload = function () {
             }
         })
 
-        let reEmail1 = /^[\w\d]+@[\w]+.com$/
+        let reEmail1 = /^[\w\d\.]+@[\w]+\.[\w\.]+$/
         const reEmail = [reEmail1]
         const porukaEmail = [
-            'Incorrect email format (Email must contain "@" and end with ".com")'
+            'Invalid email format (Email must contain "@" and end with a domain name (Ex. ".com")))'
         ];
         let emailError = document.getElementById('email-error');
         let signupEmail = document.getElementById('signup-email');
@@ -348,5 +348,31 @@ window.onload = function () {
             }
         })
 
+        let reAddress5 = /^(([A-Z][\w\d\.\-]+)|([\d]+\.?))(\s{1}[\w\d\.\-]+){0,7}\s(([\d]{1,3}((\/(([\d]{1,2}[\w]?)|([\w]{1,2}))))?)|((BB)|(bb)))$/
+        const reAddress = [reAddress5];
+        const porukaAddress = [
+            'Please enter a valid address'
+        ]
+        let addressError = document.getElementById('address-error');
+        let signupAddress = document.getElementById('signup-address');
+        signupAddress.addEventListener('blur', () => {
+            for (let i = 0; i < porukaAddress.length; i++) {
+                if(!signupAddress.value) {
+                    addressError.classList.add('hide');
+                    signupAddress.classList.add('error-border');
+                    break;
+                }
+                else if (!reAddress[i].test(signupAddress.value)) {
+                    signupAddress.classList.add('error-border');
+                    addressError.textContent = porukaAddress[i];
+                    addressError.classList.remove('hide');
+                    break;
+                }
+                else {
+                    signupAddress.classList.remove('error-border');
+                    addressError.classList.add('hide');
+                }
+            }
+        })
     }
 }
