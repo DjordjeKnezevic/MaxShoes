@@ -1,3 +1,4 @@
+var tmpGreska = false;
 window.onload = function () {
 
     //* * * * * * * * * * * * * * * * * * * * * ZAJEDNICKI DEO ZA SVE STRANICE * * * * * * * * * * * * * * * * * * * * * * * *
@@ -58,8 +59,8 @@ window.onload = function () {
         'Username must be between 5 and 20 characters long and must not contain spaces',
         'Username must start with a capital letter'
     ];
-    let usernameError = document.getElementById('username-error');
     let signupUsername = document.getElementById('signup-username');
+    let usernameError = document.getElementById('username-error');
     signupUsername.addEventListener('blur', () => {
         regexProvera(signupUsername, usernameError, reUsername, porukaUsername);
     })
@@ -138,7 +139,7 @@ window.onload = function () {
     const objektiErrorNiz = [usernameError, passwordError, firstNameError, lastNameError, emailError, addressError];
     const regexIzrazi = [reUsername, rePassword, reFirstLastName, reFirstLastName, reEmail, reAddress];
     const porukeNiz = [porukaUsername, porukaPassword, porukaFirstLastName, porukaFirstLastName, porukaEmail, porukaAddress]
-    let greska = false, tmpGreska = false;
+    let greska = false;
     submitButton.addEventListener('click', () => {
         if (!tacCheckbox.checked) {
             tacCheckbox.classList.add('error-border');
@@ -150,13 +151,13 @@ window.onload = function () {
         }
         for (let i = 0; i < 6; i++) {
             if (i == 2 || i == 3) {
-                tmpGreska = regexProvera(objektiPoljeNiz[i], objektiErrorNiz[i], regexIzrazi[i], porukeNiz[i], reFirstLastName3, dodatnaPorukaFirstLastName)
+                regexProvera(objektiPoljeNiz[i], objektiErrorNiz[i], regexIzrazi[i], porukeNiz[i], reFirstLastName3, dodatnaPorukaFirstLastName)
                 if (tmpGreska) {
                     greska = true;
                 }
             }
             else {
-                tmpGreska = regexProvera(objektiPoljeNiz[i], objektiErrorNiz[i], regexIzrazi[i], porukeNiz[i])
+                regexProvera(objektiPoljeNiz[i], objektiErrorNiz[i], regexIzrazi[i], porukeNiz[i])
                 if (tmpGreska) {
                     greska = true;
                 }
@@ -200,7 +201,7 @@ window.onload = function () {
         const pPatike = ["Lite Show", "Metaspeed Sky", "Pegasus Turbo Next Nature"]
         const linkPatike = ["AsicsLiteShow", "AsicsMetaspeedSky", "NikePegasusTurboNextNature"]
         for (let p in headerPatike) {
-            carouselSlajderi.innerHTML += `<article class="carousel-item active"><a href=""><img src="Assets/img/${linkPatike[p]}.jpg"
+            carouselSlajderi.innerHTML += `<article class="carousel-item active"><a href="/MaxShoes/products.html"><img src="Assets/img/${linkPatike[p]}.jpg"
         class="d-block w-100" alt="${linkPatike[p]}"></a><div class="carousel-caption"><h5>${headerPatike[p]}</h5>
         <p>${pPatike[p]}</p></div></article>`
         }
@@ -217,7 +218,7 @@ window.onload = function () {
         let kategorije = document.querySelector('.container .row');
         const kategorijeSlike = ["MensShoes", "WomensShoes", "KidsShoes"]
         for (let i = 0; i < 3; i++) {
-            kategorije.innerHTML += `<a href="/products.html" class="nav-link col-md-3">
+            kategorije.innerHTML += `<a href="/MaxShoes/products.html" class="nav-link col-md-3">
         <div class="hcontainer">
             <h3>${navMeni[i]}</h3>
         </div>
@@ -338,33 +339,33 @@ window.onload = function () {
 
 
 // FUNKCIJA ZA PROVERU ISPRAVNOSTI UNETOG TEKSTA POMOCU REGULARNIH IZRAZA
-function regexProvera(objekatPolje, errorTekst, regexNiz, porukaNiz, dodatanRegex = null, dodatnaPoruka = null, greska) {
+function regexProvera(objekatPolje, errorTekst, regexNiz, porukaNiz, dodatanRegex = null, dodatnaPoruka = null) {
     for (let i = 0; i < porukaNiz.length; i++) {
         if (!objekatPolje.value) {
             errorTekst.classList.add('hide');
             objekatPolje.classList.add('error-border');
-            greska = true;
-            return greska;
+            tmpGreska = true;
+            break;
         }
         else if (dodatanRegex && dodatanRegex.test(objekatPolje.value)) {
             objekatPolje.classList.add('error-border');
             errorTekst.textContent = dodatnaPoruka;
             errorTekst.classList.remove('hide');
-            greska = true;
-            return greska;
+            tmpGreska = true;
+            break;
         }
         else if (!regexNiz[i].test(objekatPolje.value)) {
+            console.log(i)
             objekatPolje.classList.add('error-border');
             errorTekst.textContent = porukaNiz[i];
             errorTekst.classList.remove('hide');
-            greska = true;
-            return greska;
+            tmpGreska = true;
+            break;
         }
         else {
             objekatPolje.classList.remove('error-border');
             errorTekst.classList.add('hide');
-            greska = false;
-            return greska;
+            tmpGreska = false;
         }
     }
 }
