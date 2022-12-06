@@ -9,7 +9,8 @@ window.onload = function () {
         li.classList.add('nav-item');
         let a = document.createElement('a');
         a.classList.add('nav-link', 'text-light');
-        a.href = "/products.html";
+        a.href = "/MaxShoes/products.html";
+        // a.href = "/products.html";
         a.textContent = navLink;
         li.appendChild(a);
         navbarNav.appendChild(li);
