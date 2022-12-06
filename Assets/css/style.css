@@ -5,10 +5,12 @@ body {
     box-sizing: border-box;
 }
 
-main {
+#main-page {
     width: 100%;
     margin-top: 100px;
 }
+
+/* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * NAVBAR * * * * * * * * * * * * * * * * * * * * * * * * * * * * */
 
 .dark-blue-bg {
     background-color: #222E50;
@@ -112,6 +114,8 @@ main {
     height: 300px;
 }
 
+/* * * * * * * * * * * * * * * * * * * * * * * * * * * WELCOME SLIKE * * * * * * * * * * * * * * * * * * * * * * * * * * * * */
+
 #welcome-screen {
     height: 90.5vh;
 }
@@ -149,6 +153,8 @@ main {
     }
 }
 
+/* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * NASLOV * * * * * * * * * * * * * * * * * * * * * * * * * * * * */
+
 #welcome-title h1 {
     color: black;
     font-size: 5em;
@@ -171,6 +177,8 @@ main {
     left: 25vw;
     z-index: 30;
 }
+
+/* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * AKCIJE * * * * * * * * * * * * * * * * * * * * * * * * * * * * */
 
 #Akcije {
     height: 950px;
@@ -197,6 +205,8 @@ main {
     width: 100%;
     box-shadow: 0px 0px 30px #222E50, 0px 0px 30px #222E50;
 }
+
+/* * * * * * * * * * * * * * * * * * * * * * * * * * * * KATEGORIJE * * * * * * * * * * * * * * * * * * * * * * * * * * * */
 
 #kategorije {
     margin-top: 420px;
@@ -261,6 +271,7 @@ main {
     height: 70%;
 }
 
+/* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * FOOTER * * * * * * * * * * * * * * * * * * * * * * * * * * * * */
 
 footer {
     display: flex;
@@ -298,6 +309,8 @@ footer h5:hover {
     color: #BCD8C1 !important;
 }
 
+/* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * MODAL * * * * * * * * * * * * * * * * * * * * * * * * * * * * */
+
 .modal-header,
 .modal-footer {
     background-color: #222E50;
@@ -312,6 +325,7 @@ footer h5:hover {
     display: flex;
     justify-content: space-between;
 }
+
 .btn-close {
     background-color: white;
     opacity: 1 !important;
@@ -324,17 +338,21 @@ footer h5:hover {
 .hide {
     display: none;
 }
+
 #signup-modal .alert-danger {
-    padding:4px;
+    padding: 4px;
     line-height: 2em;
 }
+
 #login-modal .alert-danger {
-    padding:10px;
+    padding: 10px;
 }
+
 .error-border {
     border: 1px solid red;
     box-shadow: 0px 0px 5px red;
 }
+
 .modal-footer .btn {
     background-color: white;
 }
@@ -351,15 +369,14 @@ footer h5:hover {
     margin-bottom: 25px;
 }
 
-#signup-forma
-.row .col-sm-9,
+#signup-forma .row .col-sm-9,
 .row .col-sm-3 {
     display: flex;
     flex-direction: row-reverse;
     justify-content: center;
 }
 
-#signup-forma .row .col-md{
+#signup-forma .row .col-md {
     display: flex;
     flex-direction: column-reverse;
     justify-content: flex-end;
@@ -374,6 +391,7 @@ footer h5:hover {
 #signup-forma .row .col-md .formdown {
     margin-top: 15px;
 }
+
 #signup-forma .row .col-md label,
 .row .col-sm-9 label {
     margin-right: 20px;
@@ -385,4 +403,25 @@ footer h5:hover {
 
 #signup-forma .row .col-sm-9 {
     justify-content: flex-end;
+    align-items: center;
+}
+
+#signup-forma .row .alert-success {
+    padding: 10px;
+}
+
+/* * * * * * * * * * * * * * * * * * * * * * * * * * DRUGA STRANICA * * * * * * * * * * * * * * * * * * * * * * * * * * * * */
+
+#second-page {
+    height: 1500px;
+    background-color: #BCD8C1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+#second-page .container {
+    background-color: white;
+    width: 90%;
+    height: 80%;
 }
