@@ -18,7 +18,8 @@ window.onload = function () {
     }
 
     // ANIMACIJA NAVBARA PRI SCROLL-U (POJAVLJIVANJE I NESTAJANJE)
-    const navbar = document.querySelector('.navbar');
+    const navbar = document.querySelector('.navbar-meni');
+    console.log(navbar);
     let lastScroll = 0;
     const validateHeader = () => {
         const windowY = window.scrollY;
@@ -171,12 +172,12 @@ window.onload = function () {
     //* * * * * * * * * * * * * * * * * * * * * * * * * * PRVA STRANICA * * * * * * * * * * * * * * * * * * * * * * * * * * *
     let url = document.location.pathname;
     console.log(url);
-    if (url == "/MaxShoes/"
-        || url == "/MaxShoes/index.html"
-        || url == "/MaxShoes/#") {
-        // if (url == "/"
-        //     || url == "/index.html"
-        //     || url == "/#") {
+    // if (url == "/MaxShoes/"
+    //     || url == "/MaxShoes/index.html"
+    //     || url == "/MaxShoes/#") {
+        if (url == "/"
+            || url == "/index.html"
+            || url == "/#") {
 
         //  STAMPANJE BACKGROUND SLIKA
         let welcomeScreen = document.getElementById("welcome-screen");
@@ -228,32 +229,57 @@ window.onload = function () {
     }
 
     //* * * * * * * * * * * * * * * * * * * * * * * * * * DRUGA STRANICA * * * * * * * * * * * * * * * * * * * * * * * * * * *
-    else if (url == "/MaxShoes/products.html") {
-        // else if (url == "/products.html") {
-        shoe1 = {
-            brand: 'Asics',
-            model: 'Metaspeed Sky',
-            imgSrc: 'Assets/img/shoes/shoe1.jpg',
-            category: 'Men',
-            price: 250,
-            discount: false
-        }
-        shoe2 = {
-            brand: 'Asics',
-            model: 'Lite Show',
-            imgSrc: 'Assets/img/shoes/shoe2.jpg',
-            category: 'Men',
-            price: 120,
-            discount: false
-        }
-        shoe3 = {
-            brand: 'Nike',
-            model: 'Pegasus Turbo Next Nature',
-            imgSrc: 'Assets/img/shoes/shoe3.jpg',
-            category: 'Men',
-            price: 180,
-            discount: false
-        }
+    // else if (url == "/MaxShoes/products.html") {
+        else if (url == "/products.html") {
+            shoe1 = {
+                brand: 'Asics',
+                model: 'Metaspeed Sky',
+                imgSrc: 'Assets/img/shoes/shoe1.jpg',
+                category: 'Men',
+                price: 250,
+                discount: false
+            }
+            shoe2 = {
+                brand: 'Asics',
+                model: 'Lite Show',
+                imgSrc: 'Assets/img/shoes/shoe2.jpg',
+                category: 'Men',
+                price: 120,
+                discount: false
+            }
+            shoe3 = {
+                brand: 'Nike',
+                model: 'Pegasus Turbo Next Nature',
+                imgSrc: 'Assets/img/shoes/shoe3.jpg',
+                category: 'Men',
+                price: 180,
+                discount: false
+            }
+
+            const  shoeList = [shoe1, shoe2, shoe3];
+            const listaPadajucihMenija = document.querySelectorAll('#frame .padajuci-meni .dropdown-item');
+            for(let i=0; i < listaPadajucihMenija.length; i++) {
+                listaPadajucihMenija[i].addEventListener('click', function() {
+                    let opcija = listaPadajucihMenija[i].textContent
+                    listaPadajucihMenija[i].parentElement.previousElementSibling.textContent = opcija;
+                    console.log(opcija);
+                    for(shoe of shoeList) {
+                        if(shoe.category == opcija) {
+                            console.log(shoe);
+                        }
+                        else if(shoe.brand == opcija) {
+                            console.log(shoe);
+                        }
+                    }
+                        })
+            }
+
+
+
+            
+            function stampajPatike() {
+                
+        } 
     }
 
     //* * * * * * * * * * * * * * * * * * * * * ZAJEDNICKI DEO ZA SVE STRANICE * * * * * * * * * * * * * * * * * * * * * * * *

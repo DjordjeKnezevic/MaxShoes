@@ -17,7 +17,7 @@
 </head>
 
 <body>
-    <nav class="navbar navbar-expand-lg dark-blue-bg">
+    <nav class="navbar navbar-expand-lg dark-blue-bg navbar-meni">
         <div class="container-fluid">
             <div class="col navbar-brand">
                 <button class="navbar-toggler" type="button" data-bs-toggle="offcanvas"
@@ -217,8 +217,62 @@
                 </div>
             </div>
         </div>
-        <div class="container">
-            
+
+        <div class="container" id="frame">
+            <nav class="navbar navbar-expand-lg navbar-dark dark-blue-bg">
+                <div class="container-fluid">
+                    <button class="navbar-toggler" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasDarkNavbar" aria-controls="offcanvasDarkNavbar">
+                        <span class="navbar-toggler-icon"></span>
+                    </button>
+                    <div class="offcanvas offcanvas-end dark-blue-bg" tabindex="-1" id="offcanvasDarkNavbar" aria-labelledby="offcanvasDarkNavbarLabel">
+                        <div class="offcanvas-header">
+                            <h5 class="offcanvas-title" id="offcanvasDarkNavbarLabel">Dark offcanvas</h5>
+                            <button type="button" class="btn-close btn-close-white" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+                        </div>
+                        <div class="offcanvas-body">
+                            <form class="d-flex" id ="filter">
+                                <ul class="navbar-nav flex-grow-1 pe-3">
+                                    <li class="nav-item dropdown">
+                                        <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                            Category
+                                        </a>
+                                        <ul class="dropdown-menu padajuci-meni">
+                                            <li class="dropdown-item">Men</li>
+                                            <li class="dropdown-item">Women</li>
+                                            <li class="dropdown-item">Kids</li>
+                                        </ul>
+                                    </li>
+                                    <li class="nav-item dropdown">
+                                        <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                            Brand
+                                        </a>
+                                        <ul class="dropdown-menu padajuci-meni">
+                                            <li class="dropdown-item">Asics</li>
+                                            <li class="dropdown-item">Nike</li>
+                                        </ul>
+                                    </li>
+                                    <li class="nav-item dropdown">
+                                        <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                            Price
+                                        </a>
+                                        <ul class="dropdown-menu padajuci-meni" id ="dropdown-cena">
+                                            <li class="dropdown-item">
+                                                <!-- <label for="opseg-cena" class="form-label">Example range</label>
+                                                <input type="range" class="form-range" min="0" max="300" step="1" id="opseg-cena"> -->
+                                                <p>Price range:</p>
+                                                <strong>0$ - 300$</strong>
+                                            </li>
+                                        </ul>
+                                    </li>
+                                    <!-- <li class="nav-item">
+                                        <button class="btn form-control" type="submit">Search</button>
+                                    </li> -->
+                                </ul>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </nav>
         </div>
 
 
@@ -237,6 +291,7 @@
         integrity="sha384-OERcA2EqjJCMA+/3y+gxIOqMEjwtxJY7qPCqsdltbNJuaOe923+mo//f6V8Qbsw3"
         crossorigin="anonymous"></script>
     <script type="text/javascript" src="Assets/js/script.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
 </body>
 
 </html>

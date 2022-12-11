@@ -16,7 +16,7 @@ body {
     background-color: #222E50;
 }
 
-.navbar {
+.navbar-meni {
     height: 100px;
     width: 100%;
     position: absolute;
@@ -34,20 +34,20 @@ body {
     transform: translate3d(0, 0, 0);
 }
 
-.navbar-nav {
+.navbar-meni .navbar-nav {
     display: flex;
     justify-content: center;
     font-size: 1.7em;
 }
 
-.navbar-brand {
+.navbar-meni .navbar-brand {
     display: flex;
     align-items: center;
     margin-left: 0.5em;
     font-style: italic;
 }
 
-.navbar-brand h1 {
+.navbar-meni .navbar-brand h1 {
     display: inline-block;
     margin-right: 0.35em;
 }
@@ -57,27 +57,27 @@ body {
     font-size: 1.5em;
 }
 
-.navbar-brand img {
+.navbar-meni .navbar-brand img {
     width: 50px;
     border-radius: 40% 10%;
 }
 
-.navbar-brand img:hover {
+.navbar-meni .navbar-brand img:hover {
     box-shadow: 0px 0px 30px #BCD8C1;
     transition: 0.2s;
 }
 
-.navbar-brand h1:hover {
+.navbar-meni .navbar-brand h1:hover {
     text-shadow: 0px 0px 40px #BCD8C1;
     transition: 0.2s;
 }
 
-.nav-item {
+.navbar-meni .nav-item {
     margin: 0px 0.5em;
 }
 
-.nav-item:hover,
-.navbar-toggler:hover {
+.navbar-meni .nav-item:hover,
+.navbar-meni .navbar-toggler:hover {
     text-shadow: 0px 0px 25px #BCD8C1, 0px 0px 25px #BCD8C1;
     transition: 0.2s;
 }
@@ -98,13 +98,11 @@ body {
 }
 
 .navbar-toggler {
-    color: white;
     background-color: #BCD8C1;
     margin-right: 2em;
-
 }
 
-.navbar-collapse {
+.navbar-meni .navbar-collapse {
     display: inline-block;
 }
 
@@ -181,8 +179,8 @@ body {
 /* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * AKCIJE * * * * * * * * * * * * * * * * * * * * * * * * * * * * */
 
 #Akcije {
-    height: 950px;
-    width: 65%;
+    height: 900px;
+    width: 60%;
     margin: 0px auto;
     box-shadow: 0px 0px 30px #222E50, 0px 0px 30px #222E50;
     padding: 0px;
@@ -209,7 +207,7 @@ body {
 /* * * * * * * * * * * * * * * * * * * * * * * * * * * * KATEGORIJE * * * * * * * * * * * * * * * * * * * * * * * * * * * */
 
 #kategorije {
-    margin-top: 420px;
+    margin-top: 450px;
     height: 650px;
     background-image: url("../img/ShoesFooter.jpg");
     background-repeat: no-repeat;
@@ -420,8 +418,68 @@ footer h5:hover {
     align-items: center;
 }
 
-#second-page .container {
+#second-page #frame {
     background-color: white;
-    width: 90%;
+    width: 80%;
     height: 80%;
+}
+#frame {
+    padding: 0px;
+}
+#frame .container-fluid {
+    padding:0px;
+    height:100%;
+}
+#frame .navbar {
+    padding:0px;
+    position: relative;
+    height:70px;
+}
+#frame .navbar-toggler {
+    margin: 0.5em;
+    margin-left: 1em;
+    color:black;
+}
+#frame .offcanvas {
+    height:100%;
+}
+#frame .btn {
+    background-color: #BCD8C1;
+}
+#filter {
+    width: 100%;
+    height: 100%;
+    margin: 0px;
+}
+#frame .navbar-nav {
+    display: flex;
+    justify-content: space-around !important;
+    align-items: center !important;
+    padding: 0px !important;
+}
+#frame .navbar-nav li{
+    width:100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.padajuci-meni {
+    margin-top:14px !important;
+    border:0px;
+    border-radius: 0px;
+    width: 100%;
+    background-color: #BCD8C1;
+}
+.padajuci-meni li {
+    cursor: pointer;
+}
+#dropdown-cena li {
+    align-items: flex-start !important;
+    font-size:0.8em;
+    line-height: 0.8em;
+    cursor:auto;
+}
+#dropdown-cena li:hover {
+    background-color: #BCD8C1;
 }
