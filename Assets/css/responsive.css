@@ -1,6 +1,6 @@
 @media(min-width: 1400px) {
     #frame {
-    max-width: 2000px !important;
+        max-width: 2000px !important;
     }
 }
 
@@ -18,7 +18,7 @@
         width: 70%;
     }
 
-    .offcanvas {
+    .navbar-meni .offcanvas {
         width: 40% !important;
     }
 
@@ -28,8 +28,8 @@
 }
 
 @media(orientation: landscape) and (max-height:500px) {
-    .navbar-nav {
-        font-size: 1.5em;
+    .navbar-meni .navbar-nav {
+        font-size: 1.2em;
     }
 
     .carousel-caption {
@@ -52,8 +52,8 @@
 }
 
 @media(orientation: landscape) and (max-height:400px) {
-    .navbar-nav {
-        font-size: 1.5em;
+    .navbar-meni .navbar-nav {
+        font-size: 1.2em;
     }
 
     .carousel-caption {
@@ -68,7 +68,7 @@
         width: 50% !important;
     }
 
-    .navbar-nav {
+    .navbar-meni .navbar-nav {
         font-size: 1.1em;
     }
 }
@@ -82,7 +82,7 @@
         margin-top: 10px !important;
     }
 
-    .navbar-nav {
+    .navbar-meni .navbar-nav {
         font-size: 1em;
     }
 }
@@ -107,6 +107,37 @@
     }
 }
 
+@media(max-width:1800px){
+    #kategorije {
+        margin-top: 450px;
+    }
+}
+
+@media(max-width:1600px){
+    #kategorije {
+        margin-top: 400px;
+    }
+}
+
+@media(max-width:1500px){
+    #kategorije {
+        margin-top: 360px;
+    }
+}
+
+@media(max-width:1400px){
+    #kategorije {
+        margin-top: 350px;
+    }
+}
+
+@media(max-width:1250px){
+    #kategorije {
+        margin-top: 320px;
+    }
+}
+
+
 @media(max-width:1072px) {
     #welcome-title h1 {
         font-size: 3em;
@@ -114,6 +145,10 @@
 
     #welcome-title h3 {
         font-size: 1.2em;
+    }
+
+    .navbar-meni .navbar-nav {
+        font-size: 1.4em;
     }
 }
 
@@ -181,6 +216,11 @@
     }
 }
 
+@media(max-width:784px) {
+    .shoe {
+        width:250px;
+    }
+}
 @media(max-width:775px) {
 
     .navbar-brand h1,
@@ -224,6 +264,15 @@
     }
 }
 
+@media(max-width:659px) {
+    .shoe {
+        width:220px;
+    }
+    .shoe a {
+        top:-15%;
+    }
+}
+
 @media(max-width:626px) {
     #welcome-title h1 {
         font-size: 2em;
@@ -235,6 +284,13 @@
 
     #welcome-title {
         top: 80px;
+    }
+}
+
+@media(max-width:584px) {
+    .shoe {
+        width:200px;
+        height:300px;
     }
 }
 

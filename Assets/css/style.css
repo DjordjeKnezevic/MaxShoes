@@ -35,8 +35,6 @@ body {
 }
 
 .navbar-meni .navbar-nav {
-    display: flex;
-    justify-content: center;
     font-size: 1.7em;
 }
 
@@ -207,7 +205,7 @@ body {
 /* * * * * * * * * * * * * * * * * * * * * * * * * * * * KATEGORIJE * * * * * * * * * * * * * * * * * * * * * * * * * * * */
 
 #kategorije {
-    margin-top: 450px;
+    margin-top: 500px;
     height: 650px;
     background-image: url("../img/ShoesFooter.jpg");
     background-repeat: no-repeat;
@@ -334,7 +332,7 @@ footer h5:hover {
 }
 
 .hide {
-    display: none;
+    display: none !important;
 }
 
 #signup-modal .alert-danger {
@@ -412,74 +410,231 @@ footer h5:hover {
 
 #second-page {
     height: 1500px;
-    background-color: #BCD8C1;
+    background-color: white;
+    box-shadow: inset 0px 0px 250px #BCD8C1;
     display: flex;
     justify-content: center;
     align-items: center;
 }
 
-#second-page #frame {
+#frame {
+    overflow: hidden;
+    border: 2px solid #222E50;
+    box-shadow: 0px 0px 20px #222E50;
     background-color: white;
     width: 80%;
     height: 80%;
-}
-#frame {
     padding: 0px;
 }
+
 #frame .container-fluid {
-    padding:0px;
-    height:100%;
+    padding: 0px;
+    height: 100%;
 }
+
 #frame .navbar {
-    padding:0px;
+    padding: 0px;
     position: relative;
-    height:70px;
+    height: 70px;
 }
+
 #frame .navbar-toggler {
     margin: 0.5em;
     margin-left: 1em;
-    color:black;
+    color: black;
 }
+
 #frame .offcanvas {
-    height:100%;
+    height: 80%;
 }
-#frame .btn {
+
+#frame .navbar-nav .btn {
     background-color: #BCD8C1;
 }
+
 #filter {
     width: 100%;
     height: 100%;
     margin: 0px;
 }
+
 #frame .navbar-nav {
     display: flex;
     justify-content: space-around !important;
     align-items: center !important;
     padding: 0px !important;
 }
-#frame .navbar-nav li{
-    width:100%;
+
+#frame .navbar-nav li {
+    width: 100%;
     display: flex;
     flex-direction: column;
     align-items: center;
 }
 
+#frame .navbar-nav li a {
+    color: white;
+}
+
 .padajuci-meni {
-    margin-top:14px !important;
-    border:0px;
-    border-radius: 0px;
-    width: 100%;
+    left: 8% !important;
+    margin-top: 55px !important;
+    border: 0px;
+    border-top: 1px dotted #BCD8C1;
+    border-radius: 0px 0px 10% 10%;
+    width: 80%;
+    background-color: #222E50;
+}
+
+.padajuci-meni li:hover {
+    color: black !important;
     background-color: #BCD8C1;
 }
+
 .padajuci-meni li {
+    margin-top: 5px;
+    margin-bottom: 5px;
     cursor: pointer;
 }
-#dropdown-cena li {
-    align-items: flex-start !important;
-    font-size:0.8em;
-    line-height: 0.8em;
-    cursor:auto;
+
+#dropdown-cena {
+    height: 80px;
 }
+
+#dropdown-cena li {
+    cursor: auto;
+}
+
+#dropdown-cena li p {
+    margin-bottom: 20px;
+    font-size: 0.9em;
+    line-height: 0.8em;
+}
+
 #dropdown-cena li:hover {
+    background-color: #222E50;
+}
+
+#frame .offcanvas {
+    width: 50% !important;
+}
+
+#frame .offcanvas-header {
+    border-bottom: 1px solid #BCD8C1;
+}
+
+#frame .offcanvas-body {
+    padding: 0px;
+}
+
+#amount {
+    font-size: 1.1em;
+}
+
+.ui-slider {
+    font-size: 0.7em;
+    width: 85%;
+}
+
+.ui-slider-handle {
+    background-blend-mode: multiply;
+    font-size: 1.7em;
+    top: -0.5em !important;
+}
+
+.ui-slider-range {
     background-color: #BCD8C1;
+    background-blend-mode: multiply;
+}
+
+span.ui-slider-handle.ui-state-default.ui-corner-all:first-of-type {
+    border-radius: 1px 50% 50% 1px;
+    background-color: white;
+    cursor: pointer;
+}
+
+span.ui-slider-handle.ui-state-default.ui-corner-all:last-of-type {
+    border-radius: 50% 1px 1px 50%;
+    background-color: white;
+    cursor: pointer;
+}
+
+#filter-display {
+    display: flex;
+    flex-wrap: wrap;
+    overflow: auto;
+}
+
+.filter-dugme {
+    margin-top: 15px;
+    height: 45px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+}
+
+.filter-dugme:hover {
+    background-color: #222E50;
+    cursor: auto;
+}
+
+#patike-display {
+    height:1000px;
+    overflow-y: auto;
+    display: flex;
+    justify-content: space-around;
+    flex-wrap: wrap;
+}
+
+.shoe {
+    max-width: 300px;
+    min-width: 200px;
+    max-height:370px;
+    margin-left:3px;
+    margin-right:3px;
+    box-shadow: 0 4px 5px -3px #222E50;
+    border-bottom: 2px solid #222E50;
+    transition: 0.1s;
+    text-align: center;
+    font-size: 1.1em;
+    /* cursor:pointer; */
+}
+
+.shoe:hover {
+    transition: 0.1s;
+    box-shadow: 0 4px 5px -3px #222E50, 0 4px 10px -3px #222E50;
+}
+.shoe img:hover {
+    transform: scale(1.05);
+    transition: 0.3s;
+}
+
+.shoe img {
+    width: 100%;
+    transition: 0.3s
+}
+
+.shoe strong{
+    font-size: 1.1em;
+}
+
+.shoe i {
+    display: block;
+    margin-top:10px;
+    margin-bottom:10px;
+}
+.shoe a {
+    position: relative;
+    top:-13%;
+    right: -40%;
+    border-bottom: 1px solid #222E50;
+    padding-bottom: 12px;
+    box-shadow: 0 4px 1px -3px #222E50;
+    cursor: pointer;
+}
+
+.shoe a svg {
+    color:blue;
+
 }
