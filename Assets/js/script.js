@@ -171,12 +171,12 @@ window.onload = function () {
     //* * * * * * * * * * * * * * * * * * * * * * * * * * PRVA STRANICA * * * * * * * * * * * * * * * * * * * * * * * * * * *
     let url = document.location.pathname;
     console.log(url);
-    // if (url == "/MaxShoes/"
-    //     || url == "/MaxShoes/index.html"
-    //     || url == "/MaxShoes/#") {
-    if (url == "/"
-        || url == "/index.html"
-        || url == "/#") {
+    if (url == "/MaxShoes/"
+        || url == "/MaxShoes/index.html"
+        || url == "/MaxShoes/#") {
+    // if (url == "/"
+    //     || url == "/index.html"
+    //     || url == "/#") {
 
         //  STAMPANJE BACKGROUND SLIKA
         let welcomeScreen = document.getElementById("welcome-screen");
