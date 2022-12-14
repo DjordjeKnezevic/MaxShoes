@@ -478,7 +478,7 @@ footer h5:hover {
 
 .padajuci-meni {
     left: 8% !important;
-    margin-top: 55px !important;
+    margin-top: 54px !important;
     border: 0px;
     border-top: 1px dotted #BCD8C1;
     border-radius: 0px 0px 10% 10%;
@@ -582,7 +582,7 @@ span.ui-slider-handle.ui-state-default.ui-corner-all:last-of-type {
 }
 
 #patike-display {
-    height: 1000px;
+    height: 93%;
     overflow-y: auto;
     display: flex;
     justify-content: space-around;

@@ -4,15 +4,15 @@ window.onload = function () {
     //* * * * * * * * * * * * * * * * * * * * * ZAJEDNICKI DEO ZA SVE STRANICE * * * * * * * * * * * * * * * * * * * * * * * *
     //STAMPANJE NAV MENIJA
     const navMeni = ['MEN', 'WOMEN', 'KIDS', 'CONTACT'];
+    const navLinkovi = ["/MaxShoes/products.html", "/MaxShoes/products.html", "/MaxShoes/products.html", "#footer"]
     let navbarNav = document.getElementsByClassName("navbar-nav")[0];
-    for (let navLink of navMeni) {
+    for (let i in navMeni) {
         let li = document.createElement('li');
         li.classList.add('nav-item');
         let a = document.createElement('a');
         a.classList.add('nav-link', 'text-light');
-        a.href = "/MaxShoes/products.html";
-        // a.href = "/products.html";
-        a.textContent = navLink;
+        a.href = navLinkovi[i];
+        a.textContent = navMeni[i];
         li.appendChild(a);
         navbarNav.appendChild(li);
     }
@@ -170,13 +170,12 @@ window.onload = function () {
 
     //* * * * * * * * * * * * * * * * * * * * * * * * * * PRVA STRANICA * * * * * * * * * * * * * * * * * * * * * * * * * * *
     let url = document.location.pathname;
-    console.log(url);
     if (url == "/MaxShoes/"
         || url == "/MaxShoes/index.html"
         || url == "/MaxShoes/#") {
-        // if (url == "/"
-        //     || url == "/index.html"
-        //     || url == "/#") {
+    // if (url == "/"
+    //     || url == "/index.html"
+    //     || url == "/#") {
 
         //  STAMPANJE BACKGROUND SLIKA
         let welcomeScreen = document.getElementById("welcome-screen");
@@ -229,22 +228,21 @@ window.onload = function () {
 
     //* * * * * * * * * * * * * * * * * * * * * * * * * * DRUGA STRANICA * * * * * * * * * * * * * * * * * * * * * * * * * * *
     else if (url == "/MaxShoes/products.html") {
-        // else if (url == "/products.html") {
-        // ENABLE-OVANJE BOOTSTRAPOVOG TOOLTIP-A
-        // const tooltipTriggerList = document.querySelectorAll('[data-bs-toggle="tooltip"]')
-        // const tooltipList = [...tooltipTriggerList].map(tooltipTriggerEl => new bootstrap.Tooltip(tooltipTriggerEl))
+    // else if (url == "/products.html") {
 
+        // ENABLE-OVANJE BOOTSTRAPOVOG TOOLTIP-A ZA KORPE
         $(document).ready(function () {
             $('body').tooltip({
                 selector: '#patike-display article a'
             });
         });
         // STAMPANJE, POSTAVLJANJE INICIJALNIH VREDNOSTI I UPDATE-OVANJE VREDNOSTI DUPLOG SLAJDERA
+        let prvaCenaGranica = 0, drugaCenaGranica = 300;
+        let stampajCene = true;
         $(document).ready(function () {
             let $slider = $("#slider-range");
             let priceMin = $slider.attr("data-price-min"),
                 priceMax = $slider.attr("data-price-max");
-            let stampaj = true
 
             $slider.slider({
                 range: true,
@@ -255,16 +253,18 @@ window.onload = function () {
                 slide: function (event, ui) {
                     let opseg = "$" + ui.values[0] + " - $" + ui.values[1];
                     $("#amount").text("Price range: " + opseg);
-                    if (stampaj) {
+                    if (stampajCene) {
                         dugmadFilter = $('.filter-dugme');
                         StampajDugme(opseg, dugmadFilter, "Price range")
                     }
-                    stampaj = false;
+                    stampajCene = false;
                     let dugme = $('.filter-dugme:contains("Price range")')
                     if (dugme.length != 0) {
                         dugme.contents()[0].textContent = "Price range: " + opseg
                     }
-                    else { stampaj = true; }
+                    prvaCenaGranica = ui.values[0]
+                    drugaCenaGranica = ui.values[1]
+                    Filtar()
                 }
             });
             $("#amount").text("Price range: $" + $slider.slider("values", 0) + " - $" + $slider.slider("values", 1));
@@ -284,20 +284,18 @@ window.onload = function () {
                 $(this).next().slideToggle('fast');
                 $dropdowns.not(this).next().slideUp('fast');
             })
-        })
-        $(document).ready(function () {
             $(document).click(function () {
                 $('#filter .padajuci-meni').slideUp('fast');
             })
+            $("#filter .nav-link, #dropdown-cena").click(function (e) {
+                e.stopPropagation();
+            })
         })
-        $("#filter .nav-link, #dropdown-cena").click(function (e) {
-            e.stopPropagation();
-        });
-
 
         // FUNKCIJA ZA RESETOVANJE RANGE-A
         function ResetRange() {
             $(document).ready(function () {
+                stampajCene = true;
                 let $slider = $("#slider-range");
                 $slider.slider({
                     values: [0, 300]
@@ -307,12 +305,11 @@ window.onload = function () {
         }
 
         // FUNKCIJA ZA UKLANJANJE FILTER DUGMETA
+        let patikeDisplay = document.getElementById('patike-display')
         function UkloniRoditelja(dugme) {
             dugmadFilter = document.querySelectorAll('.filter-dugme');
             if (dugme.parentElement.textContent.split(' ')[0] == "Price") { ResetRange() }
-            dugmadFilter.forEach(dugme => { console.log(dugme.textContent) });
             dugme.parentElement.remove();
-            dugmadFilter.forEach(dugme => { console.log(dugme.textContent) });
             if (dugmadFilter.length == 2) {
                 SakrijCistac();
             }
@@ -329,7 +326,7 @@ window.onload = function () {
                 }
                 Filtar()
             }
-
+            patikeDisplay.style.height = "93%"
         }
 
         // FUNKCIJA ZA STAMPANJE FILTER DUGMETA
@@ -345,7 +342,7 @@ window.onload = function () {
             filterDugme.appendChild(closeDugme);
             filterDisplay.insertBefore(filterDugme, nizFilterDugmadi[0])
             ukloniFiltre.classList.remove('hide');
-
+            patikeDisplay.style.height = "85%"
         }
 
         // SELEKTOVANJE I DODAVANJE EVENT-A CISTAC DUGMETU
@@ -445,9 +442,8 @@ window.onload = function () {
             return niz;
         }
 
+        // FUNKCIJA ZA FILTRIRANJE PATIKA KOJE SE STAMPAJU
         function Filtar() {
-            console.log("pozvan")
-            dugmadFilter.forEach(dugme => { console.log(dugme.textContent) });
             shoeList = [];
             praviNizPatikaObjekata();
             dugmadFilter = document.querySelectorAll('.filter-dugme');
@@ -455,28 +451,35 @@ window.onload = function () {
             dugmadFilter.forEach(dugme => {
                 let filtar = dugme.textContent.split(': ')[1]
                 if (filtar != undefined) {
-                    shoeList = shoeList.filter(shoe => {
-                        return (shoe.brand == filtar ||
-                            shoe.category == filtar ||
-                            shoe.model == filtar)
-                    })
+                    if (filtar.substring(0, 1) == "$") {
+                        shoeList = shoeList.filter(shoe => {
+                            return (prvaCenaGranica <= shoe.price && shoe.price <= drugaCenaGranica)
+                        })
+                    }
+                    else {
+                        shoeList = shoeList.filter(shoe => {
+                            return (shoe.brand == filtar ||
+                                shoe.category == filtar ||
+                                shoe.model == filtar)
+                        })
+                    }
                 }
             })
-            dugmadFilter.forEach(dugme => { console.log(dugme.textContent) });
             stampajPatike(shoeList);
         }
 
-        let patikeDisplay = document.getElementById('patike-display')
+        // STAMPANJE PATIKA
         let cartIkonica = `<svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="currentColor"
         class="bi bi-cart3" viewBox="0 0 16 16">
         <path
             d="M0 1.5A.5.5 0 0 1 .5 1H2a.5.5 0 0 1 .485.379L2.89 3H14.5a.5.5 0 0 1 .49.598l-1 5a.5.5 0 0 1-.465.401l-9.397.472L4.415 11H13a.5.5 0 0 1 0 1H4a.5.5 0 0 1-.491-.408L2.01 3.607 1.61 2H.5a.5.5 0 0 1-.5-.5zM3.102 4l.84 4.479 9.144-.459L13.89 4H3.102zM5 12a2 2 0 1 0 0 4 2 2 0 0 0 0-4zm7 0a2 2 0 1 0 0 4 2 2 0 0 0 0-4zm-7 1a1 1 0 1 1 0 2 1 1 0 0 1 0-2zm7 0a1 1 0 1 1 0 2 1 1 0 0 1 0-2z" /></svg>`
+
         function stampajPatike(shoeList) {
             let svePatike = document.querySelectorAll('.shoe')
             svePatike.forEach(patika => { patika.remove() })
             for (let shoe of shoeList) {
                 let patikaOkvir = document.createElement('article');
-                patikaOkvir.classList.add('shoe', 'mt-5', 'container');
+                patikaOkvir.classList.add('shoe', 'mt-4', 'container');
                 let patikaImg = document.createElement('img');
                 patikaImg.src = shoe.imgSrc;
                 patikaImg.alt = shoe.imgSrc.slice(shoe.imgSrc.length - 9, shoe.imgSrc.length - 4);
@@ -495,6 +498,7 @@ window.onload = function () {
                 patikeDisplay.append(patikaOkvir);
             }
         }
+        // INICIJALNO POKRETANJE STAMPANJA
         Filtar(dugmadFilter);
         stampajPatike(shoeList);
     }
@@ -559,7 +563,7 @@ window.onload = function () {
     }
 
     // STAMPANJE DESNOG DELA FOOTERA
-    const linkoviSajta = ["#", "#", "sitemap.xml"];
+    const linkoviSajta = ["https://djordjeknezevic.github.io/", "dokumentacija.pdf", "sitemap.xml"];
     const tekstLinkoviSajta = ["Author", "Documentation"]
     for (let i = 0; i < 3; i++) {
         if (i != 2) {
@@ -597,7 +601,6 @@ function regexProvera(objekatPolje, errorTekst, regexNiz, porukaNiz, dodatanRege
             break;
         }
         else if (!regexNiz[i].test(objekatPolje.value)) {
-            console.log(i)
             objekatPolje.classList.add('error-border');
             errorTekst.textContent = porukaNiz[i];
             errorTekst.classList.remove('hide');
