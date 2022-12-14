@@ -580,7 +580,7 @@ span.ui-slider-handle.ui-state-default.ui-corner-all:last-of-type {
 }
 
 #patike-display {
-    height:1000px;
+    height: 1000px;
     overflow-y: auto;
     display: flex;
     justify-content: space-around;
@@ -590,9 +590,9 @@ span.ui-slider-handle.ui-state-default.ui-corner-all:last-of-type {
 .shoe {
     max-width: 300px;
     min-width: 200px;
-    max-height:370px;
-    margin-left:3px;
-    margin-right:3px;
+    max-height: 370px;
+    margin-left: 5px;
+    margin-right: 5px;
     box-shadow: 0 4px 5px -3px #222E50;
     border-bottom: 2px solid #222E50;
     transition: 0.1s;
@@ -605,28 +605,32 @@ span.ui-slider-handle.ui-state-default.ui-corner-all:last-of-type {
     transition: 0.1s;
     box-shadow: 0 4px 5px -3px #222E50, 0 4px 10px -3px #222E50;
 }
+
 .shoe img:hover {
     transform: scale(1.05);
     transition: 0.3s;
 }
 
 .shoe img {
-    width: 100%;
-    transition: 0.3s
+    width: 95%;
+    transition: 0.3s;
+    margin: 0px auto;
+    margin-top: 5px;
 }
 
-.shoe strong{
+.shoe strong {
     font-size: 1.1em;
 }
 
 .shoe i {
     display: block;
-    margin-top:10px;
-    margin-bottom:10px;
+    margin-top: 10px;
+    margin-bottom: 10px;
 }
+
 .shoe a {
     position: relative;
-    top:-13%;
+    top: -13%;
     right: -40%;
     border-bottom: 1px solid #222E50;
     padding-bottom: 12px;
@@ -635,6 +639,6 @@ span.ui-slider-handle.ui-state-default.ui-corner-all:last-of-type {
 }
 
 .shoe a svg {
-    color:blue;
+    color: blue;
 
 }

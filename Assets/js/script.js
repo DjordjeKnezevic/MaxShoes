@@ -272,7 +272,7 @@ window.onload = function () {
 
 
         const kategorijeTekst = ['Men', 'Women', 'Kids'];
-        const brendoviTekst = ['Asics', 'Nike'];
+        const brendoviTekst = ['Asics', 'Nike', 'Inov8', 'New Balance', 'Nike', 'Puma', 'Reebok', 'Adidas'];
         let filterDisplay = document.getElementById('filter-display')
         let ukloniFiltre = document.getElementById('ukloni-filtre');
         var dugmadFilter = document.querySelectorAll('.filter-dugme');
@@ -310,10 +310,13 @@ window.onload = function () {
         function UkloniRoditelja(dugme) {
             dugmadFilter = document.querySelectorAll('.filter-dugme');
             if (dugme.parentElement.textContent.split(' ')[0] == "Price") { ResetRange() }
+            dugmadFilter.forEach(dugme => { console.log(dugme.textContent) });
             dugme.parentElement.remove();
+            dugmadFilter.forEach(dugme => { console.log(dugme.textContent) });
             if (dugmadFilter.length == 2) {
                 SakrijCistac();
             }
+            Filtar()
         }
 
         // FUNKCIJA ZA SAKRIVANJE CISTAC DUGMETA I UKLANJANJE OSTALIH (PREKO POZIVANJA UkloniRoditelja() FUNKCIJE)
@@ -324,7 +327,9 @@ window.onload = function () {
                 while (filterDisplay.childNodes.length > 2) {
                     filterDisplay.removeChild(filterDisplay.firstChild);
                 }
+                Filtar()
             }
+
         }
 
         // FUNKCIJA ZA STAMPANJE FILTER DUGMETA
@@ -340,6 +345,7 @@ window.onload = function () {
             filterDugme.appendChild(closeDugme);
             filterDisplay.insertBefore(filterDugme, nizFilterDugmadi[0])
             ukloniFiltre.classList.remove('hide');
+
         }
 
         // SELEKTOVANJE I DODAVANJE EVENT-A CISTAC DUGMETU
@@ -348,8 +354,7 @@ window.onload = function () {
             SakrijCistac(dugmadFilter)
         })
 
-
-        // DODAVANJE EVENT-A ZA SVAKI ELEMENT "KATEGORIJE" DROPDOWN LISTE ZA, ILI STAMPANJE, ILI EDITOVANJE POSTOJECEG DUGMETA
+        // DODAVANJE EVENT-A ZA SVAKI ELEMENT "KATEGORIJE" DROPDOWN LISTE ZA, ILI STAMPANJE, ILI EDIT-OVANJE POSTOJECEG DUGMETA
         const listaKategorija = document.querySelectorAll('#kategorije-opcije .dropdown-item');
         for (let i = 0; i < listaKategorija.length; i++) {
             listaKategorija[i].addEventListener('click', function () {
@@ -357,7 +362,7 @@ window.onload = function () {
                 let opcija = listaKategorija[i].textContent;
                 let stampaj = true;
                 for (let i = 0; i < dugmadFilter.length; i++) {
-                    if (kategorijeTekst.includes(dugmadFilter[i].textContent.split(' ')[1])) {
+                    if (kategorijeTekst.includes(dugmadFilter[i].textContent.split(': ')[1])) {
                         dugmadFilter[i].firstChild.textContent = `Category: ${opcija}`
                         stampaj = false;
                         break;
@@ -366,11 +371,11 @@ window.onload = function () {
                 if (stampaj) {
                     StampajDugme(opcija, dugmadFilter, "Category");
                 }
-                // Filtar(opcija);
+                Filtar();
             })
         }
 
-        // DODAVANJE EVENT-A ZA SVAKI ELEMENT "BREND" DROPDOWN LISTE ZA, ILI STAMPANJE, ILI EDITOVANJE POSTOJECEG DUGMETA
+        // DODAVANJE EVENT-A ZA SVAKI ELEMENT "BREND" DROPDOWN LISTE ZA, ILI STAMPANJE, ILI EDIT-OVANJE POSTOJECEG DUGMETA
         const listaBrendova = document.querySelectorAll('#brendovi .dropdown-item');
         for (let i = 0; i < listaBrendova.length; i++) {
             listaBrendova[i].addEventListener('click', function () {
@@ -378,7 +383,7 @@ window.onload = function () {
                 let opcija = listaBrendova[i].textContent;
                 let stampaj = true;
                 for (let i = 0; i < dugmadFilter.length; i++) {
-                    if (brendoviTekst.includes(dugmadFilter[i].textContent.split(' ')[1])) {
+                    if (brendoviTekst.includes(dugmadFilter[i].textContent.split(': ')[1])) {
                         dugmadFilter[i].firstChild.textContent = `Brand: ${opcija}`
                         stampaj = false;
                         break;
@@ -387,141 +392,88 @@ window.onload = function () {
                 if (stampaj) {
                     StampajDugme(opcija, dugmadFilter, "Brand");
                 }
-                // Filtar(opcija);
+                Filtar();
             })
         }
 
-        // function Filtar(opcija) {
-        //     for (shoe of shoeList) {
-        //         if (shoe.category == opcija) {
-        //             console.log(shoe);
-        //         }
-        //         else if (shoe.brand == opcija) {
-        //             console.log(shoe);
-        //         }
-        //     }
-        // }
-
-
-
-
-        // LISTA PATIKA OBJEKATA
-        shoe1 = {
-            brand: 'Asics',
-            model: 'Metaspeed Sky',
-            imgSrc: 'Assets/img/shoes/Shoe1.jpg',
-            category: 'Men',
-            price: 250,
-            discount: false
-        }
-        shoe2 = {
-            brand: 'Asics',
-            model: 'Lite Show',
-            imgSrc: 'Assets/img/shoes/Shoe2.jpg',
-            category: 'Men',
-            price: 120
-        }
-        shoe3 = {
-            brand: 'Nike',
-            model: 'Pegasus Turbo Next Nature',
-            imgSrc: 'Assets/img/shoes/Shoe3.jpg',
-            category: 'Men',
-            price: 180
-        }
-        shoe4 = {
-            brand: 'Adidas',
-            model: 'Adistar',
-            imgSrc: 'Assets/img/shoes/shoe4.jpg',
-            category: 'Women',
-            price: 130
-        }
-        shoe5 = {
-            brand: 'Asics',
-            model: 'Jolt 3 GS Junior',
-            imgSrc: 'Assets/img/shoes/Shoe5.jpg',
-            category: 'Kids',
-            price: 40
-        }
-        shoe6 = {
-            brand: 'New Balance',
-            model: 'Fresh Foam X 860 v13',
-            imgSrc: 'Assets/img/shoes/Shoe6.jpg',
-            category: 'Kids',
-            price: 80
-        }
-        shoe7 = {
-            brand: 'New Balance',
-            model: 'Fresh Foam Tempo',
-            imgSrc: 'Assets/img/shoes/Shoe7.jpg',
-            category: 'Kids',
-            price: 70
-        }
-        shoe8 = {
-            brand: 'Asics',
-            model: 'Gel-Kinsei Blast',
-            imgSrc: 'Assets/img/shoes/Shoe8.jpg',
-            category: 'Kids',
-            price: 180
-        }
-        shoe8 = {
-            brand: 'Asics',
-            model: 'Kinsei Blast',
-            imgSrc: 'Assets/img/shoes/Shoe9.jpg',
-            category: 'Kids',
-            price: 180
-        }
+        // PRAVLJENJE LISTA OBJEKATA PATIKA
         const shoeBrands = [
-            'Asics', 'Asics', 'Nike', 'Adidas', 'Asics', 'New Balance', 'New Balance', 'Asics', 'Asics'
+            'Asics', 'Asics', 'Nike', 'Adidas', 'Asics', 'New Balance', 'New Balance', 'Asics', 'Asics', 'Adidas', 'Adidas',
+            'Adidas', 'Adidas', 'Nike', 'Nike', 'Nike', 'Nike', 'New Balance', 'New Balance', 'New Balance', 'New Balance',
+            'Inov8', 'Asics', 'Puma', 'Puma', 'Reebok', 'Reebok', 'Reebok', 'Reebok', 'Adidas'
         ]
         const shoeModels = [
             'Metaspeed Sky', 'Lite Show', 'Pegasus Turbo Next Nature', 'Adistar', 'Jolt 3 GS Junior', 'Fresh Foam X 860 v13',
-            'Fresh Foam Tempo', 'Gel-Kinsei Blast', 'Kinsei Blast'
+            'Fresh Foam Tempo', 'Gel-Kinsei Blast', 'Kinsei Blast', 'SolarBOOST 19', 'Solar Glide 3', 'Terrex Speed Ultra',
+            'SolarBOOST 3', 'Air Zoom Pegasus 38 Shield', 'Rival D 10', 'ZoomX Streakfly', 'React Infinity Run Flyknit 3',
+            'Fresh Foam Hierro v7', 'FuelCell Rebel v3', 'XCR7 v4', 'Fresh Foam 880 v11', 'X-Talon 212', 'Gel-Noosa Tri 13 GS',
+            'Liberate Nitro', 'Velocity Nitro', 'Nanoflex TR', 'Nano X2', 'Floatride Run Fast 3.0', 'Forever Floatride Energy 2.0',
+            'Terrex Agravic Flow Junior'
         ]
         const shoeCategories = [
-            'Men', 'Men', 'Men', 'Women', 'Kids', 'Kids', 'Kids', 'Kids', 'Kids'
+            'Men', 'Men', 'Men', 'Women', 'Kids', 'Kids', 'Kids', 'Kids', 'Kids', 'Women', 'Women', 'Women', 'Women', 'Men',
+            'Men', 'Women', 'Women', 'Women', 'Women', 'Men', 'Men', 'Kids', 'Kids', 'Men', 'Men', 'Men', 'Men', 'Women', 'Women',
+            'Kids'
         ]
         const shoePrices = [
-            250, 120, 180, 130, 40, 80, 70, 180, 180
+            250, 120, 180, 130, 40, 80, 70, 180, 180, 160, 140, 160, 160, 97, 65, 160, 160, 140, 130, 70, 101, 80, 55, 110, 120,
+            90, 135, 140, 100, 50
         ]
+        let shoeList = [];
 
-        // const shoeList = [shoe1, shoe2, shoe3, shoe5, shoe6, shoe7, shoe8];
-        const shoeList = [];
-        for (i = 0; i < shoeBrands.length; i++) {
-            shoeList.push({
-                brand: shoeBrands[i],
-                model: shoeModels[i],
-                imgSrc: `Assets/img/shoes/Shoe${i + 1}.jpg`,
-                category: shoeCategories[i],
-                price: shoePrices[i]
-            })
-        }
-
-        // FUNKCIJA ZA SHUFFLE-OVANJE ELEMENATA NIZA
-        function shuffle(array) {
-            let currentIndex = array.length, randomIndex;
-            while (currentIndex != 0) {
-                randomIndex = Math.floor(Math.random() * currentIndex);
-                currentIndex--;
-                [array[currentIndex], array[randomIndex]] = [
-                    array[randomIndex], array[currentIndex]];
+        function praviNizPatikaObjekata() {
+            for (i = 0; i < shoeBrands.length; i++) {
+                shoeList.push({
+                    brand: shoeBrands[i],
+                    model: shoeModels[i],
+                    imgSrc: `Assets/img/shoes/Shoe${i + 1}.jpg`,
+                    category: shoeCategories[i],
+                    price: shoePrices[i]
+                })
             }
-            return array;
+            shuffle(shoeList)
         }
-        shuffle(shoeList)
+        // FUNKCIJA ZA SHUFFLE-OVANJE ELEMENATA NIZA
+        function shuffle(niz) {
+            let trenutniIndex = niz.length, randomIndex;
+            while (trenutniIndex != 0) {
+                randomIndex = Math.floor(Math.random() * trenutniIndex);
+                trenutniIndex--;
+                [niz[trenutniIndex], niz[randomIndex]] = [
+                    niz[randomIndex], niz[trenutniIndex]];
+            }
+            return niz;
+        }
 
-        // $(document).ready(function() {
-        //     $('body').tooltip({
-        //         selector: '[data-toggle="tooltip"]'
-        //     });
-        // })
+        function Filtar() {
+            console.log("pozvan")
+            dugmadFilter.forEach(dugme => { console.log(dugme.textContent) });
+            shoeList = [];
+            praviNizPatikaObjekata();
+            dugmadFilter = document.querySelectorAll('.filter-dugme');
+            if (dugmadFilter.length < 1) { return }
+            dugmadFilter.forEach(dugme => {
+                let filtar = dugme.textContent.split(': ')[1]
+                if (filtar != undefined) {
+                    shoeList = shoeList.filter(shoe => {
+                        return (shoe.brand == filtar ||
+                            shoe.category == filtar ||
+                            shoe.model == filtar)
+                    })
+                }
+            })
+            dugmadFilter.forEach(dugme => { console.log(dugme.textContent) });
+            stampajPatike(shoeList);
+        }
 
         let patikeDisplay = document.getElementById('patike-display')
         let cartIkonica = `<svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="currentColor"
         class="bi bi-cart3" viewBox="0 0 16 16">
         <path
-            d="M0 1.5A.5.5 0 0 1 .5 1H2a.5.5 0 0 1 .485.379L2.89 3H14.5a.5.5 0 0 1 .49.598l-1 5a.5.5 0 0 1-.465.401l-9.397.472L4.415 11H13a.5.5 0 0 1 0 1H4a.5.5 0 0 1-.491-.408L2.01 3.607 1.61 2H.5a.5.5 0 0 1-.5-.5zM3.102 4l.84 4.479 9.144-.459L13.89 4H3.102zM5 12a2 2 0 1 0 0 4 2 2 0 0 0 0-4zm7 0a2 2 0 1 0 0 4 2 2 0 0 0 0-4zm-7 1a1 1 0 1 1 0 2 1 1 0 0 1 0-2zm7 0a1 1 0 1 1 0 2 1 1 0 0 1 0-2z" />
-    </svg>`
-        function stampajPatike() {
+            d="M0 1.5A.5.5 0 0 1 .5 1H2a.5.5 0 0 1 .485.379L2.89 3H14.5a.5.5 0 0 1 .49.598l-1 5a.5.5 0 0 1-.465.401l-9.397.472L4.415 11H13a.5.5 0 0 1 0 1H4a.5.5 0 0 1-.491-.408L2.01 3.607 1.61 2H.5a.5.5 0 0 1-.5-.5zM3.102 4l.84 4.479 9.144-.459L13.89 4H3.102zM5 12a2 2 0 1 0 0 4 2 2 0 0 0 0-4zm7 0a2 2 0 1 0 0 4 2 2 0 0 0 0-4zm-7 1a1 1 0 1 1 0 2 1 1 0 0 1 0-2zm7 0a1 1 0 1 1 0 2 1 1 0 0 1 0-2z" /></svg>`
+        function stampajPatike(shoeList) {
+            let svePatike = document.querySelectorAll('.shoe')
+            svePatike.forEach(patika => { patika.remove() })
             for (let shoe of shoeList) {
                 let patikaOkvir = document.createElement('article');
                 patikaOkvir.classList.add('shoe', 'mt-5', 'container');
@@ -543,7 +495,8 @@ window.onload = function () {
                 patikeDisplay.append(patikaOkvir);
             }
         }
-        stampajPatike();
+        Filtar(dugmadFilter);
+        stampajPatike(shoeList);
     }
     //* * * * * * * * * * * * * * * * * * * * * ZAJEDNICKI DEO ZA SVE STRANICE * * * * * * * * * * * * * * * * * * * * * * * *
     // STAMPANJE LEVOG DELA FOOTERA
