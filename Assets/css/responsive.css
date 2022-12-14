@@ -137,6 +137,12 @@
     }
 }
 
+@media(max-width:1197px) {
+    .shoe {
+        margin-top: 15px !important;
+    }
+}
+
 
 @media(max-width:1072px) {
     #welcome-title h1 {
@@ -205,6 +211,14 @@
 
 }
 
+@media(max-width:809px) {
+    .shoe {
+        max-width: 400px !important;
+        max-height: 500px !important;
+        margin-top: 20px !important;
+    }
+}
+
 @media(max-width:794px) {
     footer svg {
         height: 30px;
@@ -240,6 +254,16 @@
     }
 }
 
+@media(max-width:767px) {
+    .shoe {
+        width: 220px;
+    }
+
+    .shoe a {
+        top: -15%;
+    }
+}
+
 @media(max-width:710px) {
     footer svg {
         height: 25px;
@@ -265,7 +289,7 @@
     }
 }
 
-@media(max-width:659px) {
+@media(max-width:609px) {
     .shoe {
         width: 220px;
     }
@@ -320,6 +344,14 @@
     }
 }
 
+@media(max-width:559px) {
+    .shoe {
+        width: 250px !important;
+        height: 350px !important;
+        margin-top: 20px !important;
+    }
+}
+
 @media(max-width:533px) {
     .icons a svg {
         width: 30px;
@@ -357,6 +389,10 @@
 
     footer h5 {
         font-size: 0.8em;
+    }
+
+    #dropdown-cena {
+        width: 100%;
     }
 }
 

@@ -174,9 +174,9 @@ window.onload = function () {
     if (url == "/MaxShoes/"
         || url == "/MaxShoes/index.html"
         || url == "/MaxShoes/#") {
-    // if (url == "/"
-    //     || url == "/index.html"
-    //     || url == "/#") {
+        // if (url == "/"
+        //     || url == "/index.html"
+        //     || url == "/#") {
 
         //  STAMPANJE BACKGROUND SLIKA
         let welcomeScreen = document.getElementById("welcome-screen");
