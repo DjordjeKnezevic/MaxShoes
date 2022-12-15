@@ -90,7 +90,6 @@ body {
 }
 
 .icons a svg:hover {
-    /* filter: drop-shadow(0px 0px 15px #BCD8C1); */
     color: #BCD8C1 !important;
     transition: 0.2s;
 }
@@ -104,10 +103,11 @@ body {
     display: inline-block;
 }
 
-.offcanvas {
+.navbar-meni .offcanvas {
     background-color: #222E50;
     width: 30% !important;
     height: 300px;
+    border-radius: 0px 0px 10% 0px;
 }
 
 /* * * * * * * * * * * * * * * * * * * * * * * * * * * WELCOME SLIKE * * * * * * * * * * * * * * * * * * * * * * * * * * * * */
@@ -427,6 +427,8 @@ footer h5:hover {
     padding: 0px;
 }
 
+/* * * * * * * * * * * * * * * * * * * * * * * * * * FILTER NAVBAR * * * * * * * * * * * * * * * * * * * * * * * * * * * * */
+
 #frame .container-fluid {
     padding: 0px;
     height: 100%;
@@ -443,10 +445,6 @@ footer h5:hover {
     margin: 0.5em;
     margin-left: 1em;
     color: black;
-}
-
-#frame .offcanvas {
-    height: 60%;
 }
 
 #frame .navbar-nav .btn {
@@ -477,13 +475,27 @@ footer h5:hover {
     color: white;
 }
 
+#frame .offcanvas {
+    height: 70%;
+    width: 40% !important;
+    border-radius: 0px 0px 0px 5%;
+}
+
+#frame .offcanvas-header {
+    border-bottom: 1px solid #BCD8C1;
+}
+
+#frame .offcanvas-body {
+    padding: 0px;
+}
+
 .padajuci-meni {
-    left: 8% !important;
+    left: 2% !important;
     margin-top: 54px !important;
     border: 0px;
     border-top: 1px dotted #BCD8C1;
     border-radius: 0px 0px 10% 10%;
-    width: 80%;
+    width: 90%;
     background-color: #222E50;
 }
 
@@ -498,10 +510,14 @@ footer h5:hover {
     cursor: pointer;
 }
 
+#filter-tekst {
+    display: none;
+}
+
+/* * * * * * * * * * * * * * * * * * * * * * * * * * FLITER DUGMAD * * * * * * * * * * * * * * * * * * * * * * * * * * * * */
+
 #dropdown-cena {
     height: 80px;
-
-
 }
 
 #dropdown-cena li {
@@ -518,21 +534,32 @@ footer h5:hover {
     background-color: #222E50;
 }
 
-#frame .offcanvas {
-    width: 50% !important;
-}
-
-#frame .offcanvas-header {
-    border-bottom: 1px solid #BCD8C1;
-}
-
-#frame .offcanvas-body {
-    padding: 0px;
-}
-
 #amount {
     font-size: 1.1em;
 }
+
+#filter-display {
+    display: flex;
+    flex-wrap: wrap;
+    overflow: auto;
+    border-bottom: 1px dotted #222E50;
+}
+
+.filter-dugme {
+    margin-bottom: 15px;
+    height: 45px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+}
+
+.filter-dugme:hover {
+    background-color: #222E50;
+    cursor: auto;
+}
+
+/* * * * * * * * * * * * * * * * * * * * * * * * * * DUPLI SLAJDER * * * * * * * * * * * * * * * * * * * * * * * * * * * * */
 
 .ui-slider {
     font-size: 0.7em;
@@ -562,26 +589,7 @@ span.ui-slider-handle.ui-state-default.ui-corner-all:last-of-type {
     cursor: pointer;
 }
 
-#filter-display {
-    display: flex;
-    flex-wrap: wrap;
-    overflow: auto;
-    border-bottom: 1px dotted #222E50;
-}
-
-.filter-dugme {
-    margin-bottom: 15px;
-    height: 45px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-
-}
-
-.filter-dugme:hover {
-    background-color: #222E50;
-    cursor: auto;
-}
+/* * * * * * * * * * * * * * * * * * * * * * * * * * * * * PATIKE * * * * * * * * * * * * * * * * * * * * * * * * * * * * * */
 
 #patike-display {
     height: 93%;
@@ -644,10 +652,4 @@ span.ui-slider-handle.ui-state-default.ui-corner-all:last-of-type {
 
 .shoe a svg {
     color: blue;
-
-}
-
-#filter-tekst {
-    display: none;
-
 }

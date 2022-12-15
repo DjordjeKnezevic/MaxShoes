@@ -241,12 +241,6 @@ window.onload = function () {
     else if (url == "/MaxShoes/products.html") {
         // else if (url == "/products.html") {
 
-        const queryString = window.location.search;
-        console.log(queryString);
-        const urlParams = new URLSearchParams(queryString);
-        const categoryUrl = urlParams.get('category')
-        const brandUrl = urlParams.get('brand')
-        const modelUrl = urlParams.get('model')
         // ENABLE-OVANJE BOOTSTRAPOVOG TOOLTIP-A ZA KORPE
         $(document).ready(function () {
             $('body').tooltip({
@@ -287,11 +281,13 @@ window.onload = function () {
             $("#amount").text("Price range: $" + $slider.slider("values", 0) + " - $" + $slider.slider("values", 1));
         });
 
-
         const kategorijeTekst = ['Men', 'Women', 'Kids'];
-        let kategorijeOpcije = document.getElementById('kategorije-opcije')
         const brendoviTekst = ['Adidas', 'Asics', 'Inov8', 'New Balance', 'Nike', 'Puma', 'Reebok'];
+        const sortirajTekst = ['Price Ascending', 'Price Descending'];
+        let kategorijeOpcije = document.getElementById('kategorije-opcije')
         let brendoviOpcije = document.getElementById('brendovi')
+        let sortirajOpcije = document.getElementById('sortiraj-po')
+
         let filterDisplay = document.getElementById('filter-display')
         let ukloniFiltre = document.getElementById('ukloni-filtre');
         var dugmadFilter = document.querySelectorAll('.filter-dugme');
@@ -306,6 +302,36 @@ window.onload = function () {
             brendoviOpcije.innerHTML += `
             <li class="dropdown-item text-light">${o}</li>
             `
+        }
+        for (let o of sortirajTekst) {
+            sortirajOpcije.innerHTML += `
+            <li class="dropdown-item text-light">${o}</li>
+            `
+        }
+
+        // DODAVANJE EVENT-OVA DROPDOWN LISTAMA ZA STAMPANJE I UPDATE-OVANJE DUGMADI
+        const listaBrendova = document.querySelectorAll('#brendovi .dropdown-item');
+        const listaSortiranja = document.querySelectorAll('#sortiraj-po .dropdown-item');
+        const listaKategorija = document.querySelectorAll('#kategorije-opcije .dropdown-item');
+        function dodajEventDdListama(listaOpcija, listaTekstova, key) {
+            for (let i = 0; i < listaOpcija.length; i++) {
+                listaOpcija[i].addEventListener('click', function () {
+                    dugmadFilter = document.querySelectorAll('.filter-dugme');
+                    let opcija = listaOpcija[i].textContent;
+                    let stampaj = true;
+                    for (let i = 0; i < dugmadFilter.length; i++) {
+                        if (listaTekstova.includes(dugmadFilter[i].textContent.split(': ')[1])) {
+                            dugmadFilter[i].firstChild.textContent = `${key}: ${opcija}`
+                            stampaj = false;
+                            break;
+                        }
+                    }
+                    if (stampaj) {
+                        StampajDugme(opcija, dugmadFilter, "Brand");
+                    }
+                    Filtar();
+                })
+            }
         }
 
         // ANIMACIJA DROPDOWN LISTE ZA FILTRE
@@ -323,8 +349,8 @@ window.onload = function () {
             })
         })
 
-        // FUNKCIJA ZA RESETOVANJE RANGE-A
-        function ResetRange() {
+        // FUNKCIJA ZA RESETOVANJE SLAJDER-A
+        function ResetSlider() {
             $(document).ready(function () {
                 stampajCene = true;
                 let $slider = $("#slider-range");
@@ -339,7 +365,7 @@ window.onload = function () {
         let patikeDisplay = document.getElementById('patike-display')
         function UkloniRoditelja(dugme) {
             dugmadFilter = document.querySelectorAll('.filter-dugme');
-            if (dugme.parentElement.textContent.split(' ')[0] == "Price") { ResetRange() }
+            if (dugme.parentElement.textContent.split(' ')[0] == "Price") { ResetSlider() }
             dugme.parentElement.remove();
             if (dugmadFilter.length == 2) {
                 SakrijCistac();
@@ -351,7 +377,7 @@ window.onload = function () {
         function SakrijCistac(nizFilterDugmadi = null) {
             ukloniFiltre.classList.add('hide');
             if (nizFilterDugmadi) {
-                ResetRange()
+                ResetSlider()
                 while (filterDisplay.childNodes.length > 2) {
                     filterDisplay.removeChild(filterDisplay.firstChild);
                 }
@@ -382,48 +408,6 @@ window.onload = function () {
             SakrijCistac(dugmadFilter)
         })
 
-        // DODAVANJE EVENT-A ZA SVAKI ELEMENT "KATEGORIJE" DROPDOWN LISTE ZA, ILI STAMPANJE, ILI EDIT-OVANJE POSTOJECEG DUGMETA
-        const listaKategorija = document.querySelectorAll('#kategorije-opcije .dropdown-item');
-        for (let i = 0; i < listaKategorija.length; i++) {
-            listaKategorija[i].addEventListener('click', function () {
-                dugmadFilter = document.querySelectorAll('.filter-dugme');
-                let opcija = listaKategorija[i].textContent;
-                let stampaj = true;
-                for (let i = 0; i < dugmadFilter.length; i++) {
-                    if (kategorijeTekst.includes(dugmadFilter[i].textContent.split(': ')[1])) {
-                        dugmadFilter[i].firstChild.textContent = `Category: ${opcija}`
-                        stampaj = false;
-                        break;
-                    }
-                }
-                if (stampaj) {
-                    StampajDugme(opcija, dugmadFilter, "Category");
-                }
-                Filtar();
-            })
-        }
-
-        // DODAVANJE EVENT-A ZA SVAKI ELEMENT "BREND" DROPDOWN LISTE ZA, ILI STAMPANJE, ILI EDIT-OVANJE POSTOJECEG DUGMETA
-        const listaBrendova = document.querySelectorAll('#brendovi .dropdown-item');
-        for (let i = 0; i < listaBrendova.length; i++) {
-            listaBrendova[i].addEventListener('click', function () {
-                dugmadFilter = document.querySelectorAll('.filter-dugme');
-                let opcija = listaBrendova[i].textContent;
-                let stampaj = true;
-                for (let i = 0; i < dugmadFilter.length; i++) {
-                    if (brendoviTekst.includes(dugmadFilter[i].textContent.split(': ')[1])) {
-                        dugmadFilter[i].firstChild.textContent = `Brand: ${opcija}`
-                        stampaj = false;
-                        break;
-                    }
-                }
-                if (stampaj) {
-                    StampajDugme(opcija, dugmadFilter, "Brand");
-                }
-                Filtar();
-            })
-        }
-
         // PRAVLJENJE LISTA OBJEKATA PATIKA
         const shoeBrands = [
             'Asics', 'Asics', 'Nike', 'Adidas', 'Asics', 'New Balance', 'New Balance', 'Asics', 'Asics', 'Adidas', 'Adidas',
@@ -448,7 +432,6 @@ window.onload = function () {
             90, 135, 140, 100, 50
         ]
         let shoeList = [];
-
         function praviNizPatikaObjekata() {
             for (i = 0; i < shoeBrands.length; i++) {
                 shoeList.push({
@@ -473,6 +456,20 @@ window.onload = function () {
             return niz;
         }
 
+        // FUNKCIJA ZA SORTIRANJE ELEMENATA NIZA
+        function sort(shoeList, asc) {
+            if (asc) {
+                shoeList.sort(function (a, b) {
+                    return a.price - b.price
+                })
+            }
+            else {
+                shoeList.sort(function (a, b) {
+                    return b.price - a.price
+                })
+            }
+        }
+
         // FUNKCIJA ZA FILTRIRANJE PATIKA KOJE SE STAMPAJU
         function Filtar() {
             shoeList = [];
@@ -486,6 +483,12 @@ window.onload = function () {
                         shoeList = shoeList.filter(shoe => {
                             return (prvaCenaGranica <= shoe.price && shoe.price <= drugaCenaGranica)
                         })
+                    }
+                    else if (filtar.split(' ')[1] == "Ascending") {
+                        sort(shoeList, true)
+                    }
+                    else if (filtar.split(' ')[1] == "Descending") {
+                        sort(shoeList, false)
                     }
                     else {
                         shoeList = shoeList.filter(shoe => {
@@ -504,7 +507,6 @@ window.onload = function () {
         class="bi bi-cart3" viewBox="0 0 16 16">
         <path
             d="M0 1.5A.5.5 0 0 1 .5 1H2a.5.5 0 0 1 .485.379L2.89 3H14.5a.5.5 0 0 1 .49.598l-1 5a.5.5 0 0 1-.465.401l-9.397.472L4.415 11H13a.5.5 0 0 1 0 1H4a.5.5 0 0 1-.491-.408L2.01 3.607 1.61 2H.5a.5.5 0 0 1-.5-.5zM3.102 4l.84 4.479 9.144-.459L13.89 4H3.102zM5 12a2 2 0 1 0 0 4 2 2 0 0 0 0-4zm7 0a2 2 0 1 0 0 4 2 2 0 0 0 0-4zm-7 1a1 1 0 1 1 0 2 1 1 0 0 1 0-2zm7 0a1 1 0 1 1 0 2 1 1 0 0 1 0-2z" /></svg>`
-
         function stampajPatike(shoeList) {
             let svePatike = document.querySelectorAll('.shoe')
             svePatike.forEach(patika => { patika.remove() })
@@ -529,7 +531,13 @@ window.onload = function () {
                 patikeDisplay.append(patikaOkvir);
             }
         }
+
         // INICIJALNO POKRETANJE STAMPANJA
+        const queryString = window.location.search;
+        const urlParams = new URLSearchParams(queryString);
+        const categoryUrl = urlParams.get('category')
+        const brandUrl = urlParams.get('brand')
+        const modelUrl = urlParams.get('model')
         if (categoryUrl) {
             StampajDugme(categoryUrl, dugmadFilter, 'Category')
         }
@@ -540,8 +548,10 @@ window.onload = function () {
         else if (brandUrl) {
             StampajDugme(brandUrl, dugmadFilter, 'Brand')
         }
+        dodajEventDdListama(listaBrendova, brendoviTekst, 'Brand')
+        dodajEventDdListama(listaKategorija, kategorijeTekst, 'Category')
+        dodajEventDdListama(listaSortiranja, sortirajTekst, 'Sort By')
         Filtar();
-        stampajPatike(shoeList);
     }
     //* * * * * * * * * * * * * * * * * * * * * ZAJEDNICKI DEO ZA SVE STRANICE * * * * * * * * * * * * * * * * * * * * * * * *
     // STAMPANJE LEVOG DELA FOOTERA
