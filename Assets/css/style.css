@@ -644,3 +644,8 @@ span.ui-slider-handle.ui-state-default.ui-corner-all:last-of-type {
     color: blue;
 
 }
+
+#filter-tekst {
+    display: none;
+
+}
