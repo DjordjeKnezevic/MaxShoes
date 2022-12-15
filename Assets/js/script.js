@@ -198,20 +198,6 @@ window.onload = function () {
             });
         }
 
-        // STAMPANJE CAROUSEL SLIKA I TEKSTA
-        let carouselSlajderi = document.querySelector(".carousel-inner");
-        const headerPatike = ["Asics", "Asics", "Nike"]
-        const pPatike = ["Lite Show", "Metaspeed Sky", "Pegasus Turbo Next Nature"]
-        const linkSlikePatike = ["AsicsLiteShow", "AsicsMetaspeedSky", "NikePegasusTurboNextNature"]
-        const linkPatike = ["/MaxShoes/products.html?brand=Asics&model=Lite Show",
-            "/MaxShoes/products.html?brand=Asics&model=Metaspeed Sky",
-            "/MaxShoes/products.html?brand=Nike&model=Pegasus Turbo Next Nature"]
-        for (let p in headerPatike) {
-            carouselSlajderi.innerHTML += `<article class="carousel-item active"><a href="${linkPatike[p]}"><img src="Assets/img/${linkSlikePatike[p]}.jpg"
-        class="d-block w-100" alt="${linkSlikePatike[p]}"></a><div class="carousel-caption"><h5>${headerPatike[p]}</h5>
-        <p>${pPatike[p]}</p></div></article>`
-        }
-
         // STAMPANJE CAROUSEL BUTTON-A
         let carouselButtons = document.querySelector(".carousel-indicators");
         for (let i = 1; i < 4; i++) {
