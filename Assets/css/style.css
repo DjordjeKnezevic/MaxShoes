@@ -436,6 +436,7 @@ footer h5:hover {
     padding: 0px;
     position: relative;
     height: 70px;
+    margin-bottom: 15px;
 }
 
 #frame .navbar-toggler {
@@ -565,10 +566,11 @@ span.ui-slider-handle.ui-state-default.ui-corner-all:last-of-type {
     display: flex;
     flex-wrap: wrap;
     overflow: auto;
+    border-bottom: 1px dotted #222E50;
 }
 
 .filter-dugme {
-    margin-top: 15px;
+    margin-bottom: 15px;
     height: 45px;
     display: flex;
     align-items: center;
