@@ -516,6 +516,7 @@ footer h5:hover {
 
 /* * * * * * * * * * * * * * * * * * * * * * * * * * FLITER DUGMAD * * * * * * * * * * * * * * * * * * * * * * * * * * * * */
 
+
 #dropdown-cena {
     height: 80px;
 }
@@ -652,4 +653,25 @@ span.ui-slider-handle.ui-state-default.ui-corner-all:last-of-type {
 
 .shoe a svg {
     color: blue;
+}
+
+#uspesno-dodato,
+#uspesno-skinuto {
+    position: fixed;
+    bottom: -12%;
+    left: 80%;
+}
+
+#brojac {
+    width: 25px;
+    height: 25px;
+    background-color: #BCD8C1;
+    border-radius: 50%;
+    position: relative;
+    top: -50% !important;
+    left: 30%;
+    font-size: 1em;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }

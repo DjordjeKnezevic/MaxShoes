@@ -247,6 +247,7 @@ window.onload = function () {
                 selector: '#patike-display article a'
             });
         });
+
         // STAMPANJE, POSTAVLJANJE INICIJALNIH VREDNOSTI I UPDATE-OVANJE VREDNOSTI DUPLOG SLAJDERA
         let prvaCenaGranica = 0, drugaCenaGranica = 300;
         let stampajCene = true;
@@ -504,7 +505,7 @@ window.onload = function () {
 
         // STAMPANJE PATIKA
         let cartIkonica = `<svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="currentColor"
-        class="bi bi-cart3" viewBox="0 0 16 16">
+        class="bi bi-cart3 korpa" viewBox="0 0 16 16" data-bs-title="Remove from cart">
         <path
             d="M0 1.5A.5.5 0 0 1 .5 1H2a.5.5 0 0 1 .485.379L2.89 3H14.5a.5.5 0 0 1 .49.598l-1 5a.5.5 0 0 1-.465.401l-9.397.472L4.415 11H13a.5.5 0 0 1 0 1H4a.5.5 0 0 1-.491-.408L2.01 3.607 1.61 2H.5a.5.5 0 0 1-.5-.5zM3.102 4l.84 4.479 9.144-.459L13.89 4H3.102zM5 12a2 2 0 1 0 0 4 2 2 0 0 0 0-4zm7 0a2 2 0 1 0 0 4 2 2 0 0 0 0-4zm-7 1a1 1 0 1 1 0 2 1 1 0 0 1 0-2zm7 0a1 1 0 1 1 0 2 1 1 0 0 1 0-2z" /></svg>`
         function stampajPatike(shoeList) {
@@ -527,9 +528,12 @@ window.onload = function () {
                 a.setAttribute('data-bs-placement', 'top');
                 a.setAttribute('data-bs-title', 'Add to cart');
                 a.innerHTML = cartIkonica;
+                // a.addEventListener('click', function () {
+                // })
                 patikaOkvir.append(patikaImg, strong, iTag, p, a);
                 patikeDisplay.append(patikaOkvir);
             }
+            dodajUKorpu()
         }
 
         // INICIJALNO POKRETANJE STAMPANJA
@@ -552,6 +556,62 @@ window.onload = function () {
         dodajEventDdListama(listaKategorija, kategorijeTekst, 'Category')
         dodajEventDdListama(listaSortiranja, sortirajTekst, 'Sort By')
         Filtar();
+
+        // FUNKCIJA ZA STAMPANJE NOTIFIKACIJE O DODAVANJU I SKLANJANJU IZ KORPE
+        let brojac = 0;
+        function dodajUKorpu() {
+            $(document).ready(function () {
+                $(this).attr('data-bs-title', 'Remove from cart')
+                $('.korpa').click(function () {
+                    if ($(this).css('color') == 'rgb(0, 0, 255)') {
+                        $(this).css('color', 'red');
+                        $(this).parent().tooltip('disable');
+                        $(this).tooltip('enable');
+                        $('#uspesno-dodato')
+                            .animate({
+                                bottom: '4%',
+                                opacity: '100'
+                            }, 500)
+                            .animate({ opacity: '0' }, { duration: 1500 })
+                            .animate({ bottom: '-12%' }, { duration: 0 });
+                        brojac++;
+                        stampajBrojac(brojac, 1);
+                    }
+                    else {
+                        $(this).css('color', 'blue');
+                        $(this).tooltip('disable');
+                        $(this).parent().tooltip('enable');
+                        $('#uspesno-skinuto')
+                            .animate({
+                                bottom: '4%',
+                                opacity: '100'
+                            }, 500)
+                            .animate({ opacity: '0' }, { duration: 1500 })
+                            .animate({ bottom: '-12%' }, { duration: 0 });
+                        brojac--;
+                        stampajBrojac(brojac, -1)
+                    }
+                })
+            })
+        }
+        // FUNKCIJA ZA STAMPANJE BROJA ARTIKLA U KORPI
+        let ikonice = document.querySelectorAll('.icons a svg')
+        let brojacOkvir = document.getElementById('brojac');
+        function stampajBrojac(brojac, promena) {
+            console.log(brojac)
+            if (brojac > 1 || (brojac == 1 && promena == -1)) {
+                brojacOkvir.textContent = brojac
+            }
+            else if (brojac == 0) {
+                brojacOkvir.classList.add('hide')
+                ikonice.forEach(ikonica => { console.log(ikonica); ikonica.style.marginTop = '0px' })
+            }
+            else if (brojac == 1 && promena == 1) {
+                brojacOkvir.classList.remove('hide')
+                brojacOkvir.textContent = brojac
+                ikonice.forEach(ikonica => { ikonica.style.marginTop = '25px' })
+            }
+        }
     }
     //* * * * * * * * * * * * * * * * * * * * * ZAJEDNICKI DEO ZA SVE STRANICE * * * * * * * * * * * * * * * * * * * * * * * *
     // STAMPANJE LEVOG DELA FOOTERA

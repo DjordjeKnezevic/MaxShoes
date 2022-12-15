@@ -184,7 +184,7 @@
 
     .navbar-meni .offcanvas {
         margin-top: 100px;
-        box-shadow: -4px -8px 5px 2px #BCD8C1 inset;
+        box-shadow: -4px -5px 3px 0px #BCD8C1 inset;
     }
 
     .navbar-meni .offcanvas ul {
@@ -220,7 +220,7 @@
     }
 
     #frame .offcanvas {
-        box-shadow: 4px -8px 5px 2px #BCD8C1 inset;
+        box-shadow: 4px -5px 3px 0px #BCD8C1 inset;
     }
 
     .padajuci-meni {
@@ -425,7 +425,7 @@
     }
 
     #dropdown-cena {
-        width: 100%;
+        width: 90%;
     }
 
     #frame .offcanvas {
@@ -539,6 +539,11 @@
 
     #Akcije {
         height: 70vh;
+    }
+
+    #uspesno-dodato,
+    #uspesno-skinuto {
+        left: 75%;
     }
 }
 
@@ -690,6 +695,16 @@
     }
 }
 
+@media(max-width:900px) and (max-height:500px) {
+
+    #uspesno-dodato,
+    #uspesno-skinuto {
+        left: 67%;
+        font-size: 0.8em;
+        width: 250px;
+    }
+}
+
 @media(max-width:900px) and (max-height:400px) {
     #welcome-screen {
         height: 90vh !important;
@@ -712,6 +727,11 @@
 
     #welcome-title {
         top: 5vh !important;
+    }
+
+    #uspesno-dodato,
+    #uspesno-skinuto {
+        left: 60%;
     }
 }
 
@@ -1039,6 +1059,13 @@
     #kategorije-naslov h5 {
         font-size: 1em;
     }
+
+    #uspesno-dodato,
+    #uspesno-skinuto {
+        left: 45%;
+        font-size: 0.9em;
+        width: 250px;
+    }
 }
 
 @media(max-width:500px) and (max-height:900px) {
@@ -1319,6 +1346,13 @@
 
     #kategorije {
         margin-top: 150px;
+    }
+
+    #uspesno-dodato,
+    #uspesno-skinuto {
+        left: 42%;
+        font-size: 0.7em;
+        width: 200px;
     }
 }
 
