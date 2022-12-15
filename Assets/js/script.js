@@ -117,7 +117,7 @@ window.onload = function () {
     })
 
     // PROVERA ISPRAVNOSTI ADRESE
-    let reAddress1 = /^(([A-Z][\w\d\.\-]+)|([\d]+\.?))(\s{1}[\w\d\.\-]+)?$/
+    let reAddress1 = /^(([A-Z][\w\d\.\-]+)|([\d]+\.?))(\s{1}[\w\d\.\-\/]+)+$/
     let reAddress2 = /^(([A-Z][\w\d\.\-]+)|([\d]+\.?))(\s{1}[\w\d\.\-]+){0,7}$/
     let reAddress3 = /^(([A-Z][\w\d\.\-]+)|([\d]+\.?))(\s{1}[\w\d\.\-]+){0,7}\s(([\d]{1,3}((\/(([\d]{1,2}[\w]?)|([\w]{1,2}))))?)|((BB)|(bb)))$/
     const reAddress = [reAddress1, reAddress2, reAddress3];
@@ -563,7 +563,7 @@ window.onload = function () {
     }
 
     // STAMPANJE DESNOG DELA FOOTERA
-    const linkoviSajta = ["https://djordjeknezevic.github.io/", "dokumentacija.pdf", "sitemap.xml"];
+    const linkoviSajta = ["https://djordjeknezevic.github.io/", "Dokumentacija.pdf", "sitemap.xml"];
     const tekstLinkoviSajta = ["Author", "Documentation"]
     for (let i = 0; i < 3; i++) {
         if (i != 2) {
