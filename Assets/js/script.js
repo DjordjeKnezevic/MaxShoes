@@ -173,9 +173,9 @@ window.onload = function () {
     if (url == "/MaxShoes/"
         || url == "/MaxShoes/index.html"
         || url == "/MaxShoes/#") {
-    // if (url == "/"
-    //     || url == "/index.html"
-    //     || url == "/#") {
+        // if (url == "/"
+        //     || url == "/index.html"
+        //     || url == "/#") {
 
         //  STAMPANJE BACKGROUND SLIKA
         let welcomeScreen = document.getElementById("welcome-screen");
@@ -228,7 +228,7 @@ window.onload = function () {
 
     //* * * * * * * * * * * * * * * * * * * * * * * * * * DRUGA STRANICA * * * * * * * * * * * * * * * * * * * * * * * * * * *
     else if (url == "/MaxShoes/products.html") {
-    // else if (url == "/products.html") {
+        // else if (url == "/products.html") {
 
         // ENABLE-OVANJE BOOTSTRAPOVOG TOOLTIP-A ZA KORPE
         $(document).ready(function () {
@@ -499,7 +499,7 @@ window.onload = function () {
             }
         }
         // INICIJALNO POKRETANJE STAMPANJA
-        Filtar(dugmadFilter);
+        Filtar();
         stampajPatike(shoeList);
     }
     //* * * * * * * * * * * * * * * * * * * * * ZAJEDNICKI DEO ZA SVE STRANICE * * * * * * * * * * * * * * * * * * * * * * * *
