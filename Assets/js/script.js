@@ -174,12 +174,12 @@ window.onload = function () {
 
     //* * * * * * * * * * * * * * * * * * * * * * * * * * PRVA STRANICA * * * * * * * * * * * * * * * * * * * * * * * * * * *
     let url = document.location.pathname;
-    // if (url == "/MaxShoes/"
-    //     || url == "/MaxShoes/index.html"
-    //     || url == "/MaxShoes/#") {
-    if (url == "/"
-        || url == "/index.html"
-        || url == "/#") {
+    if (url == "/MaxShoes/"
+        || url == "/MaxShoes/index.html"
+        || url == "/MaxShoes/#") {
+        // if (url == "/"
+        //     || url == "/index.html"
+        //     || url == "/#") {
 
         //  STAMPANJE BACKGROUND SLIKA
         let welcomeScreen = document.getElementById("welcome-screen");
@@ -238,8 +238,8 @@ window.onload = function () {
     }
 
     //* * * * * * * * * * * * * * * * * * * * * * * * * * DRUGA STRANICA * * * * * * * * * * * * * * * * * * * * * * * * * * *
-    // else if (url == "/MaxShoes/products.html") {
-    else if (url == "/products.html") {
+    else if (url == "/MaxShoes/products.html") {
+        // else if (url == "/products.html") {
 
         const queryString = window.location.search;
         console.log(queryString);
