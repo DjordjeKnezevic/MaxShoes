@@ -198,10 +198,24 @@ window.onload = function () {
             });
         }
 
-        // STAMPANJE CAROUSEL BUTTON-A
+        // STAMPANJE CAROUSEL STRELICA BUTTON-A
+        let carouselSlajderi = document.querySelector(".carousel-inner");
+        const carouselKontrole = ["prev", "next"]
+        const carouselKontroleTekst = ["Previous", "Next"]
+        for (let i = 0; i < carouselKontrole.length; i++) {
+            carouselSlajderi.innerHTML += `
+                <button class="carousel-control-${carouselKontrole[i]}" type="button" data-bs-target="#menjaj-sliku"
+                data-bs-slide="${carouselKontrole[i]}">
+                <span class="carousel-control-${carouselKontrole[i]}-icon" aria-hidden="true"></span>
+                <span class="visually-hidden">${carouselKontroleTekst[i]}</span>
+            </button>
+            `
+        }
+
+        // STAMPANJE CAROUSEL PRAVOUGAONIH BUTTON-A
         let carouselButtons = document.querySelector(".carousel-indicators");
         for (let i = 1; i < 4; i++) {
-            carouselButtons.innerHTML += `<button type="button" data-bs-target="#carouselExampleCaptions" 
+            carouselButtons.innerHTML += `<button type="button" data-bs-target="#menjaj-sliku" 
                 data-bs-slide-to="${i - 1}" class="active"
                 aria - current="true" aria - label="Slide ${i}" ></button >`
         }
@@ -275,10 +289,24 @@ window.onload = function () {
 
 
         const kategorijeTekst = ['Men', 'Women', 'Kids'];
-        const brendoviTekst = ['Asics', 'Nike', 'Inov8', 'New Balance', 'Nike', 'Puma', 'Reebok', 'Adidas'];
+        let kategorijeOpcije = document.getElementById('kategorije-opcije')
+        const brendoviTekst = ['Adidas', 'Asics', 'Inov8', 'New Balance', 'Nike', 'Puma', 'Reebok'];
+        let brendoviOpcije = document.getElementById('brendovi')
         let filterDisplay = document.getElementById('filter-display')
         let ukloniFiltre = document.getElementById('ukloni-filtre');
         var dugmadFilter = document.querySelectorAll('.filter-dugme');
+
+        // DINAMICKO STAMPANJE DROPDOWN LISTA
+        for (let o of kategorijeTekst) {
+            kategorijeOpcije.innerHTML += `
+            <li class="dropdown-item text-light">${o}</li>
+            `
+        }
+        for (let o of brendoviTekst) {
+            brendoviOpcije.innerHTML += `
+            <li class="dropdown-item text-light">${o}</li>
+            `
+        }
 
         // ANIMACIJA DROPDOWN LISTE ZA FILTRE
         $(document).ready(function () {
