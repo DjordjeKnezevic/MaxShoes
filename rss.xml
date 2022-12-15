@@ -1,28 +1,18 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <rss version="2.0">
     <channel>
-        <title></title>
-        <link>https://DjordjeKnezevic.github.io/MaxShoes/index.html</link>
-        <description>News</description>
+        <title>25% off on selected styles!</title>
+        <link>https://DjordjeKnezevic.github.io/MaxShoes/</link>
+        <description>Nike collection on sale now!</description>
             <item>
-                <title></title>
-                <link>https://DjordjeKnezevic.github.io/MaxShoes/NESTO.html</link>
-                <description></description>
+                <title>Highlight of brand new shoes</title>
+                <link>https://DjordjeKnezevic.github.io/MaxShoes/index.html</link>
+                <description>Asics Lite show, Asics Metaspeed sky and Nike pegasus Turbo next nature are out now!</description>
             </item>
             <item>
-                <title></title>
-                <link>https://DjordjeKnezevic.github.io/MaxShoes/NESTO.html</link>
-                <description></description>
-            </item>
-            <item>
-                <title></title>
-                <link>https://DjordjeKnezevic.github.io/MaxShoes/NESTO.html</link>
-                <description></description>
-            </item>
-            <item>
-                <title></title>
-                <link>https://DjordjeKnezevic.github.io/MaxShoes/NESTO.html</link>
-                <description></description>
+                <title>New brand out now</title>
+                <link>https://DjordjeKnezevic.github.io/MaxShoes/products.html</link>
+                <description>Check out brand new partner INOV8, out now!</description>
             </item>
     </channel>
 </rss>

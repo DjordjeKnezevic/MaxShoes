@@ -4,7 +4,11 @@ window.onload = function () {
     //* * * * * * * * * * * * * * * * * * * * * ZAJEDNICKI DEO ZA SVE STRANICE * * * * * * * * * * * * * * * * * * * * * * * *
     //STAMPANJE NAV MENIJA
     const navMeni = ['MEN', 'WOMEN', 'KIDS', 'CONTACT'];
-    const navLinkovi = ["/MaxShoes/products.html", "/MaxShoes/products.html", "/MaxShoes/products.html", "#footer"]
+    const navLinkovi = [
+        "/MaxShoes/products.html?category=Men",
+        "/MaxShoes/products.html?category=Women",
+        "/MaxShoes/products.html?category=Kids",
+        "#footer"]
     let navbarNav = document.getElementsByClassName("navbar-nav")[0];
     for (let i in navMeni) {
         let li = document.createElement('li');
@@ -170,12 +174,12 @@ window.onload = function () {
 
     //* * * * * * * * * * * * * * * * * * * * * * * * * * PRVA STRANICA * * * * * * * * * * * * * * * * * * * * * * * * * * *
     let url = document.location.pathname;
-    if (url == "/MaxShoes/"
-        || url == "/MaxShoes/index.html"
-        || url == "/MaxShoes/#") {
-        // if (url == "/"
-        //     || url == "/index.html"
-        //     || url == "/#") {
+    // if (url == "/MaxShoes/"
+    //     || url == "/MaxShoes/index.html"
+    //     || url == "/MaxShoes/#") {
+    if (url == "/"
+        || url == "/index.html"
+        || url == "/#") {
 
         //  STAMPANJE BACKGROUND SLIKA
         let welcomeScreen = document.getElementById("welcome-screen");
@@ -198,10 +202,13 @@ window.onload = function () {
         let carouselSlajderi = document.querySelector(".carousel-inner");
         const headerPatike = ["Asics", "Asics", "Nike"]
         const pPatike = ["Lite Show", "Metaspeed Sky", "Pegasus Turbo Next Nature"]
-        const linkPatike = ["AsicsLiteShow", "AsicsMetaspeedSky", "NikePegasusTurboNextNature"]
+        const linkSlikePatike = ["AsicsLiteShow", "AsicsMetaspeedSky", "NikePegasusTurboNextNature"]
+        const linkPatike = ["/MaxShoes/products.html?brand=Asics&model=Lite Show",
+            "/MaxShoes/products.html?brand=Asics&model=Metaspeed Sky",
+            "/MaxShoes/products.html?brand=Nike&model=Pegasus Turbo Next Nature"]
         for (let p in headerPatike) {
-            carouselSlajderi.innerHTML += `<article class="carousel-item active"><a href="/MaxShoes/products.html"><img src="Assets/img/${linkPatike[p]}.jpg"
-        class="d-block w-100" alt="${linkPatike[p]}"></a><div class="carousel-caption"><h5>${headerPatike[p]}</h5>
+            carouselSlajderi.innerHTML += `<article class="carousel-item active"><a href="${linkPatike[p]}"><img src="Assets/img/${linkSlikePatike[p]}.jpg"
+        class="d-block w-100" alt="${linkSlikePatike[p]}"></a><div class="carousel-caption"><h5>${headerPatike[p]}</h5>
         <p>${pPatike[p]}</p></div></article>`
         }
 
@@ -216,8 +223,12 @@ window.onload = function () {
         // STAMPANJE KATEGORIJA
         let kategorije = document.querySelector('.container .row');
         const kategorijeSlike = ["MensShoes", "WomensShoes", "KidsShoes"]
+        const kategorijeLinkovi = [
+            "/MaxShoes/products.html?category=Men",
+            "/MaxShoes/products.html?category=Women",
+            "/MaxShoes/products.html?category=Kids"]
         for (let i = 0; i < 3; i++) {
-            kategorije.innerHTML += `<a href="/MaxShoes/products.html" class="nav-link col-md-3">
+            kategorije.innerHTML += `<a href="${kategorijeLinkovi[i]}" class="nav-link col-md-3">
         <div class="hcontainer">
             <h3>${navMeni[i]}</h3>
         </div>
@@ -227,9 +238,15 @@ window.onload = function () {
     }
 
     //* * * * * * * * * * * * * * * * * * * * * * * * * * DRUGA STRANICA * * * * * * * * * * * * * * * * * * * * * * * * * * *
-    else if (url == "/MaxShoes/products.html") {
-        // else if (url == "/products.html") {
+    // else if (url == "/MaxShoes/products.html") {
+    else if (url == "/products.html") {
 
+        const queryString = window.location.search;
+        console.log(queryString);
+        const urlParams = new URLSearchParams(queryString);
+        const categoryUrl = urlParams.get('category')
+        const brandUrl = urlParams.get('brand')
+        const modelUrl = urlParams.get('model')
         // ENABLE-OVANJE BOOTSTRAPOVOG TOOLTIP-A ZA KORPE
         $(document).ready(function () {
             $('body').tooltip({
@@ -499,6 +516,16 @@ window.onload = function () {
             }
         }
         // INICIJALNO POKRETANJE STAMPANJA
+        if (categoryUrl) {
+            StampajDugme(categoryUrl, dugmadFilter, 'Category')
+        }
+        else if (modelUrl) {
+            StampajDugme(brandUrl, dugmadFilter, 'Brand')
+            StampajDugme(modelUrl, dugmadFilter, 'Model')
+        }
+        else if (brandUrl) {
+            StampajDugme(brandUrl, dugmadFilter, 'Brand')
+        }
         Filtar();
         stampajPatike(shoeList);
     }
