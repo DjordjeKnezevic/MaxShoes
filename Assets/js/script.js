@@ -328,7 +328,7 @@ window.onload = function () {
                         }
                     }
                     if (stampaj) {
-                        StampajDugme(opcija, dugmadFilter, "Brand");
+                        StampajDugme(opcija, dugmadFilter, key);
                     }
                     Filtar();
                 })
