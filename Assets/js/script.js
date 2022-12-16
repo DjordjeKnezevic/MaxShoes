@@ -122,8 +122,8 @@ window.onload = function () {
 
     // PROVERA ISPRAVNOSTI ADRESE
     let reAddress1 = /^(([A-Z][\w\d\.\-]+)|([\d]+\.?))(\s{1}[\w\d\.\-\/]+)+$/
-    let reAddress2 = /^(([A-Z][\w\d\.\-]+)|([\d]+\.?))(\s{1}[\w\d\.\-]+){0,7}$/
-    let reAddress3 = /^(([A-Z][\w\d\.\-]+)|([\d]+\.?))(\s{1}[\w\d\.\-]+){0,7}\s(([\d]{1,3}((\/(([\d]{1,2}[\w]?)|([\w]{1,2}))))?)|((BB)|(bb)))$/
+    let reAddress2 = /^(([A-Z][\w\d\.\-]+)|([\d]+\.?))(\s{1}[\w\d\/\.\-]+){0,7}$/
+    let reAddress3 = /^(([A-Z][\w\d\.\-]+)|([\d]+\.?))(\s{1}[\w\d\/\.\-]+){0,7}\s(([\d]{1,3}((\/(([\d]{1,2}[\w]?)|([\w]{1,2}))|([\w])))?)|((BB)|(bb)))$/
     const reAddress = [reAddress1, reAddress2, reAddress3];
     const porukaAddress = [
         'Address must start with either a capital letter, or a number',
@@ -536,27 +536,6 @@ window.onload = function () {
             dodajUKorpu()
         }
 
-        // INICIJALNO POKRETANJE STAMPANJA
-        const queryString = window.location.search;
-        const urlParams = new URLSearchParams(queryString);
-        const categoryUrl = urlParams.get('category')
-        const brandUrl = urlParams.get('brand')
-        const modelUrl = urlParams.get('model')
-        if (categoryUrl) {
-            StampajDugme(categoryUrl, dugmadFilter, 'Category')
-        }
-        else if (modelUrl) {
-            StampajDugme(brandUrl, dugmadFilter, 'Brand')
-            StampajDugme(modelUrl, dugmadFilter, 'Model')
-        }
-        else if (brandUrl) {
-            StampajDugme(brandUrl, dugmadFilter, 'Brand')
-        }
-        dodajEventDdListama(listaBrendova, brendoviTekst, 'Brand')
-        dodajEventDdListama(listaKategorija, kategorijeTekst, 'Category')
-        dodajEventDdListama(listaSortiranja, sortirajTekst, 'Sort By')
-        Filtar();
-
         // FUNKCIJA ZA STAMPANJE NOTIFIKACIJE O DODAVANJU I SKLANJANJU IZ KORPE
         let brojac = 0;
         function dodajUKorpu() {
@@ -594,6 +573,7 @@ window.onload = function () {
                 })
             })
         }
+
         // FUNKCIJA ZA STAMPANJE BROJA ARTIKLA U KORPI
         let ikonice = document.querySelectorAll('.icons a svg')
         let brojacOkvir = document.getElementById('brojac');
@@ -612,6 +592,27 @@ window.onload = function () {
                 ikonice.forEach(ikonica => { ikonica.style.marginTop = '25px' })
             }
         }
+
+        // INICIJALNO POKRETANJE STAMPANJA
+        const queryString = window.location.search;
+        const urlParams = new URLSearchParams(queryString);
+        const categoryUrl = urlParams.get('category')
+        const brandUrl = urlParams.get('brand')
+        const modelUrl = urlParams.get('model')
+        if (categoryUrl) {
+            StampajDugme(categoryUrl, dugmadFilter, 'Category')
+        }
+        else if (modelUrl) {
+            StampajDugme(brandUrl, dugmadFilter, 'Brand')
+            StampajDugme(modelUrl, dugmadFilter, 'Model')
+        }
+        else if (brandUrl) {
+            StampajDugme(brandUrl, dugmadFilter, 'Brand')
+        }
+        dodajEventDdListama(listaBrendova, brendoviTekst, 'Brand')
+        dodajEventDdListama(listaKategorija, kategorijeTekst, 'Category')
+        dodajEventDdListama(listaSortiranja, sortirajTekst, 'Sort By')
+        Filtar();
     }
     //* * * * * * * * * * * * * * * * * * * * * ZAJEDNICKI DEO ZA SVE STRANICE * * * * * * * * * * * * * * * * * * * * * * * *
     // STAMPANJE LEVOG DELA FOOTERA
