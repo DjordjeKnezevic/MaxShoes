@@ -384,7 +384,7 @@ window.onload = function () {
                 }
                 Filtar()
             }
-            patikeDisplay.style.height = "93%"
+            patikeDisplay.style.height = "92%"
         }
 
         // FUNKCIJA ZA STAMPANJE FILTER DUGMETA
@@ -400,7 +400,18 @@ window.onload = function () {
             filterDugme.appendChild(closeDugme);
             filterDisplay.insertBefore(filterDugme, nizFilterDugmadi[0])
             ukloniFiltre.classList.remove('hide');
-            patikeDisplay.style.height = "85%"
+            if (window.innerWidth < 531) {
+                patikeDisplay.style.height = "75%"
+            }
+            else if (window.innerWidth < 869) {
+                patikeDisplay.style.height = "80%"
+            }
+            else if (window.innerWidth < 1000) {
+                patikeDisplay.style.height = "85%"
+            }
+            else {
+                patikeDisplay.style.height = "92%"
+            }
         }
 
         // SELEKTOVANJE I DODAVANJE EVENT-A CISTAC DUGMETU
@@ -578,13 +589,12 @@ window.onload = function () {
         let ikonice = document.querySelectorAll('.icons a svg')
         let brojacOkvir = document.getElementById('brojac');
         function stampajBrojac(brojac, promena) {
-            console.log(brojac)
             if (brojac > 1 || (brojac == 1 && promena == -1)) {
                 brojacOkvir.textContent = brojac
             }
             else if (brojac == 0) {
                 brojacOkvir.classList.add('hide')
-                ikonice.forEach(ikonica => { console.log(ikonica); ikonica.style.marginTop = '0px' })
+                ikonice.forEach(ikonica => { ikonica.style.marginTop = '0px' })
             }
             else if (brojac == 1 && promena == 1) {
                 brojacOkvir.classList.remove('hide')

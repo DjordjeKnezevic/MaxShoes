@@ -593,7 +593,7 @@ span.ui-slider-handle.ui-state-default.ui-corner-all:last-of-type {
 /* * * * * * * * * * * * * * * * * * * * * * * * * * * * * PATIKE * * * * * * * * * * * * * * * * * * * * * * * * * * * * * */
 
 #patike-display {
-    height: 93%;
+    height: 92%;
     overflow-y: auto;
     display: flex;
     justify-content: space-around;
