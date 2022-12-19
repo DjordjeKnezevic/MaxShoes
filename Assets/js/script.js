@@ -22,12 +22,12 @@ window.onload = function () {
     }
 
     // ANIMACIJA NAVBARA PRI SCROLL-U (POJAVLJIVANJE I NESTAJANJE)
-    const navbar = document.querySelector('.navbar-meni');
+    let navbar = document.querySelector('.navbar-meni');
     let lastScroll = 0;
     const validateHeader = () => {
         const windowY = window.scrollY;
         const windowH = window.innerHeight;
-        if (windowY > windowH - 1200) {
+        if (windowY > windowH - 1400) {
             navbar.classList.add('is-fixed');
         } else {
             navbar.classList.remove('is-fixed');
@@ -593,10 +593,16 @@ window.onload = function () {
                 brojacOkvir.textContent = brojac
             }
             else if (brojac == 0) {
+                if (window.innerWidth < 456) {
+                    navbar.style.padding = '5px 0 0 0'
+                }
                 brojacOkvir.classList.add('hide')
                 ikonice.forEach(ikonica => { ikonica.style.marginTop = '0px' })
             }
             else if (brojac == 1 && promena == 1) {
+                if (window.innerWidth < 456) {
+                    navbar.style.padding = '0 0 0 0'
+                }
                 brojacOkvir.classList.remove('hide')
                 brojacOkvir.textContent = brojac
                 ikonice.forEach(ikonica => { ikonica.style.marginTop = '25px' })
