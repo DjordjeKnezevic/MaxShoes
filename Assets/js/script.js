@@ -410,7 +410,7 @@ window.onload = function () {
                 patikeDisplay.style.height = "85%"
             }
             else {
-                patikeDisplay.style.height = "92%"
+                patikeDisplay.style.height = "87%"
             }
         }
 
