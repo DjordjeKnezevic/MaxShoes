@@ -181,15 +181,6 @@ window.onload = function () {
         //     || url == "/index.html"
         //     || url == "/#") {
 
-        //  STAMPANJE BACKGROUND SLIKA
-        let welcomeScreen = document.getElementById("welcome-screen");
-        for (let i = 1; i < 6; i++) {
-            let bgImg = document.createElement("img");
-            bgImg.src = `Assets/img/bg-${i}.jpg`
-            bgImg.alt = `bg-${i}`
-            welcomeScreen.appendChild(bgImg);
-        }
-
         // FADEOUT ANIMACIJA WELCOME EKRANA
         let bgSlike = welcomeScreen.getElementsByTagName("img");
         for (let i = 0; i < bgSlike.length; i++) {
@@ -424,7 +415,9 @@ window.onload = function () {
         const shoeBrands = [
             'Asics', 'Asics', 'Nike', 'Adidas', 'Asics', 'New Balance', 'New Balance', 'Asics', 'Asics', 'Adidas', 'Adidas',
             'Adidas', 'Adidas', 'Nike', 'Nike', 'Nike', 'Nike', 'New Balance', 'New Balance', 'New Balance', 'New Balance',
-            'Inov8', 'Asics', 'Puma', 'Puma', 'Reebok', 'Reebok', 'Reebok', 'Reebok', 'Adidas'
+            'Inov8', 'Asics', 'Puma', 'Puma', 'Reebok', 'Reebok', 'Reebok', 'Reebok', 'Adidas', 'Adidas', 'Adidas', 'Adidas',
+            'Asics', 'Asics', 'Asics', 'Puma', 'Adidas', 'Adidas', 'Adidas', 'New Balance', 'New Balance', 'Reebok', 'Nike',
+            'Nike', 'Nike', 'Reebok', 'Reebok', 'New Balance', 'New Balance'
         ]
         const shoeModels = [
             'Metaspeed Sky', 'Lite Show', 'Pegasus Turbo Next Nature', 'Adistar', 'Jolt 3 GS Junior', 'Fresh Foam X 860 v13',
@@ -432,16 +425,20 @@ window.onload = function () {
             'SolarBOOST 3', 'Air Zoom Pegasus 38 Shield', 'Rival D 10', 'ZoomX Streakfly', 'React Infinity Run Flyknit 3',
             'Fresh Foam Hierro v7', 'FuelCell Rebel v3', 'XCR7 v4', 'Fresh Foam 880 v11', 'X-Talon 212', 'Gel-Noosa Tri 13 GS',
             'Liberate Nitro', 'Velocity Nitro', 'Nanoflex TR', 'Nano X2', 'Floatride Run Fast 3.0', 'Forever Floatride Energy 2.0',
-            'Terrex Agravic Flow Junior'
+            'Terrex Agravic Flow Junior', 'Adizero XCS Track Spike', 'Solar Glide 4 ST', 'Adizero Adios Pro 2', 'Gel-Cumulus 23',
+            'Superblast', 'GT-2000 v9', 'Deviate Nitro', 'Youngstar Junior Hockey Shoes', 'Allroundstar Junior Running Spikes',
+            'Ultraboost 21', 'Fresh Foam More Trail v2', 'MD500v8', 'Floatride Energy 3.0', 'Terra Kiger 7', 'Pegasus Trail 4 GTX',
+            'Air Zoom Elite LJ Elite 2', 'Nano X', 'Floatride Energy 3.0', 'XC Seven v4', 'Fresh Foam More Trail v2'
         ]
         const shoeCategories = [
             'Men', 'Men', 'Men', 'Women', 'Kids', 'Kids', 'Kids', 'Kids', 'Kids', 'Women', 'Women', 'Women', 'Women', 'Men',
             'Men', 'Women', 'Women', 'Women', 'Women', 'Men', 'Men', 'Kids', 'Kids', 'Men', 'Men', 'Men', 'Men', 'Women', 'Women',
-            'Kids'
+            'Kids', 'Men', 'Men', 'Men', 'Women', 'Women', 'Women', 'Women', 'Kids', 'Kids', 'Men', 'Men', 'Men', 'Men', 'Men',
+            'Women', 'Women', 'Women', 'Women', 'Women', 'Women'
         ]
         const shoePrices = [
             250, 120, 180, 130, 40, 80, 70, 180, 180, 160, 140, 160, 160, 97, 65, 160, 160, 140, 130, 70, 101, 80, 55, 110, 120,
-            90, 135, 140, 100, 50
+            90, 135, 140, 100, 50, 65, 140, 220, 90, 220, 100, 160, 35, 55, 135, 165, 70, 100, 105, 160, 150, 130, 100, 70, 165
         ]
         let shoeList = [];
         function praviNizPatikaObjekata() {

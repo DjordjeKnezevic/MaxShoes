@@ -220,6 +220,18 @@
 
         <section id="welcome-screen">
         </section>
+
+        <script>
+            //  STAMPANJE NASLOVNIH SLIKA - POMERENO OVDE DA BI SE ODMAH ODSTAMPALO
+            let welcomeScreen = document.getElementById("welcome-screen");
+            for (let i = 1; i < 6; i++) {
+                let bgImg = document.createElement("img");
+                bgImg.src = `Assets/img/bg-${i}.jpg`
+                bgImg.alt = `bg-${i}`
+                welcomeScreen.appendChild(bgImg);
+            }
+        </script>
+
         <hgroup id="welcome-title">
             <h1>MAX SHOES</h1>
             <h3>MAXIMUM STYLE, MINIMUM EFFORT
