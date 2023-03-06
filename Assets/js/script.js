@@ -1,22 +1,19 @@
 var tmpGreska = false;
-window.onload = function () {
+const BASEURL = "Assets/data/";
+window.onload = async function () {
 
     //* * * * * * * * * * * * * * * * * * * * * ZAJEDNICKI DEO ZA SVE STRANICE * * * * * * * * * * * * * * * * * * * * * * * *
     //STAMPANJE NAV MENIJA
-    const navMeni = ['MEN', 'WOMEN', 'KIDS', 'CONTACT'];
-    const navLinkovi = [
-        "/MaxShoes/products.html?category=Men",
-        "/MaxShoes/products.html?category=Women",
-        "/MaxShoes/products.html?category=Kids",
-        "#footer"]
+    let navObjekti
+    navObjekti = await getData('navigacija');
     let navbarNav = document.getElementsByClassName("navbar-nav")[0];
-    for (let i in navMeni) {
+    for (let o of navObjekti) {
         let li = document.createElement('li');
         li.classList.add('nav-item');
         let a = document.createElement('a');
         a.classList.add('nav-link', 'text-light');
-        a.href = navLinkovi[i];
-        a.textContent = navMeni[i];
+        a.href = o.link;
+        a.textContent = o.naziv;
         li.appendChild(a);
         navbarNav.appendChild(li);
     }
@@ -56,9 +53,10 @@ window.onload = function () {
     })
 
     // PROVERA ISPRAVNOSTI USERNAME-A
-    let reUsername1 = /^[\w\d!@#$%^&*._]{5,20}$/;
-    let reUsername2 = /^[A-Z][\w\d!@#$%^&*._]{4,19}$/;
-    const reUsername = [reUsername1, reUsername2];
+    const reUsername = [
+        /^[\w\d!@#$%^&*._]{5,20}$/,
+        /^[A-Z][\w\d!@#$%^&*._]{4,19}$/
+    ];
     const porukaUsername = [
         'Username must be between 5 and 20 characters long and must not contain spaces',
         'Username must start with a capital letter'
@@ -70,11 +68,12 @@ window.onload = function () {
     })
 
     // PROVERA ISPRAVNOSTI PASSWORD-A
-    let rePassword1 = /^[\w\d!@#$%^&*._]{8,20}$/;
-    let rePassword2 = /^([\w!@#$%^&*._]{7,19}[\d]+)|([\d]+[\w!@#$%^&*._]{7,19})$/;
-    let rePassword3 = /^([\w\d]{7,19}[!@#$%^&*._]+)|([!@#$%^&*._]+[\w\d]{7,19})$/;
-    let rePassword4 = /^[A-Z][\w\d!@#$%^&*._]{7,19}$/;
-    const rePassword = [rePassword1, rePassword2, rePassword3, rePassword4];
+    const rePassword = [
+        /^[\w\d!@#$%^&*._]{8,20}$/,
+        /^([\w!@#$%^&*._]{7,19}[\d]+)|([\d]+[\w!@#$%^&*._]{7,19})$/,
+        /^([\w\d]{7,19}[!@#$%^&*._]+)|([!@#$%^&*._]+[\w\d]{7,19})$/,
+        /^[A-Z][\w\d!@#$%^&*._]{7,19}$/
+    ];
     const porukaPassword = [
         'Password must be between 8 and 20 characters long and must not contain spaces',
         'Password must contain at least 1 number',
@@ -88,10 +87,11 @@ window.onload = function () {
     })
 
     // PROVERA ISPRAVNOSTI IMENA I PREZIMENA
-    let reFirstLastName1 = /^[\w\dŽĐŠĆČćđčžš]{3,20}$/;
-    let reFirstLastName2 = /^[A-Z][\w\dŽĐŠĆČćđčžšшђжћчЂШЖЋЧ]{2,19}$/;
-    let reFirstLastName3 = /^[A-Z]([\w\dŽĐŠĆČćđčžšшђжћчЂШЖЋЧ]{2,19}[\d!@#$%^&*._]+)|([\d!@#$%^&*._]+[\w\dŽĐŠĆČćđčžšшђжћчЂШЖЋЧ]{2,19})$/;
-    const reFirstLastName = [reFirstLastName1, reFirstLastName2];
+    let dodatanReFirstLastName = /^[A-Z]([\w\dŽĐŠĆČćđčžšшђжћчЂШЖЋЧ]{2,19}[\d!@#$%^&*._]+)|([\d!@#$%^&*._]+[\w\dŽĐŠĆČćđčžšшђжћчЂШЖЋЧ]{2,19})$/;
+    const reFirstLastName = [
+        /^[\w\dŽĐŠĆČćđčžš]{3,20}$/,
+        /^[A-Z][\w\dŽĐŠĆČćđčžšшђжћчЂШЖЋЧ]{2,19}$/
+    ];
     const porukaFirstLastName = [
         'Name (First and Last) must be between 3 and 20 characters long and must not contain spaces',
         'Name (First and Last) must start with a capital letter'
@@ -102,15 +102,14 @@ window.onload = function () {
     let lastNameError = document.getElementById('lastname-error');
     let signupLastName = document.getElementById('signup-lastname');
     signupFirstName.addEventListener('blur', () => {
-        regexProvera(signupFirstName, firstNameError, reFirstLastName, porukaFirstLastName, reFirstLastName3, dodatnaPorukaFirstLastName);
+        regexProvera(signupFirstName, firstNameError, reFirstLastName, porukaFirstLastName, dodatanReFirstLastName, dodatnaPorukaFirstLastName);
     })
     signupLastName.addEventListener('blur', () => {
-        regexProvera(signupLastName, lastNameError, reFirstLastName, porukaFirstLastName, reFirstLastName3, dodatnaPorukaFirstLastName);
+        regexProvera(signupLastName, lastNameError, reFirstLastName, porukaFirstLastName, dodatanReFirstLastName, dodatnaPorukaFirstLastName);
     })
 
     // PROVERA ISPRAVNOSTI MAIL-A
-    let reEmail1 = /^[\w\d\.]+@[\w]+\.[\w\.]+$/
-    const reEmail = [reEmail1]
+    const reEmail = [/^[a-z\d\._]{3,19}@[a-z]{3,10}(\.[a-z]{2,5}$){1,4}/];
     const porukaEmail = [
         'Invalid email format (Email must contain "@" and end with a domain name (Ex. ".com")))'
     ];
@@ -121,10 +120,11 @@ window.onload = function () {
     })
 
     // PROVERA ISPRAVNOSTI ADRESE
-    let reAddress1 = /^(([A-Z][\w\d\.\-]+)|([\d]+\.?))(\s{1}[\w\d\.\-\/]+)+$/
-    let reAddress2 = /^(([A-Z][\w\d\.\-]+)|([\d]+\.?))(\s{1}[\w\d\/\.\-]+){0,7}$/
-    let reAddress3 = /^(([A-Z][\w\d\.\-]+)|([\d]+\.?))(\s{1}[\w\d\/\.\-]+){0,7}\s(([\d]{1,3}((\/(([\d]{1,2}[\w]?)|([\w]{1,2}))|([\w])))?)|((BB)|(bb)))$/
-    const reAddress = [reAddress1, reAddress2, reAddress3];
+    const reAddress = [
+        /^(([A-Z][\w\d\.\-]+)|([\d]+\.?))(\s{1}[\w\d\.\-\/]+)+$/,
+        /^(([A-Z][\w\d\.\-]+)|([\d]+\.?))(\s{1}[\w\d\/\.\-]+){0,7}$/,
+        /^(([A-Z][\w\d\.\-]+)|([\d]+\.?))(\s{1}[\w\d\/\.\-]+){0,7}\s(([\d]{1,3}((\/(([\d]{1,2}[\w]?)|([\w]{1,2}))|([\w])))?)|((BB)|(bb)))$/
+    ];
     const porukaAddress = [
         'Address must start with either a capital letter, or a number',
         'Address must have a maximum of 8 words',
@@ -148,8 +148,7 @@ window.onload = function () {
         if (!tacCheckbox.checked) {
             tacCheckbox.classList.add('error-border');
             greska = true;
-        }
-        else {
+        } else {
             greska = false;
             tacCheckbox.classList.remove('error-border');
         }
@@ -159,8 +158,7 @@ window.onload = function () {
                 if (tmpGreska) {
                     greska = true;
                 }
-            }
-            else {
+            } else {
                 regexProvera(objektiPoljeNiz[i], objektiErrorNiz[i], regexIzrazi[i], porukeNiz[i])
                 if (tmpGreska) {
                     greska = true;
@@ -174,12 +172,12 @@ window.onload = function () {
 
     //* * * * * * * * * * * * * * * * * * * * * * * * * * PRVA STRANICA * * * * * * * * * * * * * * * * * * * * * * * * * * *
     let url = document.location.pathname;
-    if (url == "/MaxShoes/"
-        || url == "/MaxShoes/index.html"
-        || url == "/MaxShoes/#") {
-        // if (url == "/"
-        //     || url == "/index.html"
-        //     || url == "/#") {
+    // if (url == "/MaxShoes/"
+    //     || url == "/MaxShoes/index.html"
+    //     || url == "/MaxShoes/#") {
+    if (url == "/" ||
+        url == "/index.html" ||
+        url == "/#") {
 
         // FADEOUT ANIMACIJA WELCOME EKRANA
         let bgSlike = welcomeScreen.getElementsByTagName("img");
@@ -213,24 +211,19 @@ window.onload = function () {
 
         // STAMPANJE KATEGORIJA
         let kategorije = document.querySelector('.container .row');
-        const kategorijeSlike = ["MensShoes", "WomensShoes", "KidsShoes"]
-        const kategorijeLinkovi = [
-            "/MaxShoes/products.html?category=Men",
-            "/MaxShoes/products.html?category=Women",
-            "/MaxShoes/products.html?category=Kids"]
         for (let i = 0; i < 3; i++) {
-            kategorije.innerHTML += `<a href="${kategorijeLinkovi[i]}" class="nav-link col-md-3">
+            kategorije.innerHTML += `<a href="${navObjekti[i].link}" class="nav-link col-md-3">
         <div class="hcontainer">
-            <h3>${navMeni[i]}</h3>
+            <h3>${navObjekti[i].naziv}</h3>
         </div>
-        <img src="Assets/img/${kategorijeSlike[i]}.jpg" alt="${kategorijeSlike[i]}">
+        <img src="${navObjekti[i].slika.src}" alt="${navObjekti[i].slika.alt}">
     </a>`;
         }
     }
 
     //* * * * * * * * * * * * * * * * * * * * * * * * * * DRUGA STRANICA * * * * * * * * * * * * * * * * * * * * * * * * * * *
-    else if (url == "/MaxShoes/products.html") {
-        // else if (url == "/products.html") {
+    // else if (url == "/MaxShoes/products.html") {
+    else if (url == "/products.html") {
 
         // ENABLE-OVANJE BOOTSTRAPOVOG TOOLTIP-A ZA KORPE
         $(document).ready(function () {
@@ -240,7 +233,8 @@ window.onload = function () {
         });
 
         // STAMPANJE, POSTAVLJANJE INICIJALNIH VREDNOSTI I UPDATE-OVANJE VREDNOSTI DUPLOG SLAJDERA
-        let prvaCenaGranica = 0, drugaCenaGranica = 300;
+        let prvaCenaGranica = 0,
+            drugaCenaGranica = 300;
         let stampajCene = true;
         $(document).ready(function () {
             let $slider = $("#slider-range");
@@ -273,9 +267,16 @@ window.onload = function () {
             $("#amount").text("Price range: $" + $slider.slider("values", 0) + " - $" + $slider.slider("values", 1));
         });
 
-        const kategorijeTekst = ['Men', 'Women', 'Kids'];
-        const brendoviTekst = ['Adidas', 'Asics', 'Inov8', 'New Balance', 'Nike', 'Puma', 'Reebok'];
-        const sortirajTekst = ['Price Ascending', 'Price Descending'];
+        let kategorije = await getData('kategorije');
+        let brendovi = await getData('brendovi');
+        let opcijeZaSortiranje = await getData('sortiranje');
+
+
+        let kategorijeTekst = kategorije.map(kategorija => kategorija.naziv)
+        let brendoviTekst = brendovi.map(brend => brend.naziv)
+        let sortirajTekst = opcijeZaSortiranje.map(opcija => opcija.naziv)
+
+
         let kategorijeOpcije = document.getElementById('kategorije-opcije')
         let brendoviOpcije = document.getElementById('brendovi')
         let sortirajOpcije = document.getElementById('sortiraj-po')
@@ -285,19 +286,19 @@ window.onload = function () {
         var dugmadFilter = document.querySelectorAll('.filter-dugme');
 
         // DINAMICKO STAMPANJE DROPDOWN LISTA
-        for (let o of kategorijeTekst) {
+        for (let k of kategorije) {
             kategorijeOpcije.innerHTML += `
-            <li class="dropdown-item text-light">${o}</li>
+            <li class="dropdown-item text-light">${k.naziv}</li>
             `
         }
-        for (let o of brendoviTekst) {
+        for (let b of brendovi) {
             brendoviOpcije.innerHTML += `
-            <li class="dropdown-item text-light">${o}</li>
+            <li class="dropdown-item text-light">${b.naziv}</li>
             `
         }
-        for (let o of sortirajTekst) {
+        for (let o of opcijeZaSortiranje) {
             sortirajOpcije.innerHTML += `
-            <li class="dropdown-item text-light">${o}</li>
+            <li class="dropdown-item text-light">${o.naziv}</li>
             `
         }
 
@@ -305,6 +306,7 @@ window.onload = function () {
         const listaBrendova = document.querySelectorAll('#brendovi .dropdown-item');
         const listaSortiranja = document.querySelectorAll('#sortiraj-po .dropdown-item');
         const listaKategorija = document.querySelectorAll('#kategorije-opcije .dropdown-item');
+
         function dodajEventDdListama(listaOpcija, listaTekstova, key) {
             for (let i = 0; i < listaOpcija.length; i++) {
                 listaOpcija[i].addEventListener('click', function () {
@@ -355,9 +357,10 @@ window.onload = function () {
 
         // FUNKCIJA ZA UKLANJANJE FILTER DUGMETA
         let patikeDisplay = document.getElementById('patike-display')
+
         function UkloniRoditelja(dugme) {
             dugmadFilter = document.querySelectorAll('.filter-dugme');
-            if (dugme.parentElement.textContent.split(' ')[0] == "Price") { ResetSlider() }
+            if (dugme.parentElement.textContent.split(' ')[0] == "Price") ResetSlider();
             dugme.parentElement.remove();
             if (dugmadFilter.length == 2) {
                 SakrijCistac();
@@ -393,98 +396,54 @@ window.onload = function () {
             ukloniFiltre.classList.remove('hide');
             if (window.innerWidth < 531) {
                 patikeDisplay.style.height = "75%"
-            }
-            else if (window.innerWidth < 869) {
+            } else if (window.innerWidth < 869) {
                 patikeDisplay.style.height = "80%"
-            }
-            else if (window.innerWidth < 1000) {
+            } else if (window.innerWidth < 1000) {
                 patikeDisplay.style.height = "85%"
-            }
-            else {
+            } else {
                 patikeDisplay.style.height = "87%"
             }
         }
 
         // SELEKTOVANJE I DODAVANJE EVENT-A CISTAC DUGMETU
-        let dugmeSakrijCistaca = document.querySelector('#ukloni-filtre button');
+        let dugmeSakrijCistaca = document.querySelector('#ukloni-filtre');
         dugmeSakrijCistaca.addEventListener('click', function () {
             SakrijCistac(dugmadFilter)
         })
 
-        // PRAVLJENJE LISTA OBJEKATA PATIKA
-        const shoeBrands = [
-            'Asics', 'Asics', 'Nike', 'Adidas', 'Asics', 'New Balance', 'New Balance', 'Asics', 'Asics', 'Adidas', 'Adidas',
-            'Adidas', 'Adidas', 'Nike', 'Nike', 'Nike', 'Nike', 'New Balance', 'New Balance', 'New Balance', 'New Balance',
-            'Inov8', 'Asics', 'Puma', 'Puma', 'Reebok', 'Reebok', 'Reebok', 'Reebok', 'Adidas', 'Adidas', 'Adidas', 'Adidas',
-            'Asics', 'Asics', 'Asics', 'Puma', 'Adidas', 'Adidas', 'Adidas', 'New Balance', 'New Balance', 'Reebok', 'Nike',
-            'Nike', 'Nike', 'Reebok', 'Reebok', 'New Balance', 'New Balance'
-        ]
-        const shoeModels = [
-            'Metaspeed Sky', 'Lite Show', 'Pegasus Turbo Next Nature', 'Adistar', 'Jolt 3 GS Junior', 'Fresh Foam X 860 v13',
-            'Fresh Foam Tempo', 'Gel-Kinsei Blast', 'Kinsei Blast', 'SolarBOOST 19', 'Solar Glide 3', 'Terrex Speed Ultra',
-            'SolarBOOST 3', 'Air Zoom Pegasus 38 Shield', 'Rival D 10', 'ZoomX Streakfly', 'React Infinity Run Flyknit 3',
-            'Fresh Foam Hierro v7', 'FuelCell Rebel v3', 'XCR7 v4', 'Fresh Foam 880 v11', 'X-Talon 212', 'Gel-Noosa Tri 13 GS',
-            'Liberate Nitro', 'Velocity Nitro', 'Nanoflex TR', 'Nano X2', 'Floatride Run Fast 3.0', 'Forever Floatride Energy 2.0',
-            'Terrex Agravic Flow Junior', 'Adizero XCS Track Spike', 'Solar Glide 4 ST', 'Adizero Adios Pro 2', 'Gel-Cumulus 23',
-            'Superblast', 'GT-2000 v9', 'Deviate Nitro', 'Youngstar Junior Hockey Shoes', 'Allroundstar Junior Running Spikes',
-            'Ultraboost 21', 'Fresh Foam More Trail v2', 'MD500v8', 'Floatride Energy 3.0', 'Terra Kiger 7', 'Pegasus Trail 4 GTX',
-            'Air Zoom Elite LJ Elite 2', 'Nano X', 'Floatride Energy 3.0', 'XC Seven v4', 'Fresh Foam More Trail v2'
-        ]
-        const shoeCategories = [
-            'Men', 'Men', 'Men', 'Women', 'Kids', 'Kids', 'Kids', 'Kids', 'Kids', 'Women', 'Women', 'Women', 'Women', 'Men',
-            'Men', 'Women', 'Women', 'Women', 'Women', 'Men', 'Men', 'Kids', 'Kids', 'Men', 'Men', 'Men', 'Men', 'Women', 'Women',
-            'Kids', 'Men', 'Men', 'Men', 'Women', 'Women', 'Women', 'Women', 'Kids', 'Kids', 'Men', 'Men', 'Men', 'Men', 'Men',
-            'Women', 'Women', 'Women', 'Women', 'Women', 'Women'
-        ]
-        const shoePrices = [
-            250, 120, 180, 130, 40, 80, 70, 180, 180, 160, 140, 160, 160, 97, 65, 160, 160, 140, 130, 70, 101, 80, 55, 110, 120,
-            90, 135, 140, 100, 50, 65, 140, 220, 90, 220, 100, 160, 35, 55, 135, 165, 70, 100, 105, 160, 150, 130, 100, 70, 165
-        ]
-        let shoeList = [];
-        function praviNizPatikaObjekata() {
-            for (i = 0; i < shoeBrands.length; i++) {
-                shoeList.push({
-                    brand: shoeBrands[i],
-                    model: shoeModels[i],
-                    imgSrc: `Assets/img/shoes/Shoe${i + 1}.jpg`,
-                    category: shoeCategories[i],
-                    price: shoePrices[i]
-                })
-            }
-            shuffle(shoeList)
-        }
         // FUNKCIJA ZA SHUFFLE-OVANJE ELEMENATA NIZA
         function shuffle(niz) {
-            let trenutniIndex = niz.length, randomIndex;
+            let trenutniIndex = niz.length,
+                randomIndex;
             while (trenutniIndex != 0) {
                 randomIndex = Math.floor(Math.random() * trenutniIndex);
                 trenutniIndex--;
                 [niz[trenutniIndex], niz[randomIndex]] = [
-                    niz[randomIndex], niz[trenutniIndex]];
+                    niz[randomIndex], niz[trenutniIndex]
+                ];
             }
             return niz;
         }
 
         // FUNKCIJA ZA SORTIRANJE ELEMENATA NIZA
         function sort(shoeList, asc) {
+            console.log(shoeList);
             if (asc) {
                 shoeList.sort(function (a, b) {
-                    return a.price - b.price
+                    return a.price.currentPrice - b.price.currentPrice
                 })
-            }
-            else {
+            } else {
                 shoeList.sort(function (a, b) {
-                    return b.price - a.price
+                    return b.price.currentPrice - a.price.currentPrice
                 })
             }
         }
 
-        // FUNKCIJA ZA FILTRIRANJE PATIKA KOJE SE STAMPAJU
-        function Filtar() {
-            shoeList = [];
-            praviNizPatikaObjekata();
+        // FUNKCIJA ZA FILTRIRANJE PATIKA
+        async function Filtar() {
+            shoeList = await getData('proizvodi');
             dugmadFilter = document.querySelectorAll('.filter-dugme');
-            if (dugmadFilter.length < 1) { return }
+            if (dugmadFilter.length < 1) return
             dugmadFilter.forEach(dugme => {
                 let filtar = dugme.textContent.split(': ')[1]
                 if (filtar != undefined) {
@@ -492,14 +451,12 @@ window.onload = function () {
                         shoeList = shoeList.filter(shoe => {
                             return (prvaCenaGranica <= shoe.price && shoe.price <= drugaCenaGranica)
                         })
-                    }
-                    else if (filtar.split(' ')[1] == "Ascending") {
+                    } else if (filtar.split(' ')[1] == "Ascending") {
+                        console.log("OVDE")
                         sort(shoeList, true)
-                    }
-                    else if (filtar.split(' ')[1] == "Descending") {
+                    } else if (filtar.split(' ')[1] == "Descending") {
                         sort(shoeList, false)
-                    }
-                    else {
+                    } else {
                         shoeList = shoeList.filter(shoe => {
                             return (shoe.brand == filtar ||
                                 shoe.category == filtar ||
@@ -516,37 +473,30 @@ window.onload = function () {
         class="bi bi-cart3 korpa" viewBox="0 0 16 16" data-bs-title="Remove from cart">
         <path
             d="M0 1.5A.5.5 0 0 1 .5 1H2a.5.5 0 0 1 .485.379L2.89 3H14.5a.5.5 0 0 1 .49.598l-1 5a.5.5 0 0 1-.465.401l-9.397.472L4.415 11H13a.5.5 0 0 1 0 1H4a.5.5 0 0 1-.491-.408L2.01 3.607 1.61 2H.5a.5.5 0 0 1-.5-.5zM3.102 4l.84 4.479 9.144-.459L13.89 4H3.102zM5 12a2 2 0 1 0 0 4 2 2 0 0 0 0-4zm7 0a2 2 0 1 0 0 4 2 2 0 0 0 0-4zm-7 1a1 1 0 1 1 0 2 1 1 0 0 1 0-2zm7 0a1 1 0 1 1 0 2 1 1 0 0 1 0-2z" /></svg>`
-        function stampajPatike(shoeList) {
+
+        async function stampajPatike(shoeList) {
             let svePatike = document.querySelectorAll('.shoe')
-            svePatike.forEach(patika => { patika.remove() })
+            svePatike.forEach(patika => {
+                patika.remove()
+            })
             for (let shoe of shoeList) {
-                let patikaOkvir = document.createElement('article');
-                patikaOkvir.classList.add('shoe', 'mt-4', 'container');
-                let patikaImg = document.createElement('img');
-                patikaImg.src = shoe.imgSrc;
-                patikaImg.alt = shoe.imgSrc.slice(shoe.imgSrc.length - 9, shoe.imgSrc.length - 4);
-                let strong = document.createElement('strong');
-                strong.textContent = shoe.brand + " " + shoe.model;
-                let iTag = document.createElement('i');
-                iTag.textContent = shoe.category;
-                let p = document.createElement('p');
-                p.textContent = "$" + shoe.price;
-                let a = document.createElement('a');
-                a.setAttribute('data-bs-toggle', 'tooltip');
-                a.setAttribute('data-bs-placement', 'top');
-                a.setAttribute('data-bs-title', 'Add to cart');
-                a.innerHTML = cartIkonica;
-                // a.addEventListener('click', function () {
-                // })
-                patikaOkvir.append(patikaImg, strong, iTag, p, a);
-                patikeDisplay.append(patikaOkvir);
+                patikeDisplay.innerHTML += `
+                <article class="shoe mt-4 container">
+                <img src="Assets/img/shoes/Shoe1.jpg" alt="Shoe1">
+                <strong>Asics Metaspeed Sky</strong>
+                <i>Men</i>
+                <p>$250</p>
+                <a data-bs-toggle="tooltip" data-bs-placement="top" data-bs-title="Add to cart">
+                <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="currentColor" class="bi bi-cart3 korpa" viewBox="0 0 16 16" data-bs-title="Remove from cart">
+        <path d="M0 1.5A.5.5 0 0 1 .5 1H2a.5.5 0 0 1 .485.379L2.89 3H14.5a.5.5 0 0 1 .49.598l-1 5a.5.5 0 0 1-.465.401l-9.397.472L4.415 11H13a.5.5 0 0 1 0 1H4a.5.5 0 0 1-.491-.408L2.01 3.607 1.61 2H.5a.5.5 0 0 1-.5-.5zM3.102 4l.84 4.479 9.144-.459L13.89 4H3.102zM5 12a2 2 0 1 0 0 4 2 2 0 0 0 0-4zm7 0a2 2 0 1 0 0 4 2 2 0 0 0 0-4zm-7 1a1 1 0 1 1 0 2 1 1 0 0 1 0-2zm7 0a1 1 0 1 1 0 2 1 1 0 0 1 0-2z"></path></svg></a></article>
+                `
             }
-            dodajUKorpu()
         }
 
         // FUNKCIJA ZA STAMPANJE NOTIFIKACIJE O DODAVANJU I SKLANJANJU IZ KORPE
         let brojac = 0;
-        function dodajUKorpu() {
+
+        function dodajEventKorpama() {
             $(document).ready(function () {
                 $(this).attr('data-bs-title', 'Remove from cart')
                 $('.korpa').click(function () {
@@ -559,12 +509,19 @@ window.onload = function () {
                                 bottom: '4%',
                                 opacity: '100'
                             }, 500)
-                            .animate({ opacity: '0' }, { duration: 1500 })
-                            .animate({ bottom: '-12%' }, { duration: 0 });
+                            .animate({
+                                opacity: '0'
+                            }, {
+                                duration: 1500
+                            })
+                            .animate({
+                                bottom: '-12%'
+                            }, {
+                                duration: 0
+                            });
                         brojac++;
                         stampajBrojac(brojac, 1);
-                    }
-                    else {
+                    } else {
                         $(this).css('color', 'blue');
                         $(this).tooltip('disable');
                         $(this).parent().tooltip('enable');
@@ -573,8 +530,16 @@ window.onload = function () {
                                 bottom: '4%',
                                 opacity: '100'
                             }, 500)
-                            .animate({ opacity: '0' }, { duration: 1500 })
-                            .animate({ bottom: '-12%' }, { duration: 0 });
+                            .animate({
+                                opacity: '0'
+                            }, {
+                                duration: 1500
+                            })
+                            .animate({
+                                bottom: '-12%'
+                            }, {
+                                duration: 0
+                            });
                         brojac--;
                         stampajBrojac(brojac, -1)
                     }
@@ -585,123 +550,96 @@ window.onload = function () {
         // FUNKCIJA ZA STAMPANJE BROJA ARTIKLA U KORPI
         let ikonice = document.querySelectorAll('.icons a svg')
         let brojacOkvir = document.getElementById('brojac');
+
         function stampajBrojac(brojac, promena) {
             if (brojac > 1 || (brojac == 1 && promena == -1)) {
                 brojacOkvir.textContent = brojac
-            }
-            else if (brojac == 0) {
+            } else if (brojac == 0) {
                 if (window.innerWidth < 456) {
                     navbar.style.padding = '5px 0 0 0'
                 }
                 brojacOkvir.classList.add('hide')
-                ikonice.forEach(ikonica => { ikonica.style.marginTop = '0px' })
-            }
-            else if (brojac == 1 && promena == 1) {
+                ikonice.forEach(ikonica => {
+                    ikonica.style.marginTop = '0px'
+                })
+            } else if (brojac == 1 && promena == 1) {
                 if (window.innerWidth < 456) {
                     navbar.style.padding = '0 0 0 0'
                 }
                 brojacOkvir.classList.remove('hide')
                 brojacOkvir.textContent = brojac
-                ikonice.forEach(ikonica => { ikonica.style.marginTop = '25px' })
+                ikonice.forEach(ikonica => {
+                    ikonica.style.marginTop = '25px'
+                })
             }
         }
 
+
         // INICIJALNO POKRETANJE STAMPANJA
+        let shoeList = await getData('proizvodi');
+        shuffle(shoeList);
         const queryString = window.location.search;
         const urlParams = new URLSearchParams(queryString);
-        const categoryUrl = urlParams.get('category')
-        const brandUrl = urlParams.get('brand')
-        const modelUrl = urlParams.get('model')
+        const categoryUrl = urlParams.get('category');
+        const brandUrl = urlParams.get('brand');
+        const modelUrl = urlParams.get('model');
         if (categoryUrl) {
-            StampajDugme(categoryUrl, dugmadFilter, 'Category')
+            StampajDugme(categoryUrl, dugmadFilter, 'Category');
+        } else if (modelUrl) {
+            StampajDugme(brandUrl, dugmadFilter, 'Brand');
+            StampajDugme(modelUrl, dugmadFilter, 'Model');
+        } else if (brandUrl) {
+            StampajDugme(brandUrl, dugmadFilter, 'Brand');
         }
-        else if (modelUrl) {
-            StampajDugme(brandUrl, dugmadFilter, 'Brand')
-            StampajDugme(modelUrl, dugmadFilter, 'Model')
-        }
-        else if (brandUrl) {
-            StampajDugme(brandUrl, dugmadFilter, 'Brand')
-        }
-        dodajEventDdListama(listaBrendova, brendoviTekst, 'Brand')
-        dodajEventDdListama(listaKategorija, kategorijeTekst, 'Category')
-        dodajEventDdListama(listaSortiranja, sortirajTekst, 'Sort By')
+        dodajEventDdListama(listaBrendova, brendoviTekst, 'Brand');
+        dodajEventDdListama(listaKategorija, kategorijeTekst, 'Category');
+        dodajEventDdListama(listaSortiranja, sortirajTekst, 'Sort By');
         Filtar();
+        dodajEventKorpama();
     }
     //* * * * * * * * * * * * * * * * * * * * * ZAJEDNICKI DEO ZA SVE STRANICE * * * * * * * * * * * * * * * * * * * * * * * *
     // STAMPANJE LEVOG DELA FOOTERA
     let footerSection = document.querySelectorAll("footer section");
-    const linkoviIkonica = ["https://www.instagram.com/", "https://www.facebook.com/", "rss.xml"];
-    const ikoniceKlase = ["bi bi-instagram", "bi bi-facebook", "bi bi-rss", "bi bi-telephone", "bi bi-envelope", "bi bi-geo-alt"];
-    const ikonicePath = [
-        "M8 0C5.829 0 5.556.01 4.703.048 3.85.088 3.269.222 2.76.42a3.917 3.917 0 0 0-1.417.923A3.927 3.927 0 0 0 .42 2.76C.222 3.268.087 3.85.048 4.7.01 5.555 0 5.827 0 8.001c0 2.172.01 2.444.048 3.297.04.852.174 1.433.372 1.942.205.526.478.972.923 1.417.444.445.89.719 1.416.923.51.198 1.09.333 1.942.372C5.555 15.99 5.827 16 8 16s2.444-.01 3.298-.048c.851-.04 1.434-.174 1.943-.372a3.916 3.916 0 0 0 1.416-.923c.445-.445.718-.891.923-1.417.197-.509.332-1.09.372-1.942C15.99 10.445 16 10.173 16 8s-.01-2.445-.048-3.299c-.04-.851-.175-1.433-.372-1.941a3.926 3.926 0 0 0-.923-1.417A3.911 3.911 0 0 0 13.24.42c-.51-.198-1.092-.333-1.943-.372C10.443.01 10.172 0 7.998 0h.003zm-.717 1.442h.718c2.136 0 2.389.007 3.232.046.78.035 1.204.166 1.486.275.373.145.64.319.92.599.28.28.453.546.598.92.11.281.24.705.275 1.485.039.843.047 1.096.047 3.231s-.008 2.389-.047 3.232c-.035.78-.166 1.203-.275 1.485a2.47 2.47 0 0 1-.599.919c-.28.28-.546.453-.92.598-.28.11-.704.24-1.485.276-.843.038-1.096.047-3.232.047s-2.39-.009-3.233-.047c-.78-.036-1.203-.166-1.485-.276a2.478 2.478 0 0 1-.92-.598 2.48 2.48 0 0 1-.6-.92c-.109-.281-.24-.705-.275-1.485-.038-.843-.046-1.096-.046-3.233 0-2.136.008-2.388.046-3.231.036-.78.166-1.204.276-1.486.145-.373.319-.64.599-.92.28-.28.546-.453.92-.598.282-.11.705-.24 1.485-.276.738-.034 1.024-.044 2.515-.045v.002zm4.988 1.328a.96.96 0 1 0 0 1.92.96.96 0 0 0 0-1.92zm-4.27 1.122a4.109 4.109 0 1 0 0 8.217 4.109 4.109 0 0 0 0-8.217zm0 1.441a2.667 2.667 0 1 1 0 5.334 2.667 2.667 0 0 1 0-5.334z",
-        "M16 8.049c0-4.446-3.582-8.05-8-8.05C3.58 0-.002 3.603-.002 8.05c0 4.017 2.926 7.347 6.75 7.951v-5.625h-2.03V8.05H6.75V6.275c0-2.017 1.195-3.131 3.022-3.131.876 0 1.791.157 1.791.157v1.98h-1.009c-.993 0-1.303.621-1.303 1.258v1.51h2.218l-.354 2.326H9.25V16c3.824-.604 6.75-3.934 6.75-7.951z",
-        "M14 1a1 1 0 0 1 1 1v12a1 1 0 0 1-1 1H2a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1h12zM2 0a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V2a2 2 0 0 0-2-2H2z",
-        "M5.5 12a1.5 1.5 0 1 1-3 0 1.5 1.5 0 0 1 3 0zm-3-8.5a1 1 0 0 1 1-1c5.523 0 10 4.477 10 10a1 1 0 1 1-2 0 8 8 0 0 0-8-8 1 1 0 0 1-1-1zm0 4a1 1 0 0 1 1-1 6 6 0 0 1 6 6 1 1 0 1 1-2 0 4 4 0 0 0-4-4 1 1 0 0 1-1-1z",
-        "M3.654 1.328a.678.678 0 0 0-1.015-.063L1.605 2.3c-.483.484-.661 1.169-.45 1.77a17.568 17.568 0 0 0 4.168 6.608 17.569 17.569 0 0 0 6.608 4.168c.601.211 1.286.033 1.77-.45l1.034-1.034a.678.678 0 0 0-.063-1.015l-2.307-1.794a.678.678 0 0 0-.58-.122l-2.19.547a1.745 1.745 0 0 1-1.657-.459L5.482 8.062a1.745 1.745 0 0 1-.46-1.657l.548-2.19a.678.678 0 0 0-.122-.58L3.654 1.328zM1.884.511a1.745 1.745 0 0 1 2.612.163L6.29 2.98c.329.423.445.974.315 1.494l-.547 2.19a.678.678 0 0 0 .178.643l2.457 2.457a.678.678 0 0 0 .644.178l2.189-.547a1.745 1.745 0 0 1 1.494.315l2.306 1.794c.829.645.905 1.87.163 2.611l-1.034 1.034c-.74.74-1.846 1.065-2.877.702a18.634 18.634 0 0 1-7.01-4.42 18.634 18.634 0 0 1-4.42-7.009c-.362-1.03-.037-2.137.703-2.877L1.885.511z",
-        "M0 4a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2V4Zm2-1a1 1 0 0 0-1 1v.217l7 4.2 7-4.2V4a1 1 0 0 0-1-1H2Zm13 2.383-4.708 2.825L15 11.105V5.383Zm-.034 6.876-5.64-3.471L8 9.583l-1.326-.795-5.64 3.47A1 1 0 0 0 2 13h12a1 1 0 0 0 .966-.741ZM1 11.105l4.708-2.897L1 5.383v5.722Z",
-        "M12.166 8.94c-.524 1.062-1.234 2.12-1.96 3.07A31.493 31.493 0 0 1 8 14.58a31.481 31.481 0 0 1-2.206-2.57c-.726-.95-1.436-2.008-1.96-3.07C3.304 7.867 3 6.862 3 6a5 5 0 0 1 10 0c0 .862-.305 1.867-.834 2.94zM8 16s6-5.686 6-10A6 6 0 0 0 2 6c0 4.314 6 10 6 10z",
-        "M8 8a2 2 0 1 1 0-4 2 2 0 0 1 0 4zm0 1a3 3 0 1 0 0-6 3 3 0 0 0 0 6z"
-    ];
+    let ikoniceObjekti = await getData('ikonice');
+
     for (let i = 0; i < 3; i++) {
-        if (i != 2) {
-            footerSection[0].innerHTML += `
-                <a href="${linkoviIkonica[i]}" class="text-light nav-link">
+        footerSection[0].innerHTML += `
+                <a href="${ikoniceObjekti[i].link}" class="text-light nav-link">
                 <svg xmlns="http://www.w3.org/2000/svg" width="35" height="35" fill="currentColor"
-                    class="${ikoniceKlase[i]}" viewBox="0 0 16 16">
-                    <path d="${ikonicePath[i]}"/>
+                    class="${ikoniceObjekti[i].klasa}" viewBox="0 0 16 16">
+                    ${ikoniceObjekti[i].path[1] ? 
+                        '<path d="' + ikoniceObjekti[i].path[0] + '"/>' + '<path d="' + ikoniceObjekti[i].path[1] + '"/>' : 
+                        '<path d="' + ikoniceObjekti[i].path[0] + '"/>'}
                 </svg></a>
                 `;
-        }
-        else {
-            footerSection[0].innerHTML += `
-                <a href="${linkoviIkonica[i]}" class="text-light nav-link">
-                <svg xmlns="http://www.w3.org/2000/svg" width="35" height="35" fill="currentColor"
-                    class="${ikoniceKlase[i]}" viewBox="0 0 16 16">
-                    <path d="${ikonicePath[i]}"/>
-                    <path d="${ikonicePath[i + 1]}"/>
-                </svg></a>
-                `;
-        }
     }
 
     // STAMPANJE CENTRALNOG DELA FOOTERA
-    const ikoniceLabel = ["011/1234-567", "maxshoes@example.com", "Zdravka Celara 16, Belgrade"];
-    for (let i = 0; i < 3; i++) {
-        if (i != 2) {
-            footerSection[1].innerHTML += `<article>
+    for (let i = 3; i < 6; i++) {
+        footerSection[1].innerHTML += `<article>
                 <svg xmlns="http://www.w3.org/2000/svg" width="35" height="35" fill="currentColor"
-                    class="${ikoniceKlase[i + 3]} text-light" viewBox="0 0 16 16">
-                    <path d="${ikonicePath[i + 4]}" />
+                    class="${ikoniceObjekti[i].klasa} text-light" viewBox="0 0 16 16">
+                    ${ikoniceObjekti[i].path[1] ? 
+                        '<path d="' + ikoniceObjekti[i].path[0] + '"/>' + '<path d="' + ikoniceObjekti[i].path[1] + '"/>' : 
+                        '<path d="' + ikoniceObjekti[i].path[0] + '"/>'}
                 </svg>
-                <p class="text-light">${ikoniceLabel[i]}</p>
+                <p class="text-light">${ikoniceObjekti[i].label}</p>
             </article>`;
-        }
-        else {
-            footerSection[1].innerHTML += `<article>
-                <svg xmlns="http://www.w3.org/2000/svg" width="35" height="35" fill="currentColor"
-                    class="${ikoniceKlase[i + 3]} text-light" viewBox="0 0 16 16">
-                    <path d="${ikonicePath[i + 4]}" /><path d="${ikonicePath[i + 5]}" />
-                </svg>
-                <p class="text-light">${ikoniceLabel[i]}</p>
-            </article>`;
-        }
     }
 
+
     // STAMPANJE DESNOG DELA FOOTERA
-    const linkoviSajta = ["https://djordjeknezevic.github.io/", "Dokumentacija.pdf", "sitemap.xml"];
-    const tekstLinkoviSajta = ["Author", "Documentation"]
-    for (let i = 0; i < 3; i++) {
-        if (i != 2) {
-            footerSection[2].innerHTML += `<a href="${linkoviSajta[i]}" class="nav-link">
-                <h5 class="text-light">${tekstLinkoviSajta[i]}</h5>
+    for (let i = 6; i < 9; i++) {
+        if (i != 8) {
+            footerSection[2].innerHTML += `<a href="${ikoniceObjekti[i].link}" class="nav-link">
+                <h5 class="text-light">${ikoniceObjekti[i].label}</h5>
             </a>`;
-        }
-        else {
+        } else {
             footerSection[2].innerHTML += `<a href="sitemap.xml" class="text-light">
                 <svg xmlns="http://www.w3.org/2000/svg" width="35" height="35" fill="currentColor"
-                    class="bi bi-diagram-3" viewBox="0 0 16 16">
+                    class="${ikoniceObjekti[i].klasa}" viewBox="0 0 16 16">
                     <path fill-rule="evenodd"
-                        d="M6 3.5A1.5 1.5 0 0 1 7.5 2h1A1.5 1.5 0 0 1 10 3.5v1A1.5 1.5 0 0 1 8.5 6v1H14a.5.5 0 0 1 .5.5v1a.5.5 0 0 1-1 0V8h-5v.5a.5.5 0 0 1-1 0V8h-5v.5a.5.5 0 0 1-1 0v-1A.5.5 0 0 1 2 7h5.5V6A1.5 1.5 0 0 1 6 4.5v-1zM8.5 5a.5.5 0 0 0 .5-.5v-1a.5.5 0 0 0-.5-.5h-1a.5.5 0 0 0-.5.5v1a.5.5 0 0 0 .5.5h1zM0 11.5A1.5 1.5 0 0 1 1.5 10h1A1.5 1.5 0 0 1 4 11.5v1A1.5 1.5 0 0 1 2.5 14h-1A1.5 1.5 0 0 1 0 12.5v-1zm1.5-.5a.5.5 0 0 0-.5.5v1a.5.5 0 0 0 .5.5h1a.5.5 0 0 0 .5-.5v-1a.5.5 0 0 0-.5-.5h-1zm4.5.5A1.5 1.5 0 0 1 7.5 10h1a1.5 1.5 0 0 1 1.5 1.5v1A1.5 1.5 0 0 1 8.5 14h-1A1.5 1.5 0 0 1 6 12.5v-1zm1.5-.5a.5.5 0 0 0-.5.5v1a.5.5 0 0 0 .5.5h1a.5.5 0 0 0 .5-.5v-1a.5.5 0 0 0-.5-.5h-1zm4.5.5a1.5 1.5 0 0 1 1.5-1.5h1a1.5 1.5 0 0 1 1.5 1.5v1a1.5 1.5 0 0 1-1.5 1.5h-1a1.5 1.5 0 0 1-1.5-1.5v-1zm1.5-.5a.5.5 0 0 0-.5.5v1a.5.5 0 0 0 .5.5h1a.5.5 0 0 0 .5-.5v-1a.5.5 0 0 0-.5-.5h-1z" />
+                        d="${ikoniceObjekti[i].path[0]}" />
                 </svg>
             </a>`;
         }
@@ -717,25 +655,67 @@ function regexProvera(objekatPolje, errorTekst, regexNiz, porukaNiz, dodatanRege
             objekatPolje.classList.add('error-border');
             tmpGreska = true;
             break;
-        }
-        else if (dodatanRegex && dodatanRegex.test(objekatPolje.value)) {
+        } else if (dodatanRegex && dodatanRegex.test(objekatPolje.value)) {
             objekatPolje.classList.add('error-border');
             errorTekst.textContent = dodatnaPoruka;
             errorTekst.classList.remove('hide');
             tmpGreska = true;
             break;
-        }
-        else if (!regexNiz[i].test(objekatPolje.value)) {
+        } else if (!regexNiz[i].test(objekatPolje.value)) {
             objekatPolje.classList.add('error-border');
             errorTekst.textContent = porukaNiz[i];
             errorTekst.classList.remove('hide');
             tmpGreska = true;
             break;
-        }
-        else {
+        } else {
             objekatPolje.classList.remove('error-border');
             errorTekst.classList.add('hide');
             tmpGreska = false;
         }
+    }
+}
+
+function ajaxCall(fajl) {
+    return $.ajax({
+        url: BASEURL + fajl,
+        method: "get",
+        dataType: "text",
+        success: function (rezultat) {
+            return rezultat;
+        },
+        error: function (jqXHR, exception) {
+            // console.log(jqXHR);
+            var msg = '';
+            if (jqXHR.status === 0) {
+                msg = 'Not connect.\n Verify Network.';
+            } else if (jqXHR.status == 404) {
+                msg = 'Requested page not found. [404]';
+            } else if (jqXHR.status == 500) {
+                msg = 'Internal Server Error [500].';
+            } else if (exception === 'parsererror') {
+                msg = 'Requested JSON parse failed.';
+            } else if (exception === 'timeout') {
+                msg = 'Time out error.';
+            } else if (exception === 'abort') {
+                msg = 'Ajax request aborted.';
+            } else {
+                msg = 'Uncaught Error.\n' + jqXHR.responseText;
+            }
+            console.log(msg)
+        }
+    })
+}
+
+function setLs(key, value) {
+    localStorage.setItem(key, JSON.stringify(value));
+}
+
+async function getData(keyName) {
+    if (!localStorage.getItem(keyName)) {
+        let tmpData = JSON.parse(await ajaxCall(keyName + ".json"));
+        setLs(keyName, tmpData);
+        return tmpData;
+    } else {
+        return JSON.parse(localStorage.getItem(keyName));
     }
 }

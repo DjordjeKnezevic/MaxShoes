@@ -1,0 +1,551 @@
+[{
+    "id": 1,
+    "brand": "Asics",
+    "model": "Metaspeed Sky",
+    "imgSrc": "Assets/img/shoes/Shoe1.jpg",
+    "category": "Men",
+    "price": {
+        "oldPrice": null,
+        "discount": null,
+        "currentPrice": 250
+    }
+}, {
+    "id": 2,
+    "brand": "Asics",
+    "model": "Lite Show",
+    "imgSrc": "Assets/img/shoes/Shoe2.jpg",
+    "category": "Men",
+    "price": {
+        "oldPrice": null,
+        "discount": null,
+        "currentPrice": 120
+    }
+}, {
+    "id": 3,
+    "brand": "Nike",
+    "model": "Pegasus Turbo Next Nature",
+    "imgSrc": "Assets/img/shoes/Shoe3.jpg",
+    "category": "Men",
+    "price": {
+        "oldPrice": 180,
+        "discount": 0.8,
+        "currentPrice": 144
+    }
+}, {
+    "id": 4,
+    "brand": "Adidas",
+    "model": "Adistar",
+    "imgSrc": "Assets/img/shoes/Shoe4.jpg",
+    "category": "Women",
+    "price": {
+        "oldPrice": null,
+        "discount": null,
+        "currentPrice": 130
+    }
+}, {
+    "id": 5,
+    "brand": "Asics",
+    "model": "Jolt 3 GS Junior",
+    "imgSrc": "Assets/img/shoes/Shoe5.jpg",
+    "category": "Kids",
+    "price": {
+        "oldPrice": null,
+        "discount": null,
+        "currentPrice": 40
+    }
+}, {
+    "id": 6,
+    "brand": "New Balance",
+    "model": "Fresh Foam X 860 v13",
+    "imgSrc": "Assets/img/shoes/Shoe6.jpg",
+    "category": "Kids",
+    "price": {
+        "oldPrice": null,
+        "discount": null,
+        "currentPrice": 80
+    }
+}, {
+    "id": 7,
+    "brand": "New Balance",
+    "model": "Fresh Foam Tempo",
+    "imgSrc": "Assets/img/shoes/Shoe7.jpg",
+    "category": "Kids",
+    "price": {
+        "oldPrice": 70,
+        "discount": 0.9,
+        "currentPrice": 63
+    }
+}, {
+    "id": 8,
+    "brand": "Asics",
+    "model": "Gel-Kinsei Blast",
+    "imgSrc": "Assets/img/shoes/Shoe8.jpg",
+    "category": "Kids",
+    "price": {
+        "oldPrice": null,
+        "discount": null,
+        "currentPrice": 180
+    }
+}, {
+    "id": 9,
+    "brand": "Asics",
+    "model": "Kinsei Blast",
+    "imgSrc": "Assets/img/shoes/Shoe9.jpg",
+    "category": "Kids",
+    "price": {
+        "oldPrice": null,
+        "discount": null,
+        "currentPrice": 180
+    }
+}, {
+    "id": 10,
+    "brand": "Adidas",
+    "model": "SolarBOOST 19",
+    "imgSrc": "Assets/img/shoes/Shoe10.jpg",
+    "category": "Women",
+    "price": {
+        "oldPrice": null,
+        "discount": null,
+        "currentPrice": 160
+    }
+}, {
+    "id": 11,
+    "brand": "Adidas",
+    "model": "Solar Glide 3",
+    "imgSrc": "Assets/img/shoes/Shoe11.jpg",
+    "category": "Women",
+    "price": {
+        "oldPrice": null,
+        "discount": null,
+        "currentPrice": 140
+    }
+}, {
+    "id": 12,
+    "brand": "Adidas",
+    "model": "Terrex Speed Ultra",
+    "imgSrc": "Assets/img/shoes/Shoe12.jpg",
+    "category": "Women",
+    "price": {
+        "oldPrice": null,
+        "discount": null,
+        "currentPrice": 160
+    }
+}, {
+    "id": 13,
+    "brand": "Adidas",
+    "model": "SolarBOOST 3",
+    "imgSrc": "Assets/img/shoes/Shoe13.jpg",
+    "category": "Women",
+    "price": {
+        "oldPrice": null,
+        "discount": null,
+        "currentPrice": 160
+    }
+}, {
+    "id": 14,
+    "brand": "Nike",
+    "model": "Air Zoom Pegasus 38 Shield",
+    "imgSrc": "Assets/img/shoes/Shoe14.jpg",
+    "category": "Men",
+    "price": {
+        "oldPrice": null,
+        "discount": null,
+        "currentPrice": 97
+    }
+}, {
+    "id": 15,
+    "brand": "Nike",
+    "model": "Rival D 10",
+    "imgSrc": "Assets/img/shoes/Shoe15.jpg",
+    "category": "Men",
+    "price": {
+        "oldPrice": null,
+        "discount": null,
+        "currentPrice": 65
+    }
+}, {
+    "id": 16,
+    "brand": "Nike",
+    "model": "ZoomX Streakfly",
+    "imgSrc": "Assets/img/shoes/Shoe16.jpg",
+    "category": "Women",
+    "price": {
+        "oldPrice": null,
+        "discount": null,
+        "currentPrice": 160
+    }
+}, {
+    "id": 17,
+    "brand": "Nike",
+    "model": "React Infinity Run Flyknit 3",
+    "imgSrc": "Assets/img/shoes/Shoe17.jpg",
+    "category": "Women",
+    "price": {
+        "oldPrice": null,
+        "discount": null,
+        "currentPrice": 160
+    }
+}, {
+    "id": 18,
+    "brand": "New Balance",
+    "model": "Fresh Foam Hierro v7",
+    "imgSrc": "Assets/img/shoes/Shoe18.jpg",
+    "category": "Women",
+    "price": {
+        "oldPrice": null,
+        "discount": null,
+        "currentPrice": 140
+    }
+}, {
+    "id": 19,
+    "brand": "New Balance",
+    "model": "FuelCell Rebel v3",
+    "imgSrc": "Assets/img/shoes/Shoe19.jpg",
+    "category": "Women",
+    "price": {
+        "oldPrice": 130,
+        "discount": 0.85,
+        "currentPrice": 110.5
+    }
+}, {
+    "id": 20,
+    "brand": "New Balance",
+    "model": "XCR7 v4",
+    "imgSrc": "Assets/img/shoes/Shoe20.jpg",
+    "category": "Men",
+    "price": {
+        "oldPrice": null,
+        "discount": null,
+        "currentPrice": 70
+    }
+}, {
+    "id": 21,
+    "brand": "New Balance",
+    "model": "Fresh Foam 880 v11",
+    "imgSrc": "Assets/img/shoes/Shoe21.jpg",
+    "category": "Men",
+    "price": {
+        "oldPrice": null,
+        "discount": null,
+        "currentPrice": 101
+    }
+}, {
+    "id": 22,
+    "brand": "Inov8",
+    "model": "X-Talon 212",
+    "imgSrc": "Assets/img/shoes/Shoe22.jpg",
+    "category": "Kids",
+    "price": {
+        "oldPrice": null,
+        "discount": null,
+        "currentPrice": 80
+    }
+}, {
+    "id": 23,
+    "brand": "Asics",
+    "model": "Gel-Noosa Tri 13 GS",
+    "imgSrc": "Assets/img/shoes/Shoe23.jpg",
+    "category": "Kids",
+    "price": {
+        "oldPrice": null,
+        "discount": null,
+        "currentPrice": 55
+    }
+}, {
+    "id": 24,
+    "brand": "Puma",
+    "model": "Liberate Nitro",
+    "imgSrc": "Assets/img/shoes/Shoe24.jpg",
+    "category": "Men",
+    "price": {
+        "oldPrice": null,
+        "discount": null,
+        "currentPrice": 110
+    }
+}, {
+    "id": 25,
+    "brand": "Puma",
+    "model": "Velocity Nitro",
+    "imgSrc": "Assets/img/shoes/Shoe25.jpg",
+    "category": "Men",
+    "price": {
+        "oldPrice": null,
+        "discount": null,
+        "currentPrice": 120
+    }
+}, {
+    "id": 26,
+    "brand": "Reebok",
+    "model": "Nanoflex TR",
+    "imgSrc": "Assets/img/shoes/Shoe26.jpg",
+    "category": "Men",
+    "price": {
+        "oldPrice": null,
+        "discount": null,
+        "currentPrice": 90
+    }
+}, {
+    "id": 27,
+    "brand": "Reebok",
+    "model": "Nano X2",
+    "imgSrc": "Assets/img/shoes/Shoe27.jpg",
+    "category": "Men",
+    "price": {
+        "oldPrice": null,
+        "discount": null,
+        "currentPrice": 135
+    }
+}, {
+    "id": 28,
+    "brand": "Reebok",
+    "model": "Floatride Run Fast 3.0",
+    "imgSrc": "Assets/img/shoes/Shoe28.jpg",
+    "category": "Women",
+    "price": {
+        "oldPrice": null,
+        "discount": null,
+        "currentPrice": 140
+    }
+}, {
+    "id": 29,
+    "brand": "Reebok",
+    "model": "Forever Floatride Energy 2.0",
+    "imgSrc": "Assets/img/shoes/Shoe29.jpg",
+    "category": "Women",
+    "price": {
+        "oldPrice": null,
+        "discount": null,
+        "currentPrice": 100
+    }
+}, {
+    "id": 30,
+    "brand": "Adidas",
+    "model": "Terrex Agravic Flow Junior",
+    "imgSrc": "Assets/img/shoes/Shoe30.jpg",
+    "category": "Kids",
+    "price": {
+        "oldPrice": null,
+        "discount": null,
+        "currentPrice": 50
+    }
+}, {
+    "id": 31,
+    "brand": "Adidas",
+    "model": "Adizero XCS Track Spike",
+    "imgSrc": "Assets/img/shoes/Shoe31.jpg",
+    "category": "Men",
+    "price": {
+        "oldPrice": 65,
+        "discount": 0.9,
+        "currentPrice": 58.5
+    }
+}, {
+    "id": 32,
+    "brand": "Adidas",
+    "model": "Solar Glide 4 ST",
+    "imgSrc": "Assets/img/shoes/Shoe32.jpg",
+    "category": "Men",
+    "price": {
+        "oldPrice": null,
+        "discount": null,
+        "currentPrice": 140
+    }
+}, {
+    "id": 33,
+    "brand": "Adidas",
+    "model": "Adizero Adios Pro 2",
+    "imgSrc": "Assets/img/shoes/Shoe33.jpg",
+    "category": "Men",
+    "price": {
+        "oldPrice": null,
+        "discount": null,
+        "currentPrice": 220
+    }
+}, {
+    "id": 34,
+    "brand": "Asics",
+    "model": "Gel-Cumulus 23",
+    "imgSrc": "Assets/img/shoes/Shoe34.jpg",
+    "category": "Women",
+    "price": {
+        "oldPrice": null,
+        "discount": null,
+        "currentPrice": 90
+    }
+}, {
+    "id": 35,
+    "brand": "Asics",
+    "model": "Superblast",
+    "imgSrc": "Assets/img/shoes/Shoe35.jpg",
+    "category": "Women",
+    "price": {
+        "oldPrice": 220,
+        "discount": 0.6,
+        "currentPrice": 132
+    }
+}, {
+    "id": 36,
+    "brand": "Asics",
+    "model": "GT-2000 v9",
+    "imgSrc": "Assets/img/shoes/Shoe36.jpg",
+    "category": "Women",
+    "price": {
+        "oldPrice": null,
+        "discount": null,
+        "currentPrice": 100
+    }
+}, {
+    "id": 37,
+    "brand": "Puma",
+    "model": "Deviate Nitro",
+    "imgSrc": "Assets/img/shoes/Shoe37.jpg",
+    "category": "Women",
+    "price": {
+        "oldPrice": null,
+        "discount": null,
+        "currentPrice": 160
+    }
+}, {
+    "id": 38,
+    "brand": "Adidas",
+    "model": "Youngstar Junior Hockey Shoes",
+    "imgSrc": "Assets/img/shoes/Shoe38.jpg",
+    "category": "Kids",
+    "price": {
+        "oldPrice": null,
+        "discount": null,
+        "currentPrice": 35
+    }
+}, {
+    "id": 39,
+    "brand": "Adidas",
+    "model": "Allroundstar Junior Running Spikes",
+    "imgSrc": "Assets/img/shoes/Shoe39.jpg",
+    "category": "Kids",
+    "price": {
+        "oldPrice": null,
+        "discount": null,
+        "currentPrice": 55
+    }
+}, {
+    "id": 40,
+    "brand": "Adidas",
+    "model": "Ultraboost 21",
+    "imgSrc": "Assets/img/shoes/Shoe40.jpg",
+    "category": "Men",
+    "price": {
+        "oldPrice": null,
+        "discount": null,
+        "currentPrice": 135
+    }
+}, {
+    "id": 41,
+    "brand": "New Balance",
+    "model": "Fresh Foam More Trail v2",
+    "imgSrc": "Assets/img/shoes/Shoe41.jpg",
+    "category": "Men",
+    "price": {
+        "oldPrice": 165,
+        "discount": 0.6,
+        "currentPrice": 99
+    }
+}, {
+    "id": 42,
+    "brand": "New Balance",
+    "model": "MD500v8",
+    "imgSrc": "Assets/img/shoes/Shoe42.jpg",
+    "category": "Men",
+    "price": {
+        "oldPrice": null,
+        "discount": null,
+        "currentPrice": 70
+    }
+}, {
+    "id": 43,
+    "brand": "Reebok",
+    "model": "Floatride Energy 3.0",
+    "imgSrc": "Assets/img/shoes/Shoe43.jpg",
+    "category": "Men",
+    "price": {
+        "oldPrice": null,
+        "discount": null,
+        "currentPrice": 100
+    }
+}, {
+    "id": 44,
+    "brand": "Nike",
+    "model": "Terra Kiger 7",
+    "imgSrc": "Assets/img/shoes/Shoe44.jpg",
+    "category": "Men",
+    "price": {
+        "oldPrice": null,
+        "discount": null,
+        "currentPrice": 105
+    }
+}, {
+    "id": 45,
+    "brand": "Nike",
+    "model": "Pegasus Trail 4 GTX",
+    "imgSrc": "Assets/img/shoes/Shoe45.jpg",
+    "category": "Women",
+    "price": {
+        "oldPrice": 160,
+        "discount": 0.75,
+        "currentPrice": 120
+    }
+}, {
+    "id": 46,
+    "brand": "Nike",
+    "model": "Air Zoom Elite LJ Elite 2",
+    "imgSrc": "Assets/img/shoes/Shoe46.jpg",
+    "category": "Women",
+    "price": {
+        "oldPrice": 150,
+        "discount": 0.75,
+        "currentPrice": 112.5
+    }
+}, {
+    "id": 47,
+    "brand": "Reebok",
+    "model": "Nano X",
+    "imgSrc": "Assets/img/shoes/Shoe47.jpg",
+    "category": "Women",
+    "price": {
+        "oldPrice": null,
+        "discount": null,
+        "currentPrice": 130
+    }
+}, {
+    "id": 48,
+    "brand": "Reebok",
+    "model": "Floatride Energy 3.0",
+    "imgSrc": "Assets/img/shoes/Shoe48.jpg",
+    "category": "Women",
+    "price": {
+        "oldPrice": null,
+        "discount": null,
+        "currentPrice": 100
+    }
+}, {
+    "id": 49,
+    "brand": "New Balance",
+    "model": "XC Seven v4",
+    "imgSrc": "Assets/img/shoes/Shoe49.jpg",
+    "category": "Women",
+    "price": {
+        "oldPrice": null,
+        "discount": null,
+        "currentPrice": 70
+    }
+}, {
+    "id": 50,
+    "brand": "New Balance",
+    "model": "Fresh Foam More Trail v2",
+    "imgSrc": "Assets/img/shoes/Shoe50.jpg",
+    "category": "Women",
+    "price": {
+        "oldPrice": null,
+        "discount": null,
+        "currentPrice": 165
+    }
+}]

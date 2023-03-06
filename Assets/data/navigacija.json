@@ -1,0 +1,35 @@
+[
+    {
+        "id": "1",
+        "naziv": "MEN",
+        "link": "/MaxShoes/products.html?category=Men",
+        "slika": {
+            "src":"Assets/img/MensShoes.jpg",
+            "alt": "MensShoes"
+        }
+    },
+    {
+        "id": "2",
+        "naziv": "WOMEN",
+        "link": "/MaxShoes/products.html?category=Women",
+        "slika": {
+            "src":"Assets/img/WomensShoes.jpg",
+            "alt": "WomenShoes"
+        }
+    },
+    {
+        "id": "3",
+        "naziv": "KIDS",
+        "link": "/MaxShoes/products.html?category=Kids",
+        "slika": {
+            "src":"Assets/img/KidsShoes.jpg",
+            "alt": "KidsShoes"
+        }
+    },
+    {
+        "id": "4",
+        "naziv": "CONTACT",
+        "link": "/MaxShoes/contact.html",
+        "slika": {}
+    }
+]

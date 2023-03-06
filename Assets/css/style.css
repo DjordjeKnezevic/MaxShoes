@@ -427,6 +427,14 @@ footer h5:hover {
     padding: 0px;
 }
 
+#ukloni-filtre {
+    cursor: pointer;
+    transition: 0.3s;
+}
+#ukloni-filtre:hover {
+    background-color: #444F72;
+    transition: 0.3s;
+}
 /* * * * * * * * * * * * * * * * * * * * * * * * * * FILTER NAVBAR * * * * * * * * * * * * * * * * * * * * * * * * * * * * */
 
 #frame .container-fluid {
