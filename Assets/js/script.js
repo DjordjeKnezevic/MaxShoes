@@ -172,12 +172,12 @@ window.onload = async function () {
 
     //* * * * * * * * * * * * * * * * * * * * * * * * * * PRVA STRANICA * * * * * * * * * * * * * * * * * * * * * * * * * * *
     let url = document.location.pathname;
-    // if (url == "/MaxShoes/"
-    //     || url == "/MaxShoes/index.html"
-    //     || url == "/MaxShoes/#") {
-    if (url == "/" ||
-        url == "/index.html" ||
-        url == "/#") {
+    if (url == "/MaxShoes/"
+        || url == "/MaxShoes/index.html"
+        || url == "/MaxShoes/#") {
+    // if (url == "/" ||
+    //     url == "/index.html" ||
+    //     url == "/#") {
 
         // FADEOUT ANIMACIJA WELCOME EKRANA
         let bgSlike = welcomeScreen.getElementsByTagName("img");
@@ -222,8 +222,8 @@ window.onload = async function () {
     }
 
     //* * * * * * * * * * * * * * * * * * * * * * * * * * DRUGA STRANICA * * * * * * * * * * * * * * * * * * * * * * * * * * *
-    // else if (url == "/MaxShoes/products.html") {
-    else if (url == "/products.html") {
+    else if (url == "/MaxShoes/products.html") {
+    // else if (url == "/products.html") {
 
         // ENABLE-OVANJE BOOTSTRAPOVOG TOOLTIP-A ZA KORPE
         $(document).ready(function () {
