@@ -475,6 +475,9 @@ footer h5:hover {
 #no-shoes {
     height:10%;
 }
+#no-shoes h2 {
+    font-size: 2vw;
+}
 /* * * * * * * * * * * * * * * * * * * * * * * * * * FILTER NAVBAR * * * * * * * * * * * * * * * * * * * * * * * * * * * * */
 
 #frame .container-fluid {

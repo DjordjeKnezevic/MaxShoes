@@ -183,6 +183,9 @@
     .icons a svg {
         margin-right: 20px;
     }
+    #no-shoes h2 {
+        font-size: 3vw;
+    }
 }
 
 @media(max-width:991px) {
@@ -339,6 +342,9 @@
     }
     .lgreen {
         font-size: 2em;
+    }
+    #no-shoes h2 {
+        font-size: 5vw;
     }
 }
 
