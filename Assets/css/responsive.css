@@ -401,7 +401,11 @@
         height: 30px;
         margin-right: 10px;
     }
-
+    #brojac {
+        width:20px;
+        height:20px;
+        right:15%;
+    }
     .navbar-toggler {
         margin-right: 15px;
     }
@@ -527,6 +531,12 @@
 
     footer h5 {
         font-size: 0.6em;
+    }
+    #brojac {
+        width:18px;
+        height:18px;
+        right:10%;
+        top:-8%;
     }
 }
 
