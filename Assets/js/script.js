@@ -26,8 +26,8 @@ window.onload = async function () {
     }
 
     // ANIMACIJA NAVBARA PRI SCROLL-U (POJAVLJIVANJE I NESTAJANJE)
-    let navbar = document.querySelector('.navbar-meni');
     let lastScroll = 0;
+    navbar = document.querySelector('.navbar-meni');
     const validateHeader = () => {
         const windowY = window.scrollY;
         const windowH = window.innerHeight;
@@ -184,12 +184,12 @@ window.onload = async function () {
 
     //* * * * * * * * * * * * * * * * * * * * * * * * * * PRVA STRANICA * * * * * * * * * * * * * * * * * * * * * * * * * * *
     let url = document.location.pathname;
-    if (url == "/MaxShoes/"
-        || url == "/MaxShoes/index.html"
-        || url == "/MaxShoes/#") {
-    // if (url == "/" ||
-    //     url == "/index.html" ||
-    //     url == "/#") {
+    if (url == "/MaxShoes/" ||
+        url == "/MaxShoes/index.html" ||
+        url == "/MaxShoes/#") {
+        // if (url == "/" ||
+        //     url == "/index.html" ||
+        //     url == "/#") {
 
         // FADEOUT ANIMACIJA WELCOME EKRANA
         let bgSlike = welcomeScreen.getElementsByTagName("img");
@@ -235,7 +235,7 @@ window.onload = async function () {
 
     //* * * * * * * * * * * * * * * * * * * * * * * * * * DRUGA STRANICA * * * * * * * * * * * * * * * * * * * * * * * * * * *
     else if (url == "/MaxShoes/products.html") {
-    // else if (url == "/products.html") {
+        // else if (url == "/products.html") {
 
         // ENABLE-OVANJE BOOTSTRAPOVOG TOOLTIP-A ZA KORPE
         $(document).ready(function () {
@@ -405,6 +405,8 @@ window.onload = async function () {
             ukloniFiltre.classList.add('hide');
             if (nizFilterDugmadi) {
                 ResetSlider()
+                $('#free-shipping').prop('checked', false);
+                $('#on-discount').prop('checked', false);
                 while (filterDisplay.childNodes.length > 2) {
                     filterDisplay.removeChild(filterDisplay.firstChild);
                 }
@@ -792,6 +794,7 @@ async function getData(keyName) {
 // FUNKCIJA ZA STAMPANJE BROJA ARTIKLA U KORPI
 let ikonice = document.querySelectorAll('.icons a svg')
 let brojacOkvir = document.getElementById('brojac');
+let navbar = document.querySelector('.navbar-meni');
 
 function stampajBrojac(brojac, promena) {
     if (brojac > 1 || (brojac == 1 && promena == -1)) {
