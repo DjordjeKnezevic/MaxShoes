@@ -1,35 +1,38 @@
-[
-    {
+[{
         "id": "1",
         "naziv": "MEN",
         "link": "/MaxShoes/products.html?category=Men",
         "slika": {
-            "src":"Assets/img/MensShoes.jpg",
+            "src": "Assets/img/MensShoes.jpg",
             "alt": "MensShoes"
-        }
+        },
+        "klasa": "dark-blue-bg text-white"
     },
     {
         "id": "2",
         "naziv": "WOMEN",
         "link": "/MaxShoes/products.html?category=Women",
         "slika": {
-            "src":"Assets/img/WomensShoes.jpg",
+            "src": "Assets/img/WomensShoes.jpg",
             "alt": "WomenShoes"
-        }
+        },
+        "klasa": "pink-bg text-dark"
     },
     {
         "id": "3",
         "naziv": "KIDS",
         "link": "/MaxShoes/products.html?category=Kids",
         "slika": {
-            "src":"Assets/img/KidsShoes.jpg",
+            "src": "Assets/img/KidsShoes.jpg",
             "alt": "KidsShoes"
-        }
+        },
+        "klasa": "lgreen-bg text-dark"
     },
     {
         "id": "4",
         "naziv": "CONTACT",
         "link": "/MaxShoes/contact.html",
-        "slika": {}
+        "slika": {},
+        "klasa": ""
     }
 ]

@@ -17,6 +17,13 @@ window.onload = async function () {
         li.appendChild(a);
         navbarNav.appendChild(li);
     }
+    if (window.innerWidth < 650) {
+        let logoIme = document.getElementById('logo-ime')
+        logoIme.textContent = 'MS';
+        logoIme.classList.remove('text-light');
+        logoIme.classList.add('lgreen-lg');
+        console.log(logoIme)
+    }
 
     // ANIMACIJA NAVBARA PRI SCROLL-U (POJAVLJIVANJE I NESTAJANJE)
     let navbar = document.querySelector('.navbar-meni');
@@ -170,14 +177,19 @@ window.onload = async function () {
         }
     });
 
+    // INICIJALNO STAMPANJE BROJA ARTIKLA U KORPI
+    let cartArr = JSON.parse(localStorage.getItem('korpa'));
+    if (cartArr == null) cartArr = [];
+    stampajBrojac(cartArr.length, 1);
+
     //* * * * * * * * * * * * * * * * * * * * * * * * * * PRVA STRANICA * * * * * * * * * * * * * * * * * * * * * * * * * * *
     let url = document.location.pathname;
-    if (url == "/MaxShoes/"
-        || url == "/MaxShoes/index.html"
-        || url == "/MaxShoes/#") {
-    // if (url == "/" ||
-    //     url == "/index.html" ||
-    //     url == "/#") {
+    if (url == "/MaxShoes/" ||
+        url == "/MaxShoes/index.html" ||
+        url == "/MaxShoes/#") {
+        // if (url == "/" ||
+        //     url == "/index.html" ||
+        //     url == "/#") {
 
         // FADEOUT ANIMACIJA WELCOME EKRANA
         let bgSlike = welcomeScreen.getElementsByTagName("img");
@@ -213,7 +225,7 @@ window.onload = async function () {
         let kategorije = document.querySelector('.container .row');
         for (let i = 0; i < 3; i++) {
             kategorije.innerHTML += `<a href="${navObjekti[i].link}" class="nav-link col-md-3">
-        <div class="hcontainer">
+        <div class="hcontainer ${navObjekti[i].klasa}">
             <h3>${navObjekti[i].naziv}</h3>
         </div>
         <img src="${navObjekti[i].slika.src}" alt="${navObjekti[i].slika.alt}">
@@ -223,7 +235,7 @@ window.onload = async function () {
 
     //* * * * * * * * * * * * * * * * * * * * * * * * * * DRUGA STRANICA * * * * * * * * * * * * * * * * * * * * * * * * * * *
     else if (url == "/MaxShoes/products.html") {
-    // else if (url == "/products.html") {
+        // else if (url == "/products.html") {
 
         // ENABLE-OVANJE BOOTSTRAPOVOG TOOLTIP-A ZA KORPE
         $(document).ready(function () {
@@ -261,7 +273,7 @@ window.onload = async function () {
                     }
                     prvaCenaGranica = ui.values[0]
                     drugaCenaGranica = ui.values[1]
-                    Filtar()
+                    glavniFiltar()
                 }
             });
             $("#amount").text("Price range: $" + $slider.slider("values", 0) + " - $" + $slider.slider("values", 1));
@@ -306,6 +318,24 @@ window.onload = async function () {
         const listaBrendova = document.querySelectorAll('#brendovi .dropdown-item');
         const listaSortiranja = document.querySelectorAll('#sortiraj-po .dropdown-item');
         const listaKategorija = document.querySelectorAll('#kategorije-opcije .dropdown-item');
+        const listaDodatnihFiltra = document.querySelectorAll('#ostali-filtri input');
+
+        document.querySelector('#ostali-filtri').addEventListener('click', function (e) {
+            e.stopPropagation();
+        })
+        listaDodatnihFiltra.forEach(function (filtar) {
+            filtar.addEventListener('change', function () {
+                let imeFiltra = filtar.dataset.name;
+                if (filtar.checked) {
+                    dugmadFilter = document.querySelectorAll('.filter-dugme');
+                    StampajDugme(imeFiltra, dugmadFilter);
+                    glavniFiltar();
+                } else {
+                    $(`.filter-dugme:contains(${imeFiltra})`).remove();
+                    glavniFiltar();
+                }
+            });
+        })
 
         function dodajEventDdListama(listaOpcija, listaTekstova, key) {
             for (let i = 0; i < listaOpcija.length; i++) {
@@ -323,7 +353,7 @@ window.onload = async function () {
                     if (stampaj) {
                         StampajDugme(opcija, dugmadFilter, key);
                     }
-                    Filtar();
+                    glavniFiltar();
                 })
             }
         }
@@ -361,11 +391,13 @@ window.onload = async function () {
         function UkloniRoditelja(dugme) {
             dugmadFilter = document.querySelectorAll('.filter-dugme');
             if (dugme.parentElement.textContent.split(' ')[0] == "Price") ResetSlider();
+            if (dugme.parentElement.textContent == "Free shipping") $('#free-shipping').prop('checked', false);
+            if (dugme.parentElement.textContent == "On Discount") $('#on-discount').prop('checked', false);
             dugme.parentElement.remove();
             if (dugmadFilter.length == 2) {
                 SakrijCistac();
             }
-            Filtar()
+            glavniFiltar()
         }
 
         // FUNKCIJA ZA SAKRIVANJE CISTAC DUGMETA I UKLANJANJE OSTALIH (PREKO POZIVANJA UkloniRoditelja() FUNKCIJE)
@@ -376,16 +408,16 @@ window.onload = async function () {
                 while (filterDisplay.childNodes.length > 2) {
                     filterDisplay.removeChild(filterDisplay.firstChild);
                 }
-                Filtar()
+                glavniFiltar()
             }
             patikeDisplay.style.height = "92%"
         }
 
         // FUNKCIJA ZA STAMPANJE FILTER DUGMETA
-        function StampajDugme(opcija, nizFilterDugmadi, key) {
+        function StampajDugme(opcija, nizFilterDugmadi, key = null) {
             let filterDugme = document.createElement('button');
             filterDugme.classList.add('btn', 'dark-blue-bg', 'text-light', 'ms-3', 'filter-dugme');
-            filterDugme.textContent = `${key}: ${opcija}`
+            filterDugme.textContent = key ? `${key}: ${opcija}` : `${opcija}`
             let closeDugme = document.createElement('button');
             closeDugme.classList.add('btn-close', 'ms-2', 'ukloni-dugme');
             closeDugme.addEventListener('click', function () {
@@ -426,36 +458,73 @@ window.onload = async function () {
         }
 
         // FUNKCIJA ZA SORTIRANJE ELEMENATA NIZA
-        function sort(shoeList, asc) {
-            console.log(shoeList);
-            if (asc) {
-                shoeList.sort(function (a, b) {
-                    return a.price.currentPrice - b.price.currentPrice
-                })
-            } else {
-                shoeList.sort(function (a, b) {
-                    return b.price.currentPrice - a.price.currentPrice
-                })
+        function sort(shoeList, type) {
+            switch (type) {
+                case "price-ascending":
+                    shoeList.sort(function (a, b) {
+                        if (a.price.discount && b.price.discount) return a.price.discount * a.price.basePrice - b.price.discount * b.price.basePrice;
+                        if (a.price.discount && !b.price.discount) return a.price.discount * a.price.basePrice - b.price.basePrice;
+                        if (!a.price.discount && b.price.discount) return a.price.basePrice - b.price.discount * b.price.basePrice;
+                        if (!a.price.discount && !b.price.discount) return a.price.basePrice - b.price.basePrice;
+                    })
+                    break;
+                case "price-descending":
+                    shoeList.sort(function (a, b) {
+                        if (a.price.discount && b.price.discount) return b.price.discount * b.price.basePrice - a.price.discount * a.price.basePrice;
+                        if (a.price.discount && !b.price.discount) return b.price.basePrice - a.price.basePrice * a.price.discount;
+                        if (!a.price.discount && b.price.discount) return b.price.basePrice * b.price.discount - a.price.basePrice;
+                        if (!a.price.discount && !b.price.discount) return b.price.basePrice - a.price.basePrice;
+                    })
+                    break;
+                case "name-ascending":
+                    shoeList.sort(function (a, b) {
+                        return ((a.brand + a.model) > (b.brand + b.model) ? 1 : -1)
+                    })
+                    break;
+                case "name-descending":
+                    shoeList.sort(function (a, b) {
+                        return ((a.brand + a.model) > (b.brand + b.model) ? -1 : 1)
+                    })
+                    break;
             }
         }
 
         // FUNKCIJA ZA FILTRIRANJE PATIKA
-        async function Filtar() {
+        async function glavniFiltar() {
             shoeList = await getData('proizvodi');
             dugmadFilter = document.querySelectorAll('.filter-dugme');
             if (dugmadFilter.length < 1) return
             dugmadFilter.forEach(dugme => {
                 let filtar = dugme.textContent.split(': ')[1]
-                if (filtar != undefined) {
+                if (filtar == undefined) {
+                    let filtar2 = dugme.textContent.split(': ')[0]
+                    if (filtar2 == 'Free shipping') {
+                        shoeList = shoeList.filter(shoe => {
+                            return shoe.price.shipping == null
+                        })
+                    } else if (filtar2 == 'On Discount') {
+                        shoeList = shoeList.filter(shoe => {
+                            return shoe.price.discount != null
+                        })
+                    }
+                } else {
                     if (filtar.substring(0, 1) == "$") {
                         shoeList = shoeList.filter(shoe => {
-                            return (prvaCenaGranica <= shoe.price && shoe.price <= drugaCenaGranica)
+                            if (shoe.price.discount) return (prvaCenaGranica <= shoe.price.basePrice * shoe.price.discount && shoe.price.basePrice * shoe.price.discount <= drugaCenaGranica)
+                            return (prvaCenaGranica <= shoe.price.basePrice && shoe.price.basePrice <= drugaCenaGranica)
                         })
-                    } else if (filtar.split(' ')[1] == "Ascending") {
-                        console.log("OVDE")
-                        sort(shoeList, true)
-                    } else if (filtar.split(' ')[1] == "Descending") {
-                        sort(shoeList, false)
+                    } else if (filtar.split(' ')[0] == "Price") {
+                        if (filtar.split(' ')[1] == "Ascending") {
+                            sort(shoeList, "price-ascending")
+                        } else {
+                            sort(shoeList, "price-descending")
+                        }
+                    } else if (filtar.split(' ')[0] == "Name") {
+                        if (filtar.split(' ')[1] == "Ascending") {
+                            sort(shoeList, "name-ascending")
+                        } else {
+                            sort(shoeList, "name-descending")
+                        }
                     } else {
                         shoeList = shoeList.filter(shoe => {
                             return (shoe.brand == filtar ||
@@ -469,45 +538,56 @@ window.onload = async function () {
         }
 
         // STAMPANJE PATIKA
-        let cartIkonica = `<svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="currentColor"
-        class="bi bi-cart3 korpa" viewBox="0 0 16 16" data-bs-title="Remove from cart">
-        <path
-            d="M0 1.5A.5.5 0 0 1 .5 1H2a.5.5 0 0 1 .485.379L2.89 3H14.5a.5.5 0 0 1 .49.598l-1 5a.5.5 0 0 1-.465.401l-9.397.472L4.415 11H13a.5.5 0 0 1 0 1H4a.5.5 0 0 1-.491-.408L2.01 3.607 1.61 2H.5a.5.5 0 0 1-.5-.5zM3.102 4l.84 4.479 9.144-.459L13.89 4H3.102zM5 12a2 2 0 1 0 0 4 2 2 0 0 0 0-4zm7 0a2 2 0 1 0 0 4 2 2 0 0 0 0-4zm-7 1a1 1 0 1 1 0 2 1 1 0 0 1 0-2zm7 0a1 1 0 1 1 0 2 1 1 0 0 1 0-2z" /></svg>`
-
+        let idUKorpi = cartArr.map(obj => obj.id)
         async function stampajPatike(shoeList) {
             let svePatike = document.querySelectorAll('.shoe')
             svePatike.forEach(patika => {
                 patika.remove()
             })
+            if (shoeList.length == 0) {
+                patikeDisplay.innerHTML =
+                    `<div class="alert alert-danger mt-5 p-4 rounded-pill d-flex align-items-center justify-content-center" id="no-shoes">
+                <h2>Sorry, no shoes matching your filters</h2></div>`;
+                return;
+            }
+            patikeDisplay.innerHTML = '';
             for (let shoe of shoeList) {
+                let bgColor;
+                if (shoe.category == 'Men') bgColor = 'dark-blue-bg text-white';
+                if (shoe.category == 'Women') bgColor = 'pink-bg text-dark';
+                if (shoe.category == 'Kids') bgColor = 'lgreen-bg text-dark';
                 patikeDisplay.innerHTML += `
                 <article class="shoe mt-4 container">
                 <img src="${shoe.img.src}" alt="${shoe.img.alt}" class="img-fluid">
-                <strong>${shoe.brand} ${shoe.model}</strong>
-                <i>${shoe.category}</i>
-                <div class="d-flex justify-content-between w-50">
-                ${shoe.price.oldPrice ? 
-                    "<p class='text-decoration-line-through'>$" + shoe.price.oldPrice + "</p>" + "<p>$" + shoe.price.currentPrice + "</p>" :
-                    "<p>$" + shoe.price.currentPrice + "</p>"
+                <strong class="d-block">${shoe.brand} ${shoe.model}</strong>
+                <i class="d-inline-block ${bgColor} w-75 rounded">${shoe.category}</i>
+                <div id="shoe-price">
+                ${shoe.price.discount ? 
+                    "<p class='text-decoration-line-through d-inline mx-2 text-danger fst-italic'>$" + shoe.price.basePrice + 
+                    "</p>" + "<p class='d-inline text-success fw-bold'>$" + Math.round(shoe.price.basePrice * shoe.price.discount, 1) + 
+                    "<strong class='d-inline text-black fst-italic'>(" + Math.round((1 - shoe.price.discount) * 100) + "% off!)</strong>" :
+                    "<p>$" + shoe.price.basePrice + "</p>"
                 }
-
-                    </div>
+                </div>
+                ${shoe.price.shipping ? "<i id='text-shipping' class='bg-dark d-inline-block text-white p-2 rounded-pill'>Shipping: $" + shoe.price.shipping + "</i>" : 
+                '<img src="Assets/img/free-shipping.png" alt="free shipping" class="img-fluid" id="free-shipping-img">'}
+                
                 <a data-bs-toggle="tooltip" data-bs-placement="top" data-bs-title="Add to cart">
-                <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="currentColor" class="bi bi-cart3 korpa" viewBox="0 0 16 16" data-bs-title="Remove from cart">
+                <svg data-id="${shoe.id}" xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="currentColor" class="bi bi-cart3 korpa ${idUKorpi.includes(shoe.id) ? 'crvena' : 'plava'}" viewBox="0 0 16 16" data-bs-title="Remove from cart">
         <path d="M0 1.5A.5.5 0 0 1 .5 1H2a.5.5 0 0 1 .485.379L2.89 3H14.5a.5.5 0 0 1 .49.598l-1 5a.5.5 0 0 1-.465.401l-9.397.472L4.415 11H13a.5.5 0 0 1 0 1H4a.5.5 0 0 1-.491-.408L2.01 3.607 1.61 2H.5a.5.5 0 0 1-.5-.5zM3.102 4l.84 4.479 9.144-.459L13.89 4H3.102zM5 12a2 2 0 1 0 0 4 2 2 0 0 0 0-4zm7 0a2 2 0 1 0 0 4 2 2 0 0 0 0-4zm-7 1a1 1 0 1 1 0 2 1 1 0 0 1 0-2zm7 0a1 1 0 1 1 0 2 1 1 0 0 1 0-2z"></path></svg></a></article>
                 `
             }
+            dodajEventKorpama()
         }
 
-        // FUNKCIJA ZA STAMPANJE NOTIFIKACIJE O DODAVANJU I SKLANJANJU IZ KORPE
-        let brojac = 0;
-
+        // FUNKCIJA ZA DODAVANJE I IZBACIVANJE IZ KORPE ZA SVAKI PRODUKT
         function dodajEventKorpama() {
             $(document).ready(function () {
                 $(this).attr('data-bs-title', 'Remove from cart')
                 $('.korpa').click(function () {
-                    if ($(this).css('color') == 'rgb(0, 0, 255)') {
-                        $(this).css('color', 'red');
+                    if ($(this).hasClass('plava')) {
+                        $(this).removeClass('plava');
+                        $(this).addClass('crvena');
                         $(this).parent().tooltip('disable');
                         $(this).tooltip('enable');
                         $('#uspesno-dodato')
@@ -525,10 +605,12 @@ window.onload = async function () {
                             }, {
                                 duration: 0
                             });
-                        brojac++;
-                        stampajBrojac(brojac, 1);
+                        cartArr.push(shoeList.find(shoe => shoe.id == this.dataset.id));
+                        setLs('korpa', cartArr);
+                        stampajBrojac(cartArr.length, 1);
                     } else {
-                        $(this).css('color', 'blue');
+                        $(this).removeClass('crvena');
+                        $(this).addClass('plava');
                         $(this).tooltip('disable');
                         $(this).parent().tooltip('enable');
                         $('#uspesno-skinuto')
@@ -546,38 +628,14 @@ window.onload = async function () {
                             }, {
                                 duration: 0
                             });
-                        brojac--;
-                        stampajBrojac(brojac, -1)
+                        let objZaBrisanje = shoeList.find(shoe => shoe.id == this.dataset.id);
+                        let indexObj = cartArr.indexOf(objZaBrisanje);
+                        cartArr.splice(indexObj, 1);
+                        setLs('korpa', cartArr);
+                        stampajBrojac(cartArr.length, -1)
                     }
                 })
             })
-        }
-
-        // FUNKCIJA ZA STAMPANJE BROJA ARTIKLA U KORPI
-        let ikonice = document.querySelectorAll('.icons a svg')
-        let brojacOkvir = document.getElementById('brojac');
-
-        function stampajBrojac(brojac, promena) {
-            if (brojac > 1 || (brojac == 1 && promena == -1)) {
-                brojacOkvir.textContent = brojac
-            } else if (brojac == 0) {
-                if (window.innerWidth < 456) {
-                    navbar.style.padding = '5px 0 0 0'
-                }
-                brojacOkvir.classList.add('hide')
-                ikonice.forEach(ikonica => {
-                    ikonica.style.marginTop = '0px'
-                })
-            } else if (brojac == 1 && promena == 1) {
-                if (window.innerWidth < 456) {
-                    navbar.style.padding = '0 0 0 0'
-                }
-                brojacOkvir.classList.remove('hide')
-                brojacOkvir.textContent = brojac
-                ikonice.forEach(ikonica => {
-                    ikonica.style.marginTop = '25px'
-                })
-            }
         }
 
 
@@ -600,8 +658,7 @@ window.onload = async function () {
         dodajEventDdListama(listaBrendova, brendoviTekst, 'Brand');
         dodajEventDdListama(listaKategorija, kategorijeTekst, 'Category');
         dodajEventDdListama(listaSortiranja, sortirajTekst, 'Sort By');
-        Filtar();
-        dodajEventKorpama();
+        glavniFiltar();
     }
     //* * * * * * * * * * * * * * * * * * * * * ZAJEDNICKI DEO ZA SVE STRANICE * * * * * * * * * * * * * * * * * * * * * * * *
     // STAMPANJE LEVOG DELA FOOTERA
@@ -723,5 +780,30 @@ async function getData(keyName) {
         return tmpData;
     } else {
         return JSON.parse(localStorage.getItem(keyName));
+    }
+}
+
+// FUNKCIJA ZA STAMPANJE BROJA ARTIKLA U KORPI
+let ikonice = document.querySelectorAll('.icons a svg')
+let brojacOkvir = document.getElementById('brojac');
+
+function stampajBrojac(brojac, promena) {
+    if (brojac > 1 || (brojac == 1 && promena == -1)) {
+        brojacOkvir.classList.remove('hide')
+        brojacOkvir.textContent = brojac
+    } else if (brojac == 0) {
+        if (window.innerWidth < 456) {
+            navbar.style.padding = '5px 0 0 0'
+        }
+        brojacOkvir.classList.add('hide')
+        ikonice.forEach(ikonica => {
+            ikonica.style.marginTop = '0px'
+        })
+    } else if (brojac == 1 && promena == 1) {
+        if (window.innerWidth < 456) {
+            navbar.style.padding = '0 0 0 0'
+        }
+        brojacOkvir.classList.remove('hide')
+        brojacOkvir.textContent = brojac
     }
 }
