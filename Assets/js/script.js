@@ -548,7 +548,7 @@ window.onload = async function () {
             })
             if (shoeList.length == 0) {
                 patikeDisplay.innerHTML =
-                    `<div class="alert alert-danger mt-5 p-4 rounded-pill d-flex align-items-center justify-content-center text-center" id="no-shoes">
+                    `<div class="alert alert-danger mt-3 p-4 rounded-pill d-flex align-items-center justify-content-center text-center" id="no-shoes">
                 <h2>Sorry, no shoes matching your filters</h2></div>`;
                 return;
             }
