@@ -615,6 +615,7 @@ window.onload = async function () {
         document.querySelector('#clear').addEventListener('click', function () {
             localStorage.removeItem("korpa");
             stampajKorpu();
+            stampajBrojac(0, -1)
         })
 
         let stavkeUKorpi;
@@ -622,7 +623,7 @@ window.onload = async function () {
         function stampajKorpu() {
             let korpaDrzac = document.querySelector('#korpa-drzac');
             let totalText = document.getElementById('total');
-            if (!localStorage.getItem("korpa")) {
+            if (!localStorage.getItem("korpa") || localStorage.getItem("korpa") == "[]") {
                 korpaDrzac.innerHTML = `<div class="alert alert-danger mt-3 p-4 rounded-pill d-flex align-items-center justify-content-center text-center" id="no-shoes">
                 <h2>You don't have any items in your cart</h2></div>`;
                 totalText.innerHTML = `Total: $0.00`
@@ -677,17 +678,22 @@ window.onload = async function () {
             totalText.innerHTML = `Total: $${total}`
             html += ``
             korpaDrzac.innerHTML = html;
+            dodajEventKantama(stavkeUKorpi);
+        }
+
+        function dodajEventKantama(stavkeUKorpi) {
+            document.querySelectorAll('.obrisi-stavku').forEach(dugme => {
+                dugme.addEventListener('click', function () {
+                    let indexZaBrisanje = stavkeUKorpi.indexOf(stavkeUKorpi.find(stavka => stavka.id == dugme.dataset.id))
+                    stavkeUKorpi.splice(indexZaBrisanje, 1)
+                    setLs('korpa', stavkeUKorpi)
+                    stampajKorpu();
+                    stampajBrojac(stavkeUKorpi.length, -1)
+                })
+            })
         }
         stampajKorpu()
-        document.querySelectorAll('.obrisi-stavku').forEach(dugme => {
-            dugme.addEventListener('click', function () {
-                console.log("wt")
-                let indexZaBrisanje = stavkeUKorpi.indexOf(stavkeUKorpi.find(stavka => stavka.id == dugme.dataset.id))
-                stavkeUKorpi.splice(indexZaBrisanje, 1)
-                setLs('korpa', stavkeUKorpi)
-                stampajKorpu();
-            })
-        })
+
 
     }
 
