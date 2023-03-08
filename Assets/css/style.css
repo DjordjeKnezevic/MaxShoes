@@ -740,6 +740,32 @@ span.ui-slider-handle.ui-state-default.ui-corner-all:last-of-type {
 /* * * * * * * * * * * * * * * * * * * * * * * * * * CART STRANICA * * * * * * * * * * * * * * * * * * * * * * * * * * * * */
 
 #korpa-main {
-    min-height: 100vh;
-    background-color: azure;
+    min-height: 90vh;
+}
+#korpa-drzac {
+    height:70vh;
+    margin-top: 100px;
+    overflow-y: auto;
+    overflow-x: hidden;
+}
+.stavka {
+    width: 100%;
+    max-height: 300px;
+    position: relative;
+}
+.stavka .col-md-5 {
+    min-height: 100px;
+}
+.stavka h2 {
+    font-size: 2vw;
+}
+.obrisi-stavku {
+    position: absolute;
+    top:5%;
+    right:-95%;
+    font-size: 2vw;
+    cursor: pointer;
+}
+#korpa-info button {
+    font-size: 1vw;
 }

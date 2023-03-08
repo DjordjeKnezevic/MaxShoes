@@ -16,6 +16,11 @@
     }
 }
 
+@media(max-width: 1300px) {
+    #korpa-info button {
+        font-size: 2vw;
+    }
+}
 @media(orientation: landscape) and (max-height:800px) {
     #welcome-title {
         top: 25vh !important;
@@ -153,6 +158,9 @@
     .shoe {
         margin-top: 15px !important;
     }
+    .stavka h2 {
+        font-size: 2.5vw;
+    }
 }
 
 
@@ -265,6 +273,11 @@
         max-height: 500px ;
         margin-top: 20px !important;
     }
+    .obrisi-stavku {
+        top:8%;
+        right:-92%;
+        font-size: 3vw;
+    }
 }
 
 @media(max-width:794px) {
@@ -305,6 +318,20 @@
 @media(max-width:767px) {
     .shoe {
         width: 220px;
+    }
+    .stavka {
+        max-height: 500px;
+    }
+    .stavka img {
+        max-width: 220px;
+    }
+    .stavka h2 {
+        font-size: 3.5vw;
+    }
+    .obrisi-stavku {
+        top:4%;
+        right:-90%;
+        font-size: 4vw;
     }
 }
 
@@ -348,17 +375,6 @@
     }
 }
 
-@media(max-width:609px) {
-    .shoe {
-        width: 220px;
-    }
-
-    .shoe a {
-        font-size: 0.5em;
-        bottom: 4%;
-    }
-}
-
 @media(max-width:626px) {
     #welcome-title h1 {
         font-size: 2em;
@@ -370,6 +386,26 @@
 
     #welcome-title {
         top: 80px;
+    }
+    #korpa-info button {
+        font-size: 2.6vw;
+    }
+    #korpa-info h2 {
+        font-size: 4vw;
+    }
+}
+
+@media(max-width:609px) {
+    .shoe {
+        width: 220px;
+    }
+
+    .shoe a {
+        font-size: 0.5em;
+        bottom: 4%;
+    }
+    .stavka h2 {
+        font-size: 4.5vw;
     }
 }
 
@@ -398,6 +434,11 @@
 
     footer h5 {
         font-size: 0.9em;
+    }
+    .obrisi-stavku {
+        top:3%;
+        right:-88%;
+        font-size: 5vw;
     }
 }
 
@@ -469,9 +510,6 @@
         margin-left: 0px;
         margin-right: 5px !important;
     }
-
-
-
     .navbar-brand img {
         width:35px !important;
         margin-left: 0px !important;
@@ -487,6 +525,14 @@
 
     #welcome-title {
         top: 5vh;
+    }
+    .stavka h2 {
+        font-size: 5.5vw;
+    }
+    .obrisi-stavku {
+        top:2%;
+        right:-85%;
+        font-size: 6vw;
     }
 }
 
@@ -544,6 +590,9 @@
         height:18px;
         right:10%;
         top:-8%;
+    }
+    #korpa-info button {
+        font-size: 2.5vw;
     }
 }
 

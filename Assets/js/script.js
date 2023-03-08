@@ -177,12 +177,25 @@ window.onload = async function () {
         }
     });
 
-    // INICIJALNO STAMPANJE BROJA ARTIKLA U KORPI
-    let cartArr = JSON.parse(localStorage.getItem('korpa'));
-    if (cartArr == null) cartArr = [];
-    stampajBrojac(cartArr.length, 1);
 
-    //* * * * * * * * * * * * * * * * * * * * * * * * * * PRVA STRANICA * * * * * * * * * * * * * * * * * * * * * * * * * * *
+    // FUNKCIJA ZA SHUFFLE-OVANJE ELEMENATA NIZA
+    function shuffle(niz) {
+        let trenutniIndex = niz.length,
+            randomIndex;
+        while (trenutniIndex != 0) {
+            randomIndex = Math.floor(Math.random() * trenutniIndex);
+            trenutniIndex--;
+            [niz[trenutniIndex], niz[randomIndex]] = [
+                niz[randomIndex], niz[trenutniIndex]
+            ];
+        }
+        return niz;
+    }
+
+    var shoeList = await getData('proizvodi');
+    shuffle(shoeList);
+
+    //* * * * * * * * * * * * * * * * * * * * * * * * * * INDEX STRANICA * * * * * * * * * * * * * * * * * * * * * * * * * * *
     let url = document.location.pathname;
     if (url == "/MaxShoes/" ||
         url == "/MaxShoes/index.html" ||
@@ -233,7 +246,7 @@ window.onload = async function () {
         }
     }
 
-    //* * * * * * * * * * * * * * * * * * * * * * * * * * DRUGA STRANICA * * * * * * * * * * * * * * * * * * * * * * * * * * *
+    //* * * * * * * * * * * * * * * * * * * * * * * * * * PRODUCTS STRANICA * * * * * * * * * * * * * * * * * * * * * * * * * * *
     else if (url == "/MaxShoes/products.html") {
         // else if (url == "/products.html") {
 
@@ -445,20 +458,6 @@ window.onload = async function () {
             SakrijCistac(dugmadFilter)
         })
 
-        // FUNKCIJA ZA SHUFFLE-OVANJE ELEMENATA NIZA
-        function shuffle(niz) {
-            let trenutniIndex = niz.length,
-                randomIndex;
-            while (trenutniIndex != 0) {
-                randomIndex = Math.floor(Math.random() * trenutniIndex);
-                trenutniIndex--;
-                [niz[trenutniIndex], niz[randomIndex]] = [
-                    niz[randomIndex], niz[trenutniIndex]
-                ];
-            }
-            return niz;
-        }
-
         // FUNKCIJA ZA SORTIRANJE ELEMENATA NIZA
         function sort(shoeList, type) {
             switch (type) {
@@ -582,68 +581,8 @@ window.onload = async function () {
             dodajEventKorpama()
         }
 
-        // FUNKCIJA ZA DODAVANJE I IZBACIVANJE IZ KORPE ZA SVAKI PRODUKT
-        function dodajEventKorpama() {
-            $(document).ready(function () {
-                $(this).attr('data-bs-title', 'Remove from cart')
-                $('.korpa').click(function () {
-                    if ($(this).hasClass('plava')) {
-                        $(this).removeClass('plava');
-                        $(this).addClass('crvena');
-                        $(this).parent().tooltip('disable');
-                        $(this).tooltip('enable');
-                        $('#uspesno-dodato')
-                            .animate({
-                                bottom: '4%',
-                                opacity: '100'
-                            }, 500)
-                            .animate({
-                                opacity: '0'
-                            }, {
-                                duration: 1500
-                            })
-                            .animate({
-                                bottom: '-12%'
-                            }, {
-                                duration: 0
-                            });
-                        cartArr.push(shoeList.find(shoe => shoe.id == this.dataset.id));
-                        setLs('korpa', cartArr);
-                        stampajBrojac(cartArr.length, 1);
-                    } else {
-                        $(this).removeClass('crvena');
-                        $(this).addClass('plava');
-                        $(this).tooltip('disable');
-                        $(this).parent().tooltip('enable');
-                        $('#uspesno-skinuto')
-                            .animate({
-                                bottom: '4%',
-                                opacity: '100'
-                            }, 500)
-                            .animate({
-                                opacity: '0'
-                            }, {
-                                duration: 1500
-                            })
-                            .animate({
-                                bottom: '-12%'
-                            }, {
-                                duration: 0
-                            });
-                        let objZaBrisanje = shoeList.find(shoe => shoe.id == this.dataset.id);
-                        let indexObj = cartArr.indexOf(objZaBrisanje);
-                        cartArr.splice(indexObj, 1);
-                        setLs('korpa', cartArr);
-                        stampajBrojac(cartArr.length, -1)
-                    }
-                })
-            })
-        }
-
 
         // INICIJALNO POKRETANJE STAMPANJA
-        let shoeList = await getData('proizvodi');
-        shuffle(shoeList);
         const queryString = window.location.search;
         const urlParams = new URLSearchParams(queryString);
         const categoryUrl = urlParams.get('category');
@@ -669,6 +608,89 @@ window.onload = async function () {
         dodajEventDdListama(listaSortiranja, sortirajTekst, 'Sort By');
         glavniFiltar();
     }
+
+    //* * * * * * * * * * * * * * * * * * * * * * * * * * CART STRANICA * * * * * * * * * * * * * * * * * * * * * * * * * * *
+    else if (url == "/MaxShoes/cart.html") {
+        // else if (url == "/cart.html") {
+        document.querySelector('#clear').addEventListener('click', function () {
+            localStorage.removeItem("korpa");
+            stampajKorpu();
+        })
+
+        let stavkeUKorpi;
+
+        function stampajKorpu() {
+            let korpaDrzac = document.querySelector('#korpa-drzac');
+            let totalText = document.getElementById('total');
+            if (!localStorage.getItem("korpa")) {
+                korpaDrzac.innerHTML = `<div class="alert alert-danger mt-3 p-4 rounded-pill d-flex align-items-center justify-content-center text-center" id="no-shoes">
+                <h2>You don't have any items in your cart</h2></div>`;
+                totalText.innerHTML = `Total: $0.00`
+                document.querySelectorAll('#korpa-info button').forEach(button => {
+                    button.enabled = false;
+                })
+                return;
+            }
+            document.querySelectorAll('#korpa-info button').forEach(button => {
+                button.enabled = true;
+            })
+            stavkeUKorpi = JSON.parse(localStorage.getItem("korpa"));
+            let html = '';
+            let total = 0;
+            for (let stavka of stavkeUKorpi) {
+                stavka.price.discount ? total += stavka.price.discount * stavka.price.basePrice + stavka.price.shipping :
+                    total += stavka.price.basePrice + stavka.price.shipping
+                let bgColor;
+                if (stavka.category == 'Men') bgColor = 'dark-blue-bg text-white';
+                if (stavka.category == 'Women') bgColor = 'pink-bg text-dark';
+                if (stavka.category == 'Kids') bgColor = 'lgreen-bg text-dark';
+                html += `
+                <div class="row border border-dark stavka my-2 d-flex">
+                <i class="fa-solid fa-trash obrisi-stavku" data-id="${stavka.id}"></i>
+
+                <div class="col-md-5 d-flex flex-column border-bottom p-2">
+                <hgroup>
+                <h2 class="text-decoration-underline">${stavka.brand} ${stavka.model}</h2>
+                <i class="${bgColor} p-2 my-1 d-inline-block rounded">${stavka.category}</i>
+                </hgroup>
+                </div>
+                <div class="col-md-3 d-flex flex-column border-bottom p-2">
+                <h2 class="text-decoration-underline">Price:</h2>
+                ${stavka.price.discount ? 
+                    "<hgroup><h5 class='text-decoration-line-through d-inline text-danger fst-italic'>$" + stavka.price.basePrice + 
+                    "</h5>" + "<h5 class='d-inline text-success fw-bold mx-2'>$" + Math.round(stavka.price.basePrice * stavka.price.discount, 1) + "</h5></hgroup>":
+                    "<h5>$" + stavka.price.basePrice + "</h5>"
+                }
+                <p>+$${stavka.price.shipping ? stavka.price.shipping : '0.00'} shipping</p>
+                
+                </div>
+    
+                
+                <div class="col-md-4 d-flex border-bottom">
+                <img class="img-fluid p-2" src="${stavka.img.src}">
+                </div>
+                
+                
+                </div>
+                `
+            }
+            totalText.innerHTML = `Total: $${total}`
+            html += ``
+            korpaDrzac.innerHTML = html;
+        }
+        stampajKorpu()
+        document.querySelectorAll('.obrisi-stavku').forEach(dugme => {
+            dugme.addEventListener('click', function () {
+                console.log("wt")
+                let indexZaBrisanje = stavkeUKorpi.indexOf(stavkeUKorpi.find(stavka => stavka.id == dugme.dataset.id))
+                stavkeUKorpi.splice(indexZaBrisanje, 1)
+                setLs('korpa', stavkeUKorpi)
+                stampajKorpu();
+            })
+        })
+
+    }
+
     //* * * * * * * * * * * * * * * * * * * * * ZAJEDNICKI DEO ZA SVE STRANICE * * * * * * * * * * * * * * * * * * * * * * * *
     // STAMPANJE LEVOG DELA FOOTERA
     let footerSection = document.querySelectorAll("footer section");
@@ -773,7 +795,7 @@ function ajaxCall(fajl) {
             } else {
                 msg = 'Uncaught Error.\n' + jqXHR.responseText;
             }
-            console.log(msg)
+            return msg;
         }
     })
 }
@@ -816,4 +838,70 @@ function stampajBrojac(brojac, promena) {
         brojacOkvir.classList.remove('hide')
         brojacOkvir.textContent = brojac
     }
+}
+
+
+
+// INICIJALNO STAMPANJE BROJA ARTIKLA U KORPI
+let cartArr = JSON.parse(localStorage.getItem('korpa'));
+if (cartArr == null) cartArr = [];
+stampajBrojac(cartArr.length, 1);
+
+// FUNKCIJA ZA DODAVANJE I IZBACIVANJE IZ KORPE ZA SVAKI PRODUKT
+async function dodajEventKorpama() {
+    shoeList = await getData('proizvodi');
+    $(document).ready(function () {
+        $(this).attr('data-bs-title', 'Remove from cart')
+        $('.korpa').click(function () {
+            if ($(this).hasClass('plava')) {
+                $(this).removeClass('plava');
+                $(this).addClass('crvena');
+                $(this).parent().tooltip('disable');
+                $(this).tooltip('enable');
+                $('#uspesno-dodato')
+                    .animate({
+                        bottom: '4%',
+                        opacity: '100'
+                    }, 500)
+                    .animate({
+                        opacity: '0'
+                    }, {
+                        duration: 1500
+                    })
+                    .animate({
+                        bottom: '-12%'
+                    }, {
+                        duration: 0
+                    });
+                cartArr.push(shoeList.find(shoe => shoe.id == this.dataset.id));
+                setLs('korpa', cartArr);
+                stampajBrojac(cartArr.length, 1);
+            } else {
+                $(this).removeClass('crvena');
+                $(this).addClass('plava');
+                $(this).tooltip('disable');
+                $(this).parent().tooltip('enable');
+                $('#uspesno-skinuto')
+                    .animate({
+                        bottom: '4%',
+                        opacity: '100'
+                    }, 500)
+                    .animate({
+                        opacity: '0'
+                    }, {
+                        duration: 1500
+                    })
+                    .animate({
+                        bottom: '-12%'
+                    }, {
+                        duration: 0
+                    });
+                let objZaBrisanje = shoeList.find(shoe => shoe.id == this.dataset.id);
+                let indexObj = cartArr.indexOf(objZaBrisanje);
+                cartArr.splice(indexObj, 1);
+                setLs('korpa', cartArr);
+                stampajBrojac(cartArr.length, -1)
+            }
+        })
+    })
 }
