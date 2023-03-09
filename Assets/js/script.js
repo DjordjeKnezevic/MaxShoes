@@ -22,7 +22,6 @@ window.onload = async function () {
         logoIme.textContent = 'MS';
         logoIme.classList.remove('text-light');
         logoIme.classList.add('lgreen-lg');
-        console.log(logoIme)
     }
 
     // ANIMACIJA NAVBARA PRI SCROLL-U (POJAVLJIVANJE I NESTAJANJE)
@@ -45,41 +44,108 @@ window.onload = async function () {
     };
     window.addEventListener('scroll', validateHeader);
 
-    // IZBACIVANJE GREKSE LOGIN FORME
+
+    // PRIKUPLJANJE REGISTROVANIH I ULOGOVANOG KORISNIKA I SETOVANJE MENIJA ZA ULOGOVANOG KORISNIKA
+    if (!localStorage.getItem('registrovaniKorisnici')) {
+        registrovaniKorisnici = [];
+    } else registrovaniKorisnici = JSON.parse(localStorage.getItem('registrovaniKorisnici'));
+    if (localStorage.getItem('ulogovanKorisnik')) {
+        ulogovanKorisnik = JSON.parse(localStorage.getItem('ulogovanKorisnik'));
+        $('#profile').remove();
+        $(
+            `<div class="dropdown text-white mx-3" id="my-profile">
+        <a class="dropdown-toggle nav-link" href="#" role="button"
+            aria-expanded="false" id="profile-ddtoggle">
+            ${ulogovanKorisnik.username}
+        </a>
+        <ul class="dropdown-menu lgreen-bg">
+        <li><a class="dropdown-item" href="/MaxShoes/profile.html">My profile</a></li>
+        <li><a class="dropdown-item" href="#" id="logout">Logout</a></li>
+        </ul>
+    </div>`
+        ).insertAfter('#glavna-korpa')
+        $('#profile-ddtoggle').click(function () {
+            $(this).next().slideToggle('fast');
+        })
+
+        document.querySelector('#logout').addEventListener('click', function () {
+            localStorage.removeItem('ulogovanKorisnik');
+            localStorage.removeItem('korpa');
+            location.reload();
+        })
+    }
+    console.log(registrovaniKorisnici)
+    console.log(ulogovanKorisnik)
+
+    // LOGOVANJE KORISNIKA
     let logovanjeForma = document.querySelector('#logovanje-forma');
-    let invalidUserText = document.querySelector('#logovanje-forma .form-text');
-    logovanjeForma.addEventListener('submit', () => {
+    let invalidUserText = document.querySelector('#logovanje-forma .alert-danger');
+    let uspesnoLogovanje = document.querySelector('#logovanje-forma .alert-success');
+    let usernameEmailLogin = document.querySelector('#login-user-email');
+    let passwordLogin = document.querySelector('#log-pass');
+    logovanjeForma.addEventListener('submit', (event) => {
         event.preventDefault();
-        invalidUserText.classList.remove('hide')
+        let korisniciUsername = registrovaniKorisnici.map(korisnik => korisnik.username);
+        let korisniciEmail = registrovaniKorisnici.map(korisnik => korisnik.email);
+
+        if (korisniciUsername.includes(usernameEmailLogin.value) || korisniciEmail.includes(usernameEmailLogin.value)) {
+            let indexKorisnika = korisniciUsername.indexOf(usernameEmailLogin.value);
+            if (indexKorisnika == -1) indexKorisnika = korisniciEmail.indexOf(usernameEmailLogin.value);
+            ulogovanKorisnik = registrovaniKorisnici[indexKorisnika];
+            if (passwordLogin.value == ulogovanKorisnik.password) {
+                setLs('ulogovanKorisnik', ulogovanKorisnik);
+                invalidUserText.classList.add('hide');
+                uspesnoLogovanje.classList.remove('hide');
+                usernameEmailLogin.classList.remove('error-border');
+                passwordLogin.classList.remove('error-border');
+                setTimeout(() => {
+                    location.reload();
+                }, 1000);
+            } else {
+                invalidUserText.classList.remove('hide');
+                invalidUserText.textContent = "Incorrect Password";
+                usernameEmailLogin.classList.remove('error-border');
+                passwordLogin.classList.add('error-border');
+            }
+        } else {
+            invalidUserText.textContent = "This user does not exist";
+            invalidUserText.classList.remove('hide')
+            usernameEmailLogin.classList.add('error-border');
+            passwordLogin.classList.add('error-border');
+        }
+
+
     })
 
     // OBRADA SIGNUP FORME
     let signupForma = document.querySelector('#signup-forma');
-    signupForma.addEventListener('submit', () => {
+    signupForma.addEventListener('submit', (event) => {
         event.preventDefault();
     })
 
     // PROVERA ISPRAVNOSTI USERNAME-A
     const reUsername = [
-        /^[\w\d!@#$%^&*._]{5,20}$/,
-        /^[A-Z][\w\d!@#$%^&*._]{4,19}$/
+        /^[\w\d!@#\$%\^&\*\._]{5,20}$/,
+        /^[A-Z][\w\d!@#\$%\^&\*\._]{4,19}$/
     ];
     const porukaUsername = [
         'Username must be between 5 and 20 characters long and must not contain spaces',
         'Username must start with a capital letter'
     ];
+
     let signupUsername = document.getElementById('signup-username');
     let usernameError = document.getElementById('username-error');
     signupUsername.addEventListener('blur', () => {
         regexProvera(signupUsername, usernameError, reUsername, porukaUsername);
+        proveraPostojecegKorisnika(signupUsername, usernameError, registrovaniKorisnici, 'Username');
     })
 
     // PROVERA ISPRAVNOSTI PASSWORD-A
     const rePassword = [
-        /^[\w\d!@#$%^&*._]{8,20}$/,
-        /^([\w!@#$%^&*._]{7,19}[\d]+)|([\d]+[\w!@#$%^&*._]{7,19})$/,
-        /^([\w\d]{7,19}[!@#$%^&*._]+)|([!@#$%^&*._]+[\w\d]{7,19})$/,
-        /^[A-Z][\w\d!@#$%^&*._]{7,19}$/
+        /^[\w\d!@#\$%\^&\*\._]{8,20}$/,
+        /^([\w!@#$%^&*._]+[\d]+)|([\d]+[\w!@#\$%\^&\*\._]+)$/,
+        /^([\w\d]+[!@#\$%\^&\*\._]+)|([!@#\$%\^&\*\._]+[\w\d]+)$/,
+        /^[A-Z][\w\d!@#\$%\^&\*\._]{7,19}$/
     ];
     const porukaPassword = [
         'Password must be between 8 and 20 characters long and must not contain spaces',
@@ -94,7 +160,7 @@ window.onload = async function () {
     })
 
     // PROVERA ISPRAVNOSTI IMENA I PREZIMENA
-    let dodatanReFirstLastName = /^[A-Z]([\w\dŽĐŠĆČćđčžšшђжћчЂШЖЋЧ]{2,19}[\d!@#$%^&*._]+)|([\d!@#$%^&*._]+[\w\dŽĐŠĆČćđčžšшђжћчЂШЖЋЧ]{2,19})$/;
+    let dodatanReFirstLastName = /^[A-Z]([\w\dŽĐŠĆČćđčžšшђжћчЂШЖЋЧ]{2,19}[\d!@#\$%\^&\*\._]+)|([\d!@#\$%\^&\*\._]+[\w\dŽĐŠĆČćđčžšшђжћчЂШЖЋЧ]{2,19})$/;
     const reFirstLastName = [
         /^[\w\dŽĐŠĆČćđčžš]{3,20}$/,
         /^[A-Z][\w\dŽĐŠĆČćđčžšшђжћчЂШЖЋЧ]{2,19}$/
@@ -116,7 +182,7 @@ window.onload = async function () {
     })
 
     // PROVERA ISPRAVNOSTI MAIL-A
-    const reEmail = [/^[a-z\d\._]{3,19}@[a-z]{3,10}(\.[a-z]{2,5}$){1,4}/];
+    const reEmail = [/^[a-z\d\._]{3,19}@[a-z]{3,10}(\.[a-z]{2,5}){1,4}$/];
     const porukaEmail = [
         'Invalid email format (Email must contain "@" and end with a domain name (Ex. ".com")))'
     ];
@@ -124,6 +190,7 @@ window.onload = async function () {
     let signupEmail = document.getElementById('signup-email');
     signupEmail.addEventListener('blur', () => {
         regexProvera(signupEmail, emailError, reEmail, porukaEmail);
+        proveraPostojecegKorisnika(signupEmail, emailError, registrovaniKorisnici, 'Email');
     })
 
     // PROVERA ISPRAVNOSTI ADRESE
@@ -161,7 +228,7 @@ window.onload = async function () {
         }
         for (let i = 0; i < 6; i++) {
             if (i == 2 || i == 3) {
-                regexProvera(objektiPoljeNiz[i], objektiErrorNiz[i], regexIzrazi[i], porukeNiz[i], reFirstLastName3, dodatnaPorukaFirstLastName)
+                regexProvera(objektiPoljeNiz[i], objektiErrorNiz[i], regexIzrazi[i], porukeNiz[i], dodatanReFirstLastName, dodatnaPorukaFirstLastName)
                 if (tmpGreska) {
                     greska = true;
                 }
@@ -172,8 +239,39 @@ window.onload = async function () {
                 }
             }
         }
+        if (!localStorage.getItem('registrovaniKorisnici')) {
+            greska = false;
+        } else {
+            greska = proveraPostojecegKorisnika(signupUsername, usernameError, registrovaniKorisnici, 'Username');
+            if (greska) return
+            greska = proveraPostojecegKorisnika(signupEmail, emailError, registrovaniKorisnici, 'Email');
+
+        }
         if (!greska) {
             document.getElementById('success-signup').classList.remove('hide');
+            let prethodniId = 0;
+            if (registrovaniKorisnici.length > 0) {
+                prethodniId = registrovaniKorisnici[registrovaniKorisnici.length - 1].id
+            }
+            let novKorisnik = {
+                id: prethodniId + 1,
+                username: signupUsername.value,
+                password: signupPassword.value,
+                firstName: signupFirstName.value,
+                lastName: signupLastName.value,
+                email: signupEmail.value,
+                address: signupAddress.value,
+                korpa: [],
+                purchaseHistory: []
+            }
+            registrovaniKorisnici.push(novKorisnik);
+            setLs('registrovaniKorisnici', registrovaniKorisnici)
+            setLs('ulogovanKorisnik', novKorisnik)
+            setTimeout(() => {
+                location.reload();
+            }, 1000);
+
+
         }
     });
 
@@ -194,6 +292,9 @@ window.onload = async function () {
 
     var shoeList = await getData('proizvodi');
     shuffle(shoeList);
+
+
+
 
     //* * * * * * * * * * * * * * * * * * * * * * * * * * INDEX STRANICA * * * * * * * * * * * * * * * * * * * * * * * * * * *
     let url = document.location.pathname;
@@ -573,12 +674,18 @@ window.onload = async function () {
                 ${shoe.price.shipping ? "<i id='text-shipping' class='bg-dark d-inline-block text-white p-2 rounded-pill'>Shipping: $" + shoe.price.shipping + "</i>" : 
                 '<img src="Assets/img/free-shipping.png" alt="free shipping" class="img-fluid" id="free-shipping-img">'}
                 
-                <a data-bs-toggle="tooltip" data-bs-placement="top" data-bs-title="Add to cart">
+                <a data-bs-toggle="tooltip" data-bs-placement="top" data-bs-title="Add to cart" class="korpa-roditelj">
                 <svg data-id="${shoe.id}" xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="currentColor" class="bi bi-cart3 korpa ${idUKorpi.includes(shoe.id) ? 'crvena' : 'plava'}" viewBox="0 0 16 16" data-bs-title="Remove from cart">
         <path d="M0 1.5A.5.5 0 0 1 .5 1H2a.5.5 0 0 1 .485.379L2.89 3H14.5a.5.5 0 0 1 .49.598l-1 5a.5.5 0 0 1-.465.401l-9.397.472L4.415 11H13a.5.5 0 0 1 0 1H4a.5.5 0 0 1-.491-.408L2.01 3.607 1.61 2H.5a.5.5 0 0 1-.5-.5zM3.102 4l.84 4.479 9.144-.459L13.89 4H3.102zM5 12a2 2 0 1 0 0 4 2 2 0 0 0 0-4zm7 0a2 2 0 1 0 0 4 2 2 0 0 0 0-4zm-7 1a1 1 0 1 1 0 2 1 1 0 0 1 0-2zm7 0a1 1 0 1 1 0 2 1 1 0 0 1 0-2z"></path></svg></a></article>
                 `
             }
-            dodajEventKorpama()
+            if (localStorage.getItem('ulogovanKorisnik')) {
+                dodajEventKorpama()
+            } else {
+                $('.korpa-roditelj').attr("data-bs-toggle", "modal");
+                $('.korpa-roditelj').attr("href", "#account-modal");
+            }
+
         }
 
 
@@ -612,32 +719,26 @@ window.onload = async function () {
     //* * * * * * * * * * * * * * * * * * * * * * * * * * CART STRANICA * * * * * * * * * * * * * * * * * * * * * * * * * * *
     else if (url == "/MaxShoes/cart.html") {
         // else if (url == "/cart.html") {
-        document.querySelector('#clear').addEventListener('click', function () {
-            localStorage.removeItem("korpa");
-            stampajKorpu();
-            stampajBrojac(0, -1)
-        })
-
         let stavkeUKorpi;
+        let total = 0;
 
         function stampajKorpu() {
             let korpaDrzac = document.querySelector('#korpa-drzac');
             let totalText = document.getElementById('total');
-            if (!localStorage.getItem("korpa") || localStorage.getItem("korpa") == "[]") {
+            if (ulogovanKorisnik && ulogovanKorisnik.korpa.length == 0) {
                 korpaDrzac.innerHTML = `<div class="alert alert-danger mt-3 p-4 rounded-pill d-flex align-items-center justify-content-center text-center" id="no-shoes">
                 <h2>You don't have any items in your cart</h2></div>`;
                 totalText.innerHTML = `Total: $0.00`
                 document.querySelectorAll('#korpa-info button').forEach(button => {
-                    button.enabled = false;
+                    button.disabled = true;
                 })
                 return;
             }
             document.querySelectorAll('#korpa-info button').forEach(button => {
-                button.enabled = true;
+                button.disabled = false;
             })
-            stavkeUKorpi = JSON.parse(localStorage.getItem("korpa"));
+            stavkeUKorpi = ulogovanKorisnik ? ulogovanKorisnik.korpa : [];
             let html = '';
-            let total = 0;
             for (let stavka of stavkeUKorpi) {
                 stavka.price.discount ? total += stavka.price.discount * stavka.price.basePrice + stavka.price.shipping :
                     total += stavka.price.basePrice + stavka.price.shipping
@@ -646,7 +747,7 @@ window.onload = async function () {
                 if (stavka.category == 'Women') bgColor = 'pink-bg text-dark';
                 if (stavka.category == 'Kids') bgColor = 'lgreen-bg text-dark';
                 html += `
-                <div class="row border border-dark stavka my-2 d-flex">
+                <div class="row border stavka my-2 d-flex">
                 <i class="fa-solid fa-trash obrisi-stavku" data-id="${stavka.id}"></i>
 
                 <div class="col-md-5 d-flex flex-column border-bottom p-2">
@@ -663,20 +764,14 @@ window.onload = async function () {
                     "<h5>$" + stavka.price.basePrice + "</h5>"
                 }
                 <p>+$${stavka.price.shipping ? stavka.price.shipping : '0.00'} shipping</p>
-                
                 </div>
-    
-                
                 <div class="col-md-4 d-flex border-bottom">
                 <img class="img-fluid p-2" src="${stavka.img.src}">
                 </div>
-                
-                
                 </div>
                 `
             }
             totalText.innerHTML = `Total: $${total}`
-            html += ``
             korpaDrzac.innerHTML = html;
             dodajEventKantama(stavkeUKorpi);
         }
@@ -686,17 +781,96 @@ window.onload = async function () {
                 dugme.addEventListener('click', function () {
                     let indexZaBrisanje = stavkeUKorpi.indexOf(stavkeUKorpi.find(stavka => stavka.id == dugme.dataset.id))
                     stavkeUKorpi.splice(indexZaBrisanje, 1)
-                    setLs('korpa', stavkeUKorpi)
+                    updateKorisnika(ulogovanKorisnik)
                     stampajKorpu();
                     stampajBrojac(stavkeUKorpi.length, -1)
                 })
             })
         }
+
+        document.querySelector('#clear').addEventListener('click', function () {
+            ulogovanKorisnik.korpa = []
+            updateKorisnika(ulogovanKorisnik)
+            stampajKorpu();
+            stampajBrojac(0, -1)
+        })
+        document.querySelector('#purchase').addEventListener('click', function () {
+            ulogovanKorisnik.korpa = []
+            let now = new Date();
+            let day = now.getDate().toString().padStart(2, '0');
+            let month = now.toLocaleString('default', {
+                month: 'short'
+            });
+            let year = now.getFullYear();
+            let hour = now.getHours().toString().padStart(2, '0');
+            let minute = now.getMinutes().toString().padStart(2, '0');
+            let second = now.getSeconds().toString().padStart(2, '0');
+            let vremeKupovine = `${day}/${month}/${year} ${hour}:${minute}:${second}`;
+
+            let kupovina = {
+                kupljeniPredmeti: stavkeUKorpi,
+                vremeKupovine,
+                ukupnaCena: total
+            }
+            ulogovanKorisnik.purchaseHistory.push(kupovina)
+            updateKorisnika(ulogovanKorisnik)
+            window.location.href = "/MaxShoes/profile.html";
+        })
         stampajKorpu()
-
-
     }
 
+    //* * * * * * * * * * * * * * * * * * * * * * * * * * PROFILE STRANICA * * * * * * * * * * * * * * * * * * * * * * * * * * *
+    else if (url == "/MaxShoes/profile.html") {
+        // else if (url == "/profile.html") {
+        let kupovine = ulogovanKorisnik ? ulogovanKorisnik.purchaseHistory : []
+        let profileDrzac = document.querySelector('#profile-drzac');
+        if (kupovine.length == 0) {
+            profileDrzac.innerHTML = `
+                <div class="d-flex flex-column my-3 w-50" id="nema-kupovine"><h1>You haven't made any purchases</h1>
+                <a class="btn btn-primary my-2" href="/MaxShoes/products.html">Go to our shop</a>
+                </div>
+            `
+            return;
+        }
+        let html = '';
+        for (let kupovina of kupovine) {
+            html = `<div class="row my-3 kupovina"><div class="col-md-3 d-flex flex-column">
+            <div class="mb-2 border-bottom"><h2 class="text-decoration-underline">Time of purchase:</h2><h4>${kupovina.vremeKupovine}</h4></div>
+            <div class="border-bottom"><h2 class="text-decoration-underline">Total price:</h2><h4>$${kupovina.ukupnaCena}</h4></div>
+            </div><div class="col-md-9">`
+            for (let stavka of kupovina.kupljeniPredmeti) {
+                let bgColor;
+                if (stavka.category == 'Men') bgColor = 'dark-blue-bg text-white';
+                if (stavka.category == 'Women') bgColor = 'pink-bg text-dark';
+                if (stavka.category == 'Kids') bgColor = 'lgreen-bg text-dark';
+                html += `
+            <div class="row border stavka my-2 d-flex">
+            <div class="col-md-5 d-flex flex-column border-bottom p-2">
+            <hgroup>
+            <h3 class="text-decoration-underline">${stavka.brand} ${stavka.model}</h3>
+            <i class="${bgColor} p-2 my-1 d-inline-block rounded">${stavka.category}</i>
+            </hgroup>
+            </div>
+            <div class="col-md-3 d-flex flex-column border-bottom p-2">
+            <h3 class="text-decoration-underline">Price:</h3>
+            ${stavka.price.discount ? 
+                "<hgroup><h5 class='text-decoration-line-through d-inline text-danger fst-italic'>$" + stavka.price.basePrice + 
+                "</h5>" + "<h5 class='d-inline text-success fw-bold mx-2'>$" + Math.round(stavka.price.basePrice * stavka.price.discount, 1) + "</h5></hgroup>":
+                "<h5>$" + stavka.price.basePrice + "</h5>"
+            }
+            <p>+$${stavka.price.shipping ? stavka.price.shipping : '0.00'} shipping</p>
+            </div>
+            <div class="col-md-4 d-flex border-bottom">
+            <img class="img-fluid p-2" src="${stavka.img.src}">
+            </div>
+            </div>
+            `
+            }
+            html += `</div></div>`
+            profileDrzac.innerHTML += html;
+        }
+
+    }
     //* * * * * * * * * * * * * * * * * * * * * ZAJEDNICKI DEO ZA SVE STRANICE * * * * * * * * * * * * * * * * * * * * * * * *
     // STAMPANJE LEVOG DELA FOOTERA
     let footerSection = document.querySelectorAll("footer section");
@@ -775,6 +949,26 @@ function regexProvera(objekatPolje, errorTekst, regexNiz, porukaNiz, dodatanRege
     }
 }
 
+// FUNKCIJA ZA PROVERU POSTOJECIH USERNAME-A ILI EMAIL-A
+function proveraPostojecegKorisnika(objekatPolje, errorTekst, registrovaniKorisnici, zaProveru) {
+    let korisnici;
+    if (zaProveru == 'Username') {
+        korisnici = registrovaniKorisnici.map(korisnik => korisnik.username)
+    } else {
+        korisnici = registrovaniKorisnici.map(korisnik => korisnik.email)
+    }
+    if (korisnici.includes(objekatPolje.value)) {
+        errorTekst.classList.remove('hide');
+        objekatPolje.classList.add('error-border');
+        errorTekst.textContent = zaProveru == 'Username' ? `Username "${objekatPolje.value}" already exists` : `Email "${objekatPolje.value}" is already registered`
+        return true
+    }
+    errorTekst.classList.add('hide');
+    objekatPolje.classList.remove('error-border');
+    return false;
+}
+
+// AJAX FUNKCIJA
 function ajaxCall(fajl) {
     return $.ajax({
         url: BASEURL + fajl,
@@ -806,10 +1000,12 @@ function ajaxCall(fajl) {
     })
 }
 
+// FUNKCIJA ZA SETOVANJE VREDNOSTI LOCAL STORAGE-A
 function setLs(key, value) {
     localStorage.setItem(key, JSON.stringify(value));
 }
 
+// FUNKCIJA ZA UZIMANJE PODATAKA IZ AJAXA ILI LOCAL STORAGE-A
 async function getData(keyName) {
     if (!localStorage.getItem(keyName)) {
         let tmpData = JSON.parse(await ajaxCall(keyName + ".json"));
@@ -849,8 +1045,10 @@ function stampajBrojac(brojac, promena) {
 
 
 // INICIJALNO STAMPANJE BROJA ARTIKLA U KORPI
-let cartArr = JSON.parse(localStorage.getItem('korpa'));
-if (cartArr == null) cartArr = [];
+var registrovaniKorisnici = JSON.parse(localStorage.getItem('registrovaniKorisnici'))
+var ulogovanKorisnik = JSON.parse(localStorage.getItem('ulogovanKorisnik'))
+let cartArr = [];
+if (ulogovanKorisnik) cartArr = ulogovanKorisnik.korpa;
 stampajBrojac(cartArr.length, 1);
 
 // FUNKCIJA ZA DODAVANJE I IZBACIVANJE IZ KORPE ZA SVAKI PRODUKT
@@ -880,8 +1078,6 @@ async function dodajEventKorpama() {
                         duration: 0
                     });
                 cartArr.push(shoeList.find(shoe => shoe.id == this.dataset.id));
-                setLs('korpa', cartArr);
-                stampajBrojac(cartArr.length, 1);
             } else {
                 $(this).removeClass('crvena');
                 $(this).addClass('plava');
@@ -905,9 +1101,23 @@ async function dodajEventKorpama() {
                 let objZaBrisanje = shoeList.find(shoe => shoe.id == this.dataset.id);
                 let indexObj = cartArr.indexOf(objZaBrisanje);
                 cartArr.splice(indexObj, 1);
-                setLs('korpa', cartArr);
                 stampajBrojac(cartArr.length, -1)
             }
+            ulogovanKorisnik.korpa = cartArr;
+            updateKorisnika(ulogovanKorisnik)
+            stampajBrojac(cartArr.length, 1);
         })
     })
+}
+
+function updateKorisnika(ulogovanKorisnik) {
+    registrovaniKorisnici = registrovaniKorisnici.map(korisnik => {
+        if (korisnik.id == ulogovanKorisnik.id) {
+            return ulogovanKorisnik;
+        } else {
+            return korisnik;
+        }
+    })
+    setLs('ulogovanKorisnik', ulogovanKorisnik)
+    setLs('registrovaniKorisnici', registrovaniKorisnici)
 }

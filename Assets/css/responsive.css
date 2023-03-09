@@ -122,6 +122,10 @@
     #welcome-title {
         top: 10vh;
     }
+    #profile-ddtoggle {
+        margin-top: 8px;
+        font-size: 1.4vw;
+    }
 }
 
 @media(max-width:1800px) {
@@ -267,6 +271,13 @@
 
 }
 
+@media(max-width:911px) {
+    #profile-ddtoggle {
+        margin-top: 8px;
+        font-size: 2vw;
+    }
+}
+
 @media(max-width:809px) {
     .shoe {
         max-width: 400px ;
@@ -277,6 +288,9 @@
         top:8%;
         right:-92%;
         font-size: 3vw;
+    }
+    #nema-kupovine {
+        width: 100% !important;
     }
 }
 
@@ -347,6 +361,10 @@
 
     footer h5 {
         font-size: 1em;
+    }
+    #profile-ddtoggle {
+        margin-top: 8px;
+        font-size: 3vw;
     }
 }
 
@@ -470,6 +488,9 @@
     .carousel-caption p {
         font-size: 0.5em;
     }
+    #my-profile .dropdown-menu {
+        right: -70%;
+    }
 }
 
 @media(max-width:500px) {
@@ -544,7 +565,13 @@
     footer h5 {
         font-size: 0.7em;
     }
-
+    #profile-ddtoggle {
+        margin-top: 8px;
+        font-size: 3.5vw;
+    }
+    #my-profile {
+        margin-right:10px !important;
+    }
 }
 
 @media(max-width:373px) {

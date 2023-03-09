@@ -26,7 +26,8 @@
                 </button>
                 <div class="col navbar-brand">
                     <a href="/MaxShoes/">
-                        <h1 class=" text-light" id="logo-ime"><span class="lgreen">M</span>ax <span class="lgreen">S</span>hoes</h1>
+                        <h1 class=" text-light" id="logo-ime"><span class="lgreen">M</span>ax <span
+                                class="lgreen">S</span>hoes</h1>
                     </a>
                     <a href="/MaxShoes/"><img src="Assets/img/logo.jpg" alt="logo" class="ms-4"></a>
                 </div>
@@ -47,7 +48,7 @@
                     </svg>
                     <div id="brojac" class="text-dark hide"></div>
                 </a>
-                <a class="text-light" data-bs-toggle="modal" href="#account-modal" role="button"><svg
+                <a class="text-light" id="profile" data-bs-toggle="modal" href="#account-modal" role="button"><svg
                         xmlns="http://www.w3.org/2000/svg" width="35" height="35" fill="currentColor"
                         class="bi bi-person-circle" viewBox="0 0 16 16">
                         <path d="M11 6a3 3 0 1 1-6 0 3 3 0 0 1 6 0z" />
@@ -55,6 +56,11 @@
                             d="M0 8a8 8 0 1 1 16 0A8 8 0 0 1 0 8zm8-7a7 7 0 0 0-5.468 11.37C3.242 11.226 4.805 10 8 10s4.757 1.225 5.468 2.37A7 7 0 0 0 8 1z" />
                     </svg>
                 </a>
+                <script>
+                    if (localStorage.getItem('ulogovanKorisnik')) {
+
+                    }
+                </script>
             </div>
         </div>
     </nav>
@@ -78,7 +84,8 @@
                 </div>
             </div>
         </div>
-        <div class="modal fade" id="login-modal" aria-hidden="true" aria-labelledby="exampleModalToggleLabel2" tabindex="-1">
+        <div class="modal fade" id="login-modal" aria-hidden="true" aria-labelledby="exampleModalToggleLabel2"
+            tabindex="-1">
             <div class="modal-dialog modal-dialog-centered">
                 <div class="modal-content">
                     <div class="modal-header">
@@ -97,6 +104,8 @@
                             </div>
                             <button type="submit" class="btn btn-primary">Login</button>
                             <span class="form-text alert alert-danger hide ms-1">This user does not exist
+                            </span>
+                            <span class="form-text alert alert-success hide ms-1">Successfully logged in
                             </span>
                         </form>
                     </div>
@@ -273,8 +282,8 @@
                     </article>
                 </div>
             </div>
-            <a href="/MaxShoes/products.html?brand=Nike&discount=On Discount"><img src="Assets/img/NikeDiscount.jpg" class="img-fluid"
-                    alt="NikeDiscount"></a>
+            <a href="/MaxShoes/products.html?brand=Nike&discount=On Discount"><img src="Assets/img/NikeDiscount.jpg"
+                    class="img-fluid" alt="NikeDiscount"></a>
         </section>
         <section id="kategorije">
             <hgroup id="kategorije-naslov">

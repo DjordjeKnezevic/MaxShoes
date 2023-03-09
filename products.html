@@ -50,7 +50,7 @@
                     </svg>
                     <div id="brojac" class="text-dark hide"></div>
                 </a>
-                <a class="text-light" data-bs-toggle="modal" href="#account-modal" role="button"><svg
+                <a class="text-light" id="profile" data-bs-toggle="modal" href="#account-modal" role="button"><svg
                         xmlns="http://www.w3.org/2000/svg" width="35" height="35" fill="currentColor"
                         class="bi bi-person-circle" viewBox="0 0 16 16">
                         <path d="M11 6a3 3 0 1 1-6 0 3 3 0 0 1 6 0z" />
@@ -101,6 +101,8 @@
                             </div>
                             <button type="submit" class="btn btn-primary">Login</button>
                             <span class="form-text alert alert-danger hide ms-1">This user does not exist
+                            </span>
+                            <span class="form-text alert alert-success hide ms-1">Successfully logged in
                             </span>
                         </form>
                     </div>
@@ -260,7 +262,7 @@
                                         </ul>
                                     </li>
                                     <li class="dropdown">
-                                        <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle=""
+                                        <a class="nav-link dropdown-toggle" href="#" role="button"
                                             aria-expanded="false">
                                             Price
                                         </a>
@@ -281,8 +283,8 @@
                                         </ul>
                                     </li>
                                     <li class="dropdown">
-                                        <a class="nav-link dropdown-toggle" href="#" role="button" aria-expanded="false"
-                                            data-bs-auto-close="outside">
+                                        <a class="nav-link dropdown-toggle" href="#" role="button"
+                                            aria-expanded="false">
                                             Other filters
                                         </a>
                                         <ul class="dropdown-menu padajuci-meni text-white" id="ostali-filtri">
