@@ -298,12 +298,12 @@ window.onload = async function () {
 
     //* * * * * * * * * * * * * * * * * * * * * * * * * * INDEX STRANICA * * * * * * * * * * * * * * * * * * * * * * * * * * *
     let url = document.location.pathname;
-    // if (url == "/MaxShoes/" ||
-    //     url == "/MaxShoes/index.html" ||
-    //     url == "/MaxShoes/#") {
-    if (url == "/" ||
-        url == "/index.html" ||
-        url == "/#") {
+    if (url == "/MaxShoes/" ||
+        url == "/MaxShoes/index.html" ||
+        url == "/MaxShoes/#") {
+        // if (url == "/" ||
+        //     url == "/index.html" ||
+        //     url == "/#") {
 
         // FADEOUT ANIMACIJA WELCOME EKRANA
         let bgSlike = welcomeScreen.getElementsByTagName("img");
@@ -348,8 +348,8 @@ window.onload = async function () {
     }
 
     //* * * * * * * * * * * * * * * * * * * * * * * * * * PRODUCTS STRANICA * * * * * * * * * * * * * * * * * * * * * * * * * * *
-    // else if (url == "/MaxShoes/products.html") {
-    else if (url == "/products.html") {
+    else if (url == "/MaxShoes/products.html") {
+        // else if (url == "/products.html") {
 
         // ENABLE-OVANJE BOOTSTRAPOVOG TOOLTIP-A ZA KORPE
         $(document).ready(function () {
@@ -717,8 +717,8 @@ window.onload = async function () {
     }
 
     //* * * * * * * * * * * * * * * * * * * * * * * * * * CART STRANICA * * * * * * * * * * * * * * * * * * * * * * * * * * *
-    // else if (url == "/MaxShoes/cart.html") {
-    else if (url == "/cart.html") {
+    else if (url == "/MaxShoes/cart.html") {
+        // else if (url == "/cart.html") {
         let stavkeUKorpi;
         let total = 0;
 
@@ -820,8 +820,8 @@ window.onload = async function () {
     }
 
     //* * * * * * * * * * * * * * * * * * * * * * * * * * PROFILE STRANICA * * * * * * * * * * * * * * * * * * * * * * * * * * *
-    // else if (url == "/MaxShoes/profile.html") {
-    else if (url == "/profile.html") {
+    else if (url == "/MaxShoes/profile.html") {
+        // else if (url == "/profile.html") {
         let kupovine = ulogovanKorisnik ? ulogovanKorisnik.purchaseHistory : []
         let profileDrzac = document.querySelector('#profile-drzac');
         if (kupovine.length == 0) {
