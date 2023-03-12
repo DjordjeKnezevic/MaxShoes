@@ -782,6 +782,7 @@ window.onload = async function () {
                     let indexZaBrisanje = stavkeUKorpi.indexOf(stavkeUKorpi.find(stavka => stavka.id == dugme.dataset.id))
                     stavkeUKorpi.splice(indexZaBrisanje, 1)
                     updateKorisnika(ulogovanKorisnik)
+                    total = 0;
                     stampajKorpu();
                     stampajBrojac(stavkeUKorpi.length, -1)
                 })
