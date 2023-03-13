@@ -989,9 +989,9 @@ function ajaxCall(fajl) {
             // console.log(jqXHR);
             var msg = '';
             if (jqXHR.status === 0) {
-                msg = 'Not connect.\n Verify Network.';
+                msg = 'No connection, please verify your network';
             } else if (jqXHR.status == 404) {
-                msg = 'Requested page not found. [404]';
+                msg = 'Requested page/resource not found. [404]';
             } else if (jqXHR.status == 500) {
                 msg = 'Internal Server Error [500].';
             } else if (exception === 'parsererror') {
@@ -1003,7 +1003,7 @@ function ajaxCall(fajl) {
             } else {
                 msg = 'Uncaught Error.\n' + jqXHR.responseText;
             }
-            return msg;
+            $('#ajax-error').css("opacity", 1).html("Error:" + msg);
         }
     })
 }

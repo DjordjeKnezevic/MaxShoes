@@ -427,8 +427,10 @@
     }
 }
 
-@media(max-width:584px) {
-
+@media(max-width:593px) {
+    .shoe {
+        min-height:300px;
+    }
 }
 
 @media(max-width:575px) {
@@ -489,7 +491,8 @@
         font-size: 0.5em;
     }
     #my-profile .dropdown-menu {
-        right: -70%;
+        right: -90%;
+        top:130%;
     }
 }
 
@@ -571,6 +574,9 @@
     }
     #my-profile {
         margin-right:10px !important;
+    }
+    .shoe {
+        min-height:270px;
     }
 }
 
