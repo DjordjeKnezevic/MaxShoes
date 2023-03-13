@@ -588,6 +588,11 @@ window.onload = async function () {
                         return ((a.brand + a.model) > (b.brand + b.model) ? -1 : 1)
                     })
                     break;
+                case "shipping-price-ascending":
+                    shoeList.sort(function (a, b) {
+                        return a.price.shipping - b.price.shipping
+                    })
+                    break;
             }
         }
 
@@ -627,6 +632,8 @@ window.onload = async function () {
                         } else {
                             sort(shoeList, "name-descending")
                         }
+                    } else if (filtar.split(' ')[0] == "Shipping") {
+                        sort(shoeList, "shipping-price-ascending")
                     } else {
                         shoeList = shoeList.filter(shoe => {
                             return (shoe.brand == filtar ||
